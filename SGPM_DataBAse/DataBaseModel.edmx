@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DataBaseModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataBaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DataBaseModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BeneficiarioSet" EntityType="DataBaseModel.Beneficiario" />
+          <EntitySet Name="PersonaSet" EntityType="DataBaseModel.Persona" />
+          <EntitySet Name="empresaSet" EntityType="DataBaseModel.empresa" />
+          <EntitySet Name="CuentaBancariaSet" EntityType="DataBaseModel.CuentaBancaria" />
+          <EntitySet Name="CuentaBancariaSolicitudSet" EntityType="DataBaseModel.CuentaBancariaSolicitud" />
+          <EntitySet Name="SolicitudSet" EntityType="DataBaseModel.Solicitud" />
+          <EntitySet Name="DevolucionesSet" EntityType="DataBaseModel.Devoluciones" />
+          <EntitySet Name="ArchivoSet" EntityType="DataBaseModel.Archivo" />
+          <EntitySet Name="DictamenSet" EntityType="DataBaseModel.Dictamen" />
+          <EntitySet Name="EmpleadoSet" EntityType="DataBaseModel.Empleado" />
+          <EntitySet Name="UsuarioSet" EntityType="DataBaseModel.Usuario" />
+          <EntitySet Name="LocalidadSet" EntityType="DataBaseModel.Localidad" />
+          <EntitySet Name="DependenciaSet" EntityType="DataBaseModel.Dependencia" />
+          <EntitySet Name="LocalidadDependenciaSet" EntityType="DataBaseModel.LocalidadDependencia" />
+          <EntitySet Name="ProyectoSet" EntityType="DataBaseModel.Proyecto" />
+          <EntitySet Name="PoliticaProyectoSet" EntityType="DataBaseModel.PoliticaProyecto" />
+          <EntitySet Name="PoliticaOtorgamientoSet" EntityType="DataBaseModel.PoliticaOtorgamiento" />
+          <EntitySet Name="OrdenEntregaSet" EntityType="DataBaseModel.OrdenEntrega" />
+          <EntitySet Name="RecursoSet" EntityType="DataBaseModel.Recurso" />
+          <AssociationSet Name="BeneficiarioPersona" Association="DataBaseModel.BeneficiarioPersona">
+            <End Role="Beneficiario" EntitySet="BeneficiarioSet" />
+            <End Role="Persona" EntitySet="PersonaSet" />
+          </AssociationSet>
+          <AssociationSet Name="Beneficiarioempresa" Association="DataBaseModel.Beneficiarioempresa">
+            <End Role="Beneficiario" EntitySet="BeneficiarioSet" />
+            <End Role="empresa" EntitySet="empresaSet" />
+          </AssociationSet>
+          <AssociationSet Name="BeneficiarioLocalidad" Association="DataBaseModel.BeneficiarioLocalidad">
+            <End Role="Beneficiario" EntitySet="BeneficiarioSet" />
+            <End Role="Localidad" EntitySet="LocalidadSet" />
+          </AssociationSet>
+          <AssociationSet Name="BeneficiarioSolicitud" Association="DataBaseModel.BeneficiarioSolicitud">
+            <End Role="Beneficiario" EntitySet="BeneficiarioSet" />
+            <End Role="Solicitud" EntitySet="SolicitudSet" />
+          </AssociationSet>
+          <AssociationSet Name="SolicitudDevoluciones" Association="DataBaseModel.SolicitudDevoluciones">
+            <End Role="Solicitud" EntitySet="SolicitudSet" />
+            <End Role="Devoluciones" EntitySet="DevolucionesSet" />
+          </AssociationSet>
+          <AssociationSet Name="SolicitudDictamen" Association="DataBaseModel.SolicitudDictamen">
+            <End Role="Solicitud" EntitySet="SolicitudSet" />
+            <End Role="Dictamen" EntitySet="DictamenSet" />
+          </AssociationSet>
+          <AssociationSet Name="SolicitudCuentaBancariaSolicitud" Association="DataBaseModel.SolicitudCuentaBancariaSolicitud">
+            <End Role="Solicitud" EntitySet="SolicitudSet" />
+            <End Role="CuentaBancariaSolicitud" EntitySet="CuentaBancariaSolicitudSet" />
+          </AssociationSet>
+          <AssociationSet Name="CuentaBancariaSolicitudCuentaBancaria" Association="DataBaseModel.CuentaBancariaSolicitudCuentaBancaria">
+            <End Role="CuentaBancariaSolicitud" EntitySet="CuentaBancariaSolicitudSet" />
+            <End Role="CuentaBancaria" EntitySet="CuentaBancariaSet" />
+          </AssociationSet>
+          <AssociationSet Name="SolicitudArchivo" Association="DataBaseModel.SolicitudArchivo">
+            <End Role="Solicitud" EntitySet="SolicitudSet" />
+            <End Role="Archivo" EntitySet="ArchivoSet" />
+          </AssociationSet>
+          <AssociationSet Name="DictamenEmpleado" Association="DataBaseModel.DictamenEmpleado">
+            <End Role="Dictamen" EntitySet="DictamenSet" />
+            <End Role="Empleado" EntitySet="EmpleadoSet" />
+          </AssociationSet>
+          <AssociationSet Name="EmpleadoUsuario" Association="DataBaseModel.EmpleadoUsuario">
+            <End Role="Empleado" EntitySet="EmpleadoSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="EmpleadoLocalidad" Association="DataBaseModel.EmpleadoLocalidad">
+            <End Role="Empleado" EntitySet="EmpleadoSet" />
+            <End Role="Localidad" EntitySet="LocalidadSet" />
+          </AssociationSet>
+          <AssociationSet Name="LocalidadLocalidadDependencia" Association="DataBaseModel.LocalidadLocalidadDependencia">
+            <End Role="Localidad" EntitySet="LocalidadSet" />
+            <End Role="LocalidadDependencia" EntitySet="LocalidadDependenciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="DependenciaLocalidadDependencia" Association="DataBaseModel.DependenciaLocalidadDependencia">
+            <End Role="Dependencia" EntitySet="DependenciaSet" />
+            <End Role="LocalidadDependencia" EntitySet="LocalidadDependenciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="SolicitudProyecto" Association="DataBaseModel.SolicitudProyecto">
+            <End Role="Solicitud" EntitySet="SolicitudSet" />
+            <End Role="Proyecto" EntitySet="ProyectoSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProyectoLocalidadDependencia" Association="DataBaseModel.ProyectoLocalidadDependencia">
+            <End Role="Proyecto" EntitySet="ProyectoSet" />
+            <End Role="LocalidadDependencia" EntitySet="LocalidadDependenciaSet" />
+          </AssociationSet>
+          <AssociationSet Name="PoliticaProyectoProyecto" Association="DataBaseModel.PoliticaProyectoProyecto">
+            <End Role="PoliticaProyecto" EntitySet="PoliticaProyectoSet" />
+            <End Role="Proyecto" EntitySet="ProyectoSet" />
+          </AssociationSet>
+          <AssociationSet Name="PoliticaOtorgamientoPoliticaProyecto" Association="DataBaseModel.PoliticaOtorgamientoPoliticaProyecto">
+            <End Role="PoliticaOtorgamiento" EntitySet="PoliticaOtorgamientoSet" />
+            <End Role="PoliticaProyecto" EntitySet="PoliticaProyectoSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProyectoOrdenEntrega" Association="DataBaseModel.ProyectoOrdenEntrega">
+            <End Role="Proyecto" EntitySet="ProyectoSet" />
+            <End Role="OrdenEntrega" EntitySet="OrdenEntregaSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenEntregaRecurso" Association="DataBaseModel.OrdenEntregaRecurso">
+            <End Role="OrdenEntrega" EntitySet="OrdenEntregaSet" />
+            <End Role="Recurso" EntitySet="RecursoSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Beneficiario">
+          <Key>
+            <PropertyRef Name="RFC" />
+          </Key>
+          <Property Name="RFC" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="telefono" Type="String" Nullable="false" />
+          <Property Name="ciudad" Type="String" Nullable="false" />
+          <Property Name="calle" Type="String" Nullable="false" />
+          <Property Name="numero" Type="String" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="DataBaseModel.BeneficiarioPersona" FromRole="Beneficiario" ToRole="Persona" />
+          <NavigationProperty Name="empresa" Relationship="DataBaseModel.Beneficiarioempresa" FromRole="Beneficiario" ToRole="empresa" />
+          <NavigationProperty Name="Localidad" Relationship="DataBaseModel.BeneficiarioLocalidad" FromRole="Beneficiario" ToRole="Localidad" />
+          <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.BeneficiarioSolicitud" FromRole="Beneficiario" ToRole="Solicitud" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="RFC" />
+          </Key>
+          <Property Name="RFC" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <Property Name="apellidoPaterno" Type="String" Nullable="false" />
+          <Property Name="apellidoMaterno" Type="String" Nullable="false" />
+          <Property Name="curp" Type="String" Nullable="false" />
+          <NavigationProperty Name="Beneficiario" Relationship="DataBaseModel.BeneficiarioPersona" FromRole="Persona" ToRole="Beneficiario" />
+        </EntityType>
+        <EntityType Name="empresa">
+          <Key>
+            <PropertyRef Name="RFC" />
+          </Key>
+          <Property Name="RFC" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Beneficiario" Relationship="DataBaseModel.Beneficiarioempresa" FromRole="empresa" ToRole="Beneficiario" />
+        </EntityType>
+        <EntityType Name="CuentaBancaria">
+          <Key>
+            <PropertyRef Name="numeroCuenta" />
+          </Key>
+          <Property Name="numeroCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreTitular" Type="String" Nullable="false" />
+          <Property Name="apellidoPaternoTitular" Type="String" Nullable="false" />
+          <Property Name="apellidoMaternoTitular" Type="String" Nullable="false" />
+          <NavigationProperty Name="CuentaBancariaSolicitud" Relationship="DataBaseModel.CuentaBancariaSolicitudCuentaBancaria" FromRole="CuentaBancaria" ToRole="CuentaBancariaSolicitud" />
+        </EntityType>
+        <EntityType Name="CuentaBancariaSolicitud">
+          <Key>
+            <PropertyRef Name="IdCuentaBancariaSolicitud" />
+          </Key>
+          <Property Name="IdCuentaBancariaSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.SolicitudCuentaBancariaSolicitud" FromRole="CuentaBancariaSolicitud" ToRole="Solicitud" />
+          <Property Name="SolicitudIdSolicitud" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CuentaBancaria" Relationship="DataBaseModel.CuentaBancariaSolicitudCuentaBancaria" FromRole="CuentaBancariaSolicitud" ToRole="CuentaBancaria" />
+          <Property Name="CuentaBancaria_numeroCuenta" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Solicitud">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" Nullable="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Beneficiario" Relationship="DataBaseModel.BeneficiarioSolicitud" FromRole="Solicitud" ToRole="Beneficiario" />
+          <NavigationProperty Name="Devoluciones" Relationship="DataBaseModel.SolicitudDevoluciones" FromRole="Solicitud" ToRole="Devoluciones" />
+          <NavigationProperty Name="Dictamen" Relationship="DataBaseModel.SolicitudDictamen" FromRole="Solicitud" ToRole="Dictamen" />
+          <NavigationProperty Name="CuentaBancariaSolicitud" Relationship="DataBaseModel.SolicitudCuentaBancariaSolicitud" FromRole="Solicitud" ToRole="CuentaBancariaSolicitud" />
+          <NavigationProperty Name="Archivo" Relationship="DataBaseModel.SolicitudArchivo" FromRole="Solicitud" ToRole="Archivo" />
+          <NavigationProperty Name="Proyecto" Relationship="DataBaseModel.SolicitudProyecto" FromRole="Solicitud" ToRole="Proyecto" />
+          <Property Name="ProyectoFolio" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Devoluciones">
+          <Key>
+            <PropertyRef Name="IdDevolucion" />
+          </Key>
+          <Property Name="IdDevolucion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" />
+          <Property Name="fechaDevolucion" Type="DateTime" Nullable="false" />
+          <Property Name="fechaLimite" Type="DateTime" Nullable="false" />
+          <Property Name="montoDeuda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.SolicitudDevoluciones" FromRole="Devoluciones" ToRole="Solicitud" />
+          <Property Name="SolicitudIdSolicitud" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Archivo">
+          <Key>
+            <PropertyRef Name="Ruta" />
+          </Key>
+          <Property Name="Ruta" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.SolicitudArchivo" FromRole="Archivo" ToRole="Solicitud" />
+          <Property Name="SolicitudIdSolicitud" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dictamen">
+          <Key>
+            <PropertyRef Name="IdDictamen" />
+          </Key>
+          <Property Name="IdDictamen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" Nullable="false" />
+          <Property Name="comentarios" Type="String" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.SolicitudDictamen" FromRole="Dictamen" ToRole="Solicitud" />
+          <NavigationProperty Name="Empleado" Relationship="DataBaseModel.DictamenEmpleado" FromRole="Dictamen" ToRole="Empleado" />
+          <Property Name="EmpleadoNumeroEmpleado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <Property Name="apellidoPaterno" Type="String" Nullable="false" />
+          <Property Name="apellidoMaterno" Type="String" Nullable="false" />
+          <Property Name="rol" Type="String" Nullable="false" />
+          <Property Name="telefono" Type="String" Nullable="false" />
+          <Property Name="ciudad" Type="String" Nullable="false" />
+          <Property Name="calle" Type="String" Nullable="false" />
+          <Property Name="numero" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dictamen" Relationship="DataBaseModel.DictamenEmpleado" FromRole="Empleado" ToRole="Dictamen" />
+          <NavigationProperty Name="Usuario" Relationship="DataBaseModel.EmpleadoUsuario" FromRole="Empleado" ToRole="Usuario" />
+          <NavigationProperty Name="Localidad" Relationship="DataBaseModel.EmpleadoLocalidad" FromRole="Empleado" ToRole="Localidad" />
+          <Property Name="LocalidadIdLocalidad" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" Nullable="false" />
+          <Property Name="contrasena" Type="String" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="DataBaseModel.EmpleadoUsuario" FromRole="Usuario" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="IdLocalidad" />
+          </Key>
+          <Property Name="IdLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="Beneficiario" Relationship="DataBaseModel.BeneficiarioLocalidad" FromRole="Localidad" ToRole="Beneficiario" />
+          <Property Name="BeneficiarioRFC" Type="String" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="DataBaseModel.EmpleadoLocalidad" FromRole="Localidad" ToRole="Empleado" />
+          <NavigationProperty Name="LocalidadDependencia" Relationship="DataBaseModel.LocalidadLocalidadDependencia" FromRole="Localidad" ToRole="LocalidadDependencia" />
+        </EntityType>
+        <EntityType Name="Dependencia">
+          <Key>
+            <PropertyRef Name="IdDependencia" />
+          </Key>
+          <Property Name="IdDependencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <NavigationProperty Name="LocalidadDependencia" Relationship="DataBaseModel.DependenciaLocalidadDependencia" FromRole="Dependencia" ToRole="LocalidadDependencia" />
+        </EntityType>
+        <EntityType Name="LocalidadDependencia">
+          <Key>
+            <PropertyRef Name="IdLocalidadDependencia" />
+          </Key>
+          <Property Name="IdLocalidadDependencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Localidad" Relationship="DataBaseModel.LocalidadLocalidadDependencia" FromRole="LocalidadDependencia" ToRole="Localidad" />
+          <Property Name="LocalidadIdLocalidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dependencia" Relationship="DataBaseModel.DependenciaLocalidadDependencia" FromRole="LocalidadDependencia" ToRole="Dependencia" />
+          <Property Name="DependenciaIdDependencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Proyecto" Relationship="DataBaseModel.ProyectoLocalidadDependencia" FromRole="LocalidadDependencia" ToRole="Proyecto" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="Folio" />
+          </Key>
+          <Property Name="Folio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modalidad" Type="String" Nullable="false" />
+          <Property Name="estado" Type="String" Nullable="false" />
+          <Property Name="grupoAtencion" Type="String" Nullable="false" />
+          <Property Name="fechaFin" Type="DateTime" Nullable="false" />
+          <Property Name="fechaLimiteEvidencia" Type="DateTime" Nullable="false" />
+          <Property Name="fechaLimiteSolicitud" Type="DateTime" Nullable="false" />
+          <Property Name="tipo" Type="String" Nullable="false" />
+          <Property Name="numeroBeneficiarios" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.SolicitudProyecto" FromRole="Proyecto" ToRole="Solicitud" />
+          <NavigationProperty Name="LocalidadDependencia" Relationship="DataBaseModel.ProyectoLocalidadDependencia" FromRole="Proyecto" ToRole="LocalidadDependencia" />
+          <Property Name="LocalidadDependenciaIdLocalidadDependencia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PoliticaProyecto" Relationship="DataBaseModel.PoliticaProyectoProyecto" FromRole="Proyecto" ToRole="PoliticaProyecto" />
+          <NavigationProperty Name="OrdenEntrega" Relationship="DataBaseModel.ProyectoOrdenEntrega" FromRole="Proyecto" ToRole="OrdenEntrega" />
+        </EntityType>
+        <EntityType Name="PoliticaProyecto">
+          <Key>
+            <PropertyRef Name="IdPoliticaProyecto" />
+          </Key>
+          <Property Name="IdPoliticaProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Proyecto" Relationship="DataBaseModel.PoliticaProyectoProyecto" FromRole="PoliticaProyecto" ToRole="Proyecto" />
+          <Property Name="ProyectoFolio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PoliticaOtorgamiento" Relationship="DataBaseModel.PoliticaOtorgamientoPoliticaProyecto" FromRole="PoliticaProyecto" ToRole="PoliticaOtorgamiento" />
+          <Property Name="PoliticaOtorgamientoIdPolitica" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PoliticaOtorgamiento">
+          <Key>
+            <PropertyRef Name="IdPolitica" />
+          </Key>
+          <Property Name="IdPolitica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="PoliticaProyecto" Relationship="DataBaseModel.PoliticaOtorgamientoPoliticaProyecto" FromRole="PoliticaOtorgamiento" ToRole="PoliticaProyecto" />
+        </EntityType>
+        <EntityType Name="OrdenEntrega">
+          <Key>
+            <PropertyRef Name="IdOrdenEntrega" />
+          </Key>
+          <Property Name="IdOrdenEntrega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaEntrega" Type="DateTime" Nullable="false" />
+          <Property Name="lugarEntrega" Type="String" Nullable="false" />
+          <NavigationProperty Name="Proyecto" Relationship="DataBaseModel.ProyectoOrdenEntrega" FromRole="OrdenEntrega" ToRole="Proyecto" />
+          <NavigationProperty Name="Recurso" Relationship="DataBaseModel.OrdenEntregaRecurso" FromRole="OrdenEntrega" ToRole="Recurso" />
+        </EntityType>
+        <EntityType Name="Recurso">
+          <Key>
+            <PropertyRef Name="IdRecurso" />
+          </Key>
+          <Property Name="IdRecurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="concepto" Type="String" Nullable="false" />
+          <Property Name="valor" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrdenEntrega" Relationship="DataBaseModel.OrdenEntregaRecurso" FromRole="Recurso" ToRole="OrdenEntrega" />
+        </EntityType>
+        <Association Name="BeneficiarioPersona">
+          <End Type="DataBaseModel.Beneficiario" Role="Beneficiario" Multiplicity="1" />
+          <End Type="DataBaseModel.Persona" Role="Persona" Multiplicity="0..1" />
+        </Association>
+        <Association Name="Beneficiarioempresa">
+          <End Type="DataBaseModel.Beneficiario" Role="Beneficiario" Multiplicity="1" />
+          <End Type="DataBaseModel.empresa" Role="empresa" Multiplicity="0..1" />
+        </Association>
+        <Association Name="BeneficiarioLocalidad">
+          <End Type="DataBaseModel.Beneficiario" Role="Beneficiario" Multiplicity="*" />
+          <End Type="DataBaseModel.Localidad" Role="Localidad" Multiplicity="1" />
+        </Association>
+        <Association Name="BeneficiarioSolicitud">
+          <End Type="DataBaseModel.Beneficiario" Role="Beneficiario" Multiplicity="*" />
+          <End Type="DataBaseModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+        </Association>
+        <Association Name="SolicitudDevoluciones">
+          <End Type="DataBaseModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="DataBaseModel.Devoluciones" Role="Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Devoluciones">
+              <PropertyRef Name="SolicitudIdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SolicitudDictamen">
+          <End Type="DataBaseModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="DataBaseModel.Dictamen" Role="Dictamen" Multiplicity="1" />
+        </Association>
+        <Association Name="SolicitudCuentaBancariaSolicitud">
+          <End Type="DataBaseModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="DataBaseModel.CuentaBancariaSolicitud" Role="CuentaBancariaSolicitud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="CuentaBancariaSolicitud">
+              <PropertyRef Name="SolicitudIdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CuentaBancariaSolicitudCuentaBancaria">
+          <End Type="DataBaseModel.CuentaBancariaSolicitud" Role="CuentaBancariaSolicitud" Multiplicity="*" />
+          <End Type="DataBaseModel.CuentaBancaria" Role="CuentaBancaria" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaBancaria">
+              <PropertyRef Name="numeroCuenta" />
+            </Principal>
+            <Dependent Role="CuentaBancariaSolicitud">
+              <PropertyRef Name="CuentaBancaria_numeroCuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SolicitudArchivo">
+          <End Type="DataBaseModel.Solicitud" Role="Solicitud" Multiplicity="1" />
+          <End Type="DataBaseModel.Archivo" Role="Archivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitud">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Archivo">
+              <PropertyRef Name="SolicitudIdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DictamenEmpleado">
+          <End Type="DataBaseModel.Dictamen" Role="Dictamen" Multiplicity="*" />
+          <End Type="DataBaseModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Dictamen">
+              <PropertyRef Name="EmpleadoNumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EmpleadoUsuario">
+          <End Type="DataBaseModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="DataBaseModel.Usuario" Role="Usuario" Multiplicity="1" />
+        </Association>
+        <Association Name="EmpleadoLocalidad">
+          <End Type="DataBaseModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <End Type="DataBaseModel.Localidad" Role="Localidad" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="LocalidadIdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocalidadLocalidadDependencia">
+          <End Type="DataBaseModel.Localidad" Role="Localidad" Multiplicity="1" />
+          <End Type="DataBaseModel.LocalidadDependencia" Role="LocalidadDependencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="LocalidadDependencia">
+              <PropertyRef Name="LocalidadIdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DependenciaLocalidadDependencia">
+          <End Type="DataBaseModel.Dependencia" Role="Dependencia" Multiplicity="1" />
+          <End Type="DataBaseModel.LocalidadDependencia" Role="LocalidadDependencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dependencia">
+              <PropertyRef Name="IdDependencia" />
+            </Principal>
+            <Dependent Role="LocalidadDependencia">
+              <PropertyRef Name="DependenciaIdDependencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SolicitudProyecto">
+          <End Type="DataBaseModel.Solicitud" Role="Solicitud" Multiplicity="*" />
+          <End Type="DataBaseModel.Proyecto" Role="Proyecto" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="Folio" />
+            </Principal>
+            <Dependent Role="Solicitud">
+              <PropertyRef Name="ProyectoFolio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProyectoLocalidadDependencia">
+          <End Type="DataBaseModel.Proyecto" Role="Proyecto" Multiplicity="*" />
+          <End Type="DataBaseModel.LocalidadDependencia" Role="LocalidadDependencia" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="LocalidadDependencia">
+              <PropertyRef Name="IdLocalidadDependencia" />
+            </Principal>
+            <Dependent Role="Proyecto">
+              <PropertyRef Name="LocalidadDependenciaIdLocalidadDependencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PoliticaProyectoProyecto">
+          <End Type="DataBaseModel.PoliticaProyecto" Role="PoliticaProyecto" Multiplicity="*" />
+          <End Type="DataBaseModel.Proyecto" Role="Proyecto" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Proyecto">
+              <PropertyRef Name="Folio" />
+            </Principal>
+            <Dependent Role="PoliticaProyecto">
+              <PropertyRef Name="ProyectoFolio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PoliticaOtorgamientoPoliticaProyecto">
+          <End Type="DataBaseModel.PoliticaOtorgamiento" Role="PoliticaOtorgamiento" Multiplicity="1" />
+          <End Type="DataBaseModel.PoliticaProyecto" Role="PoliticaProyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliticaOtorgamiento">
+              <PropertyRef Name="IdPolitica" />
+            </Principal>
+            <Dependent Role="PoliticaProyecto">
+              <PropertyRef Name="PoliticaOtorgamientoIdPolitica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProyectoOrdenEntrega">
+          <End Type="DataBaseModel.Proyecto" Role="Proyecto" Multiplicity="*" />
+          <End Type="DataBaseModel.OrdenEntrega" Role="OrdenEntrega" Multiplicity="1" />
+        </Association>
+        <Association Name="OrdenEntregaRecurso">
+          <End Type="DataBaseModel.OrdenEntrega" Role="OrdenEntrega" Multiplicity="1" />
+          <End Type="DataBaseModel.Recurso" Role="Recurso" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DataBaseModel" />
+        <Alias Key="Target" Value="DataBaseModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="DataBaseModelContainer" StorageEntityContainer="DataBaseModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
