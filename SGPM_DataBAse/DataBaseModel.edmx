@@ -115,9 +115,9 @@
         </EntityContainer>
         <EntityType Name="Beneficiario">
           <Key>
-            <PropertyRef Name="RFC" />
+            <PropertyRef Name="idBeneficiario" />
           </Key>
-          <Property Name="RFC" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBeneficiario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="telefono" Type="String" Nullable="false" />
           <Property Name="ciudad" Type="String" Nullable="false" />
           <Property Name="calle" Type="String" Nullable="false" />
@@ -126,12 +126,13 @@
           <NavigationProperty Name="empresa" Relationship="DataBaseModel.Beneficiarioempresa" FromRole="Beneficiario" ToRole="empresa" />
           <NavigationProperty Name="Localidad" Relationship="DataBaseModel.BeneficiarioLocalidad" FromRole="Beneficiario" ToRole="Localidad" />
           <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.BeneficiarioSolicitud" FromRole="Beneficiario" ToRole="Solicitud" />
+          <Property Name="rfc" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
-            <PropertyRef Name="RFC" />
+            <PropertyRef Name="idBeneficiario" />
           </Key>
-          <Property Name="RFC" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBeneficiario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" Nullable="false" />
           <Property Name="apellidoPaterno" Type="String" Nullable="false" />
           <Property Name="apellidoMaterno" Type="String" Nullable="false" />
@@ -140,9 +141,9 @@
         </EntityType>
         <EntityType Name="empresa">
           <Key>
-            <PropertyRef Name="RFC" />
+            <PropertyRef Name="idBeneficiario" />
           </Key>
-          <Property Name="RFC" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="idBeneficiario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="nombre" Type="String" Nullable="false" />
           <NavigationProperty Name="Beneficiario" Relationship="DataBaseModel.Beneficiarioempresa" FromRole="empresa" ToRole="Beneficiario" />
         </EntityType>
@@ -195,12 +196,15 @@
         </EntityType>
         <EntityType Name="Archivo">
           <Key>
-            <PropertyRef Name="Ruta" />
+            <PropertyRef Name="idArchivo" />
           </Key>
-          <Property Name="Ruta" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArchivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Solicitud" Relationship="DataBaseModel.SolicitudArchivo" FromRole="Archivo" ToRole="Solicitud" />
           <Property Name="SolicitudIdSolicitud" Type="Int32" Nullable="false" />
+          <Property Name="extension" Type="String" Nullable="false" />
+          <Property Name="contenido" Type="String" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Dictamen">
           <Key>
