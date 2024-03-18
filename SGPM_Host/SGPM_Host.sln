@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGPM_Host", "SGPM_Host.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGPM_DataBAse", "..\SGPM_DataBAse\SGPM_DataBAse.csproj", "{C6D9E230-EB7E-4D84-9294-FC7561DB2176}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGPM_Contracts", "..\SGPM_Contracts\SGPM_Contracts.csproj", "{5B1B07F7-C099-41FF-BEF6-A200188D2DF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGPM_Services", "..\SGPM_Services\SGPM_Services.csproj", "{A7DE7430-1123-41E8-8150-400A7822C41A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{C6D9E230-EB7E-4D84-9294-FC7561DB2176}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6D9E230-EB7E-4D84-9294-FC7561DB2176}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6D9E230-EB7E-4D84-9294-FC7561DB2176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B1B07F7-C099-41FF-BEF6-A200188D2DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1B07F7-C099-41FF-BEF6-A200188D2DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1B07F7-C099-41FF-BEF6-A200188D2DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1B07F7-C099-41FF-BEF6-A200188D2DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7DE7430-1123-41E8-8150-400A7822C41A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7DE7430-1123-41E8-8150-400A7822C41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7DE7430-1123-41E8-8150-400A7822C41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7DE7430-1123-41E8-8150-400A7822C41A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
