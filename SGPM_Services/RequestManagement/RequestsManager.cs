@@ -12,10 +12,9 @@ using SGPM_Contracts.IRequestManagement;
 using SGPM_DataBAse;
 
 
-namespace SGPM_Services.RequestManagement
+namespace SGPM_Services.ProjectsManagement
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
-    public partial class RequestsManager : IRequestManagement
+    public partial class SGPMManager : IRequestManagement
     {
         public Solicitud RecoverRequestDetails(int idRequest)
         {

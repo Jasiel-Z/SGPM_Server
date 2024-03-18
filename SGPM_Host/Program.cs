@@ -12,7 +12,7 @@ namespace SGPM_Host
     {
         static void Main(string[] args)
         {
-            using (ServiceHost host = new ServiceHost(typeof(SGPM_Services.RequestManagement.RequestsManager)))
+            using (ServiceHost host = new ServiceHost(typeof(SGPM_Services.ProjectsManagement.SGPMManager)))
             {
                 host.Open();
                 Console.WriteLine("Server is running. Press Enter to exit.");

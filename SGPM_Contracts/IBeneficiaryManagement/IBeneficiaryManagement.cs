@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SGPM_Contracts.IBeneficiaryManagement
 {
     [ServiceContract]
-    public interface BeneficiaryManagement
+    public interface IBeneficiaryManagement
     {
         [OperationContract]
         List<Beneficiario> GetBeneficiaries();

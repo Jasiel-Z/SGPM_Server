@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeneficiaryManagement\BeneficiaryManager.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="ProjectsManagement\ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,9 +59,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BeneficiaryManagement\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SGPM_Contracts\SGPM_Contracts.csproj">
       <Project>{5b1b07f7-c099-41ff-bef6-a200188d2df7}</Project>

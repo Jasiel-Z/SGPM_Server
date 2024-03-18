@@ -1,31 +1,29 @@
-﻿using SGPM_Contracts.IProjectsManagement;
+﻿using SGPM_Contracts.IBeneficiaryManagement;
 using SGPM_DataBAse;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SGPM_Services.ProjectsManagement
 {
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.PerSession)]
 
-    public partial class SGPMManager : IProjectsManagement
+    public partial class SGPMManager: IBeneficiaryManagement
     {
-        public Proyecto GetProjectDetails(int idProject)
+        List<Beneficiario> IBeneficiaryManagement.GetBeneficiaries()
         {
             try
             {
                 using (var context = new DataBaseModelContainer())
                 {
-                    Proyecto proyecto = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
-                    return proyecto;
+                    List<Beneficiario> beneficiaries = context.BeneficiarioSet.ToList();
+                    return beneficiaries;
+
                 }
             }
             catch (SqlException exception)
@@ -44,7 +42,5 @@ namespace SGPM_Services.ProjectsManagement
                 return null;
             }
         }
-
-        
     }
 }
