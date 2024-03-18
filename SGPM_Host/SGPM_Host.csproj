@@ -59,14 +59,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SGPM_Contracts\SGPM_Contracts.csproj">
-      <Project>{5b1b07f7-c099-41ff-bef6-a200188d2df7}</Project>
-      <Name>SGPM_Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SGPM_DataBAse\SGPM_DataBAse.csproj">
-      <Project>{c6d9e230-eb7e-4d84-9294-fc7561db2176}</Project>
-      <Name>SGPM_DataBAse</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SGPM_Services\SGPM_Services.csproj">
       <Project>{a7de7430-1123-41e8-8150-400a7822c41a}</Project>
       <Name>SGPM_Services</Name>
