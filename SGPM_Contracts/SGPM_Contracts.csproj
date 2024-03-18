@@ -51,21 +51,20 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="IBeneficiaryManagement\IBeneficiaryManagement.cs" />
+    <Compile Include="IProjectsManagement\IProjectsManagement.cs" />
     <Compile Include="IRequestManagement\IRequestManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGPM_DataBAse\SGPM_DataBAse.csproj">
       <Project>{c6d9e230-eb7e-4d84-9294-fc7561db2176}</Project>
       <Name>SGPM_DataBAse</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IProjectsManagement\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

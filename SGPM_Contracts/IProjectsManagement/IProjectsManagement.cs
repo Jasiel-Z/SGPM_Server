@@ -1,18 +1,19 @@
-﻿using SGPM_DataBAse;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using SGPM_DataBAse;
 
-namespace SGPM_Contracts.IBeneficiaryManagement
+namespace SGPM_Contracts.IProjectsManagement
 {
     [ServiceContract]
-    public interface IBeneficiaryManagement
+    public interface IProjectsManagement
     {
         [OperationContract]
-        List<Beneficiario> GetBeneficiaries();
+        Proyecto GetProjectDetails(int idProject);
+
 
     }
 }

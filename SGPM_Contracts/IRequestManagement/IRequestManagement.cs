@@ -23,7 +23,7 @@ namespace SGPM_Contracts.IRequestManagement
 
         //methods needed for the use case no.12
         [OperationContract]
-        Solicitud RecoverRequestDetails(int idRequest);
+        Solicitud RecoverRequestDetails(int requestId);
 
     }
 }
