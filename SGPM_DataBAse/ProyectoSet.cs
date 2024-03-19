@@ -12,13 +12,13 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Proyecto
+    public partial class ProyectoSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Proyecto()
+        public ProyectoSet()
         {
-            this.Solicitud = new HashSet<Solicitud>();
-            this.PoliticaProyecto = new HashSet<PoliticaProyecto>();
+            this.PoliticaProyectoSet = new HashSet<PoliticaProyectoSet>();
+            this.SolicitudSet = new HashSet<SolicitudSet>();
         }
     
         public int Folio { get; set; }
@@ -31,12 +31,13 @@ namespace SGPM_DataBAse
         public string tipo { get; set; }
         public int numeroBeneficiarios { get; set; }
         public int LocalidadDependenciaIdLocalidadDependencia { get; set; }
+        public Nullable<int> OrdenEntrega_IdOrdenEntrega { get; set; }
     
+        public virtual LocalidadDependenciaSet LocalidadDependenciaSet { get; set; }
+        public virtual OrdenEntregaSet OrdenEntregaSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Solicitud> Solicitud { get; set; }
-        public virtual LocalidadDependencia LocalidadDependencia { get; set; }
+        public virtual ICollection<PoliticaProyectoSet> PoliticaProyectoSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PoliticaProyecto> PoliticaProyecto { get; set; }
-        public virtual OrdenEntrega OrdenEntrega { get; set; }
+        public virtual ICollection<SolicitudSet> SolicitudSet { get; set; }
     }
 }

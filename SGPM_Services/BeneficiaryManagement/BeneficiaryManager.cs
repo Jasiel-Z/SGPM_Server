@@ -15,13 +15,13 @@ namespace SGPM_Services.ProjectsManagement
 
     public partial class SGPMManager: IBeneficiaryManagement
     {
-        List<Beneficiario> IBeneficiaryManagement.GetBeneficiaries()
+        List<BeneficiarioSet> IBeneficiaryManagement.GetBeneficiaries()
         {
             try
             {
                 using (var context = new DataBaseModelContainer())
                 {
-                    List<Beneficiario> beneficiaries = context.BeneficiarioSet.ToList();
+                    List<BeneficiarioSet> beneficiaries = context.BeneficiarioSet.ToList();
                     return beneficiaries;
 
                 }

@@ -12,15 +12,13 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Devoluciones
+    public partial class PoliticaProyectoSet
     {
-        public int IdDevolucion { get; set; }
-        public string descripcion { get; set; }
-        public System.DateTime fechaDevolucion { get; set; }
-        public System.DateTime fechaLimite { get; set; }
-        public int montoDeuda { get; set; }
-        public int SolicitudIdSolicitud { get; set; }
+        public int IdPoliticaProyecto { get; set; }
+        public Nullable<int> ProyectoFolio { get; set; }
+        public Nullable<int> PoliticaOtorgamientoIdPolitica { get; set; }
     
-        public virtual Solicitud Solicitud { get; set; }
+        public virtual PoliticaOtorgamientoSet PoliticaOtorgamientoSet { get; set; }
+        public virtual ProyectoSet ProyectoSet { get; set; }
     }
 }

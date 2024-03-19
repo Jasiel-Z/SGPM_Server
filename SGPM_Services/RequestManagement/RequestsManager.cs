@@ -16,12 +16,12 @@ namespace SGPM_Services.ProjectsManagement
 {
     public partial class SGPMManager : IRequestManagement
     {
-        public Solicitud RecoverRequestDetails(int idRequest)
+        public SolicitudSet RecoverRequestDetails(int idRequest)
         {
             throw new NotImplementedException();
         }
 
-        public int RegisterRequest(Solicitud request)
+        public int RegisterRequest(SolicitudSet request)
         {
             int result = 0;
             try
@@ -49,7 +49,7 @@ namespace SGPM_Services.ProjectsManagement
             return result;
         }
 
-        public int RegisterRequestDocumentation(List<Archivo> files)
+        public int RegisterRequestDocumentation(List<ArchivoSet> files)
         {
             int result = 0;
             try

@@ -12,24 +12,24 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Localidad
+    public partial class LocalidadSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Localidad()
+        public LocalidadSet()
         {
-            this.Beneficiario = new HashSet<Beneficiario>();
-            this.Empleado = new HashSet<Empleado>();
-            this.LocalidadDependencia = new HashSet<LocalidadDependencia>();
+            this.BeneficiarioSet = new HashSet<BeneficiarioSet>();
+            this.EmpleadoSet = new HashSet<EmpleadoSet>();
+            this.LocalidadDependenciaSet = new HashSet<LocalidadDependenciaSet>();
         }
     
         public int IdLocalidad { get; set; }
         public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Beneficiario> Beneficiario { get; set; }
+        public virtual ICollection<BeneficiarioSet> BeneficiarioSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleado { get; set; }
+        public virtual ICollection<EmpleadoSet> EmpleadoSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LocalidadDependencia> LocalidadDependencia { get; set; }
+        public virtual ICollection<LocalidadDependenciaSet> LocalidadDependenciaSet { get; set; }
     }
 }

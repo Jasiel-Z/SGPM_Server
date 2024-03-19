@@ -25,24 +25,25 @@ namespace SGPM_DataBAse
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Beneficiario> BeneficiarioSet { get; set; }
-        public virtual DbSet<Persona> PersonaSet { get; set; }
-        public virtual DbSet<empresa> empresaSet { get; set; }
-        public virtual DbSet<CuentaBancaria> CuentaBancariaSet { get; set; }
-        public virtual DbSet<CuentaBancariaSolicitud> CuentaBancariaSolicitudSet { get; set; }
-        public virtual DbSet<Solicitud> SolicitudSet { get; set; }
-        public virtual DbSet<Devoluciones> DevolucionesSet { get; set; }
-        public virtual DbSet<Archivo> ArchivoSet { get; set; }
-        public virtual DbSet<Dictamen> DictamenSet { get; set; }
-        public virtual DbSet<Empleado> EmpleadoSet { get; set; }
-        public virtual DbSet<Usuario> UsuarioSet { get; set; }
-        public virtual DbSet<Localidad> LocalidadSet { get; set; }
-        public virtual DbSet<Dependencia> DependenciaSet { get; set; }
-        public virtual DbSet<LocalidadDependencia> LocalidadDependenciaSet { get; set; }
-        public virtual DbSet<Proyecto> ProyectoSet { get; set; }
-        public virtual DbSet<PoliticaProyecto> PoliticaProyectoSet { get; set; }
-        public virtual DbSet<PoliticaOtorgamiento> PoliticaOtorgamientoSet { get; set; }
-        public virtual DbSet<OrdenEntrega> OrdenEntregaSet { get; set; }
-        public virtual DbSet<Recurso> RecursoSet { get; set; }
+        public virtual DbSet<ArchivoSet> ArchivoSet { get; set; }
+        public virtual DbSet<BeneficiarioSet> BeneficiarioSet { get; set; }
+        public virtual DbSet<CuentaBancariaSet> CuentaBancariaSet { get; set; }
+        public virtual DbSet<CuentaBancariaSolicitudSet> CuentaBancariaSolicitudSet { get; set; }
+        public virtual DbSet<DependenciaSet> DependenciaSet { get; set; }
+        public virtual DbSet<DevolucionesSet> DevolucionesSet { get; set; }
+        public virtual DbSet<DictamenSet> DictamenSet { get; set; }
+        public virtual DbSet<EmpleadoSet> EmpleadoSet { get; set; }
+        public virtual DbSet<empresaSet> empresaSet { get; set; }
+        public virtual DbSet<LocalidadDependenciaSet> LocalidadDependenciaSet { get; set; }
+        public virtual DbSet<LocalidadSet> LocalidadSet { get; set; }
+        public virtual DbSet<OrdenEntregaSet> OrdenEntregaSet { get; set; }
+        public virtual DbSet<PersonaSet> PersonaSet { get; set; }
+        public virtual DbSet<PoliticaOtorgamientoSet> PoliticaOtorgamientoSet { get; set; }
+        public virtual DbSet<PoliticaProyectoSet> PoliticaProyectoSet { get; set; }
+        public virtual DbSet<ProyectoSet> ProyectoSet { get; set; }
+        public virtual DbSet<RecursoSet> RecursoSet { get; set; }
+        public virtual DbSet<SolicitudSet> SolicitudSet { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<UsuarioSet> UsuarioSet { get; set; }
     }
 }

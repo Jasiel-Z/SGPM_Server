@@ -50,16 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Archivo.cs">
+    <Compile Include="ArchivoSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Beneficiario.cs">
+    <Compile Include="BeneficiarioSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuentaBancaria.cs">
+    <Compile Include="CuentaBancariaSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuentaBancariaSolicitud.cs">
+    <Compile Include="CuentaBancariaSolicitudSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBaseModel.Context.cs">
@@ -77,51 +77,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Dependencia.cs">
+    <Compile Include="DependenciaSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Devoluciones.cs">
+    <Compile Include="DevolucionesSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Dictamen.cs">
+    <Compile Include="DictamenSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Empleado.cs">
+    <Compile Include="EmpleadoSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="empresa.cs">
+    <Compile Include="empresaSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Localidad.cs">
+    <Compile Include="LocalidadDependenciaSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LocalidadDependencia.cs">
+    <Compile Include="LocalidadSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrdenEntrega.cs">
+    <Compile Include="OrdenEntregaSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Persona.cs">
+    <Compile Include="PersonaSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PoliticaOtorgamiento.cs">
+    <Compile Include="PoliticaOtorgamientoSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PoliticaProyecto.cs">
+    <Compile Include="PoliticaProyectoSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proyecto.cs">
+    <Compile Include="ProyectoSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Recurso.cs">
+    <Compile Include="RecursoSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Solicitud.cs">
+    <Compile Include="SolicitudSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioSet.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -12,31 +12,32 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Solicitud
+    public partial class SolicitudSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Solicitud()
+        public SolicitudSet()
         {
-            this.Beneficiario = new HashSet<Beneficiario>();
-            this.Devoluciones = new HashSet<Devoluciones>();
-            this.CuentaBancariaSolicitud = new HashSet<CuentaBancariaSolicitud>();
-            this.Archivo = new HashSet<Archivo>();
+            this.ArchivoSet = new HashSet<ArchivoSet>();
+            this.BeneficiarioSet = new HashSet<BeneficiarioSet>();
+            this.CuentaBancariaSolicitudSet = new HashSet<CuentaBancariaSolicitudSet>();
+            this.DevolucionesSet = new HashSet<DevolucionesSet>();
         }
     
         public int IdSolicitud { get; set; }
         public string estado { get; set; }
         public System.DateTime fechaCreacion { get; set; }
         public int ProyectoFolio { get; set; }
+        public Nullable<int> Dictamen_IdDictamen { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Beneficiario> Beneficiario { get; set; }
+        public virtual ICollection<ArchivoSet> ArchivoSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Devoluciones> Devoluciones { get; set; }
-        public virtual Dictamen Dictamen { get; set; }
+        public virtual ICollection<BeneficiarioSet> BeneficiarioSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CuentaBancariaSolicitud> CuentaBancariaSolicitud { get; set; }
+        public virtual ICollection<CuentaBancariaSolicitudSet> CuentaBancariaSolicitudSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Archivo> Archivo { get; set; }
-        public virtual Proyecto Proyecto { get; set; }
+        public virtual ICollection<DevolucionesSet> DevolucionesSet { get; set; }
+        public virtual DictamenSet DictamenSet { get; set; }
+        public virtual ProyectoSet ProyectoSet { get; set; }
     }
 }

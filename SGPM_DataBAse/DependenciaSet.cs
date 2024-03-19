@@ -12,11 +12,18 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class empresa
+    public partial class DependenciaSet
     {
-        public int idBeneficiario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DependenciaSet()
+        {
+            this.LocalidadDependenciaSet = new HashSet<LocalidadDependenciaSet>();
+        }
+    
+        public int IdDependencia { get; set; }
         public string nombre { get; set; }
     
-        public virtual Beneficiario Beneficiario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LocalidadDependenciaSet> LocalidadDependenciaSet { get; set; }
     }
 }

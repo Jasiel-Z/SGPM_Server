@@ -12,20 +12,21 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class CuentaBancaria
+    public partial class LocalidadDependenciaSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CuentaBancaria()
+        public LocalidadDependenciaSet()
         {
-            this.CuentaBancariaSolicitud = new HashSet<CuentaBancariaSolicitud>();
+            this.ProyectoSet = new HashSet<ProyectoSet>();
         }
     
-        public int numeroCuenta { get; set; }
-        public string nombreTitular { get; set; }
-        public string apellidoPaternoTitular { get; set; }
-        public string apellidoMaternoTitular { get; set; }
+        public int IdLocalidadDependencia { get; set; }
+        public int LocalidadIdLocalidad { get; set; }
+        public int DependenciaIdDependencia { get; set; }
     
+        public virtual DependenciaSet DependenciaSet { get; set; }
+        public virtual LocalidadSet LocalidadSet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CuentaBancariaSolicitud> CuentaBancariaSolicitud { get; set; }
+        public virtual ICollection<ProyectoSet> ProyectoSet { get; set; }
     }
 }

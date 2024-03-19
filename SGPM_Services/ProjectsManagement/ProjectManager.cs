@@ -18,14 +18,20 @@ namespace SGPM_Services.ProjectsManagement
 
     public partial class SGPMManager : IProjectsManagement
     {
-        public Proyecto GetProjectDetails(int idProject)
+        public Project GetProjectDetails(int idProject)
         {
+            Project project = new Project();   
+
             try
             {
                 using (var context = new DataBaseModelContainer())
                 {
-                    Proyecto proyecto = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
-                    return proyecto;
+                    ProyectoSet proyecto = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
+                    project.Folio = proyecto.Folio;
+                    project.Modality = proyecto.modalidad;
+                    project.AttentionGroup = proyecto.grupoAtencion;
+                    project.BeneficiaryNumbers = proyecto.numeroBeneficiarios;
+                    return project;
                 }
             }
             catch (SqlException exception)
@@ -44,6 +50,10 @@ namespace SGPM_Services.ProjectsManagement
                 return null;
             }
         }
+
+
+
+        
 
         
     }
