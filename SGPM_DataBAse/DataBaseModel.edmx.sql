@@ -17,10 +17,132 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+-- Eliminando la llave foránea 'FK_BeneficiarioPersona' de la tabla 'PersonaSet'
+IF OBJECT_ID(N'[dbo].[FK_BeneficiarioPersona]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonaSet] DROP CONSTRAINT [FK_BeneficiarioPersona];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_Beneficiarioempresa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[empresaSet] DROP CONSTRAINT [FK_Beneficiarioempresa];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_BeneficiarioLocalidad]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BeneficiarioSet] DROP CONSTRAINT [FK_BeneficiarioLocalidad];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_BeneficiarioSolicitud]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[BeneficiarioSet] DROP CONSTRAINT [FK_BeneficiarioSolicitud];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_SolicitudDevoluciones]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DevolucionesSet] DROP CONSTRAINT [FK_SolicitudDevoluciones];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_SolicitudDictamen]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SolicitudSet] DROP CONSTRAINT [FK_SolicitudDictamen];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_SolicitudCuentaBancariaSolicitud]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CuentaBancariaSolicitudSet] DROP CONSTRAINT [FK_SolicitudCuentaBancariaSolicitud];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_CuentaBancariaSolicitudCuentaBancaria]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CuentaBancariaSolicitudSet] DROP CONSTRAINT [FK_CuentaBancariaSolicitudCuentaBancaria];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_SolicitudArchivo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ArchivoSet] DROP CONSTRAINT [FK_SolicitudArchivo];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_DictamenEmpleado]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DictamenSet] DROP CONSTRAINT [FK_DictamenEmpleado];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_EmpleadoUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EmpleadoSet] DROP CONSTRAINT [FK_EmpleadoUsuario];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_EmpleadoLocalidad]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EmpleadoSet] DROP CONSTRAINT [FK_EmpleadoLocalidad];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_LocalidadLocalidadDependencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocalidadDependenciaSet] DROP CONSTRAINT [FK_LocalidadLocalidadDependencia];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_DependenciaLocalidadDependencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocalidadDependenciaSet] DROP CONSTRAINT [FK_DependenciaLocalidadDependencia];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_SolicitudProyecto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SolicitudSet] DROP CONSTRAINT [FK_SolicitudProyecto];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_ProyectoLocalidadDependencia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProyectoSet] DROP CONSTRAINT [FK_ProyectoLocalidadDependencia];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_PoliticaProyectoProyecto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PoliticaProyectoSet] DROP CONSTRAINT [FK_PoliticaProyectoProyecto];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_PoliticaOtorgamientoPoliticaProyecto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PoliticaProyectoSet] DROP CONSTRAINT [FK_PoliticaOtorgamientoPoliticaProyecto];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_ProyectoOrdenEntrega]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProyectoSet] DROP CONSTRAINT [FK_ProyectoOrdenEntrega];
+GO
+
+IF OBJECT_ID(N'[dbo].[FK_OrdenEntregaRecurso]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrdenEntregaSet] DROP CONSTRAINT [FK_OrdenEntregaRecurso];
+GO
+
+
+-- Eliminando el índice no agrupado 'IX_FK_LocalidadLocalidadDependencia' asociado a la llave foránea 'FK_Localidad
+
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
+IF OBJECT_ID(N'dbo.BeneficiarioSet', N'U') IS NOT NULL
+    DROP TABLE dbo.BeneficiarioSet;
+IF OBJECT_ID(N'dbo.PersonaSet', N'U') IS NOT NULL
+    DROP TABLE dbo.PersonaSet;
+IF OBJECT_ID(N'dbo.empresaSet', N'U') IS NOT NULL
+    DROP TABLE dbo.empresaSet;
+IF OBJECT_ID(N'dbo.CuentaBancariaSet', N'U') IS NOT NULL
+    DROP TABLE dbo.CuentaBancariaSet;
+IF OBJECT_ID(N'dbo.CuentaBancariaSolicitudSet', N'U') IS NOT NULL
+    DROP TABLE dbo.CuentaBancariaSolicitudSet;
+IF OBJECT_ID(N'dbo.SolicitudSet', N'U') IS NOT NULL
+    DROP TABLE dbo.SolicitudSet;
+IF OBJECT_ID(N'dbo.DevolucionesSet', N'U') IS NOT NULL
+    DROP TABLE dbo.DevolucionesSet;
+IF OBJECT_ID(N'dbo.ArchivoSet', N'U') IS NOT NULL
+    DROP TABLE dbo.ArchivoSet;
+IF OBJECT_ID(N'dbo.DictamenSet', N'U') IS NOT NULL
+    DROP TABLE dbo.DictamenSet;
+IF OBJECT_ID(N'dbo.EmpleadoSet', N'U') IS NOT NULL
+    DROP TABLE dbo.EmpleadoSet;
+IF OBJECT_ID(N'dbo.UsuarioSet', N'U') IS NOT NULL
+    DROP TABLE dbo.UsuarioSet;
+IF OBJECT_ID(N'dbo.LocalidadSet', N'U') IS NOT NULL
+    DROP TABLE dbo.LocalidadSet;
+IF OBJECT_ID(N'dbo.DependenciaSet', N'U') IS NOT NULL
+    DROP TABLE dbo.DependenciaSet;
+IF OBJECT_ID(N'dbo.LocalidadDependenciaSet', N'U') IS NOT NULL
+    DROP TABLE dbo.LocalidadDependenciaSet;
+IF OBJECT_ID(N'dbo.ProyectoSet', N'U') IS NOT NULL
+    DROP TABLE dbo.ProyectoSet;
+IF OBJECT_ID(N'dbo.PoliticaProyectoSet', N'U') IS NOT NULL
+    DROP TABLE dbo.PoliticaProyectoSet;
+IF OBJECT_ID(N'dbo.PoliticaOtorgamientoSet', N'U') IS NOT NULL
+    DROP TABLE dbo.PoliticaOtorgamientoSet;
+IF OBJECT_ID(N'dbo.OrdenEntregaSet', N'U') IS NOT NULL
+    DROP TABLE dbo.OrdenEntregaSet;
+IF OBJECT_ID(N'dbo.RecursoSet', N'U') IS NOT NULL
+    DROP TABLE dbo.RecursoSet;
 
 
 -- --------------------------------------------------
@@ -35,8 +157,8 @@ CREATE TABLE [dbo].[BeneficiarioSet] (
     [calle] nvarchar(max)  NOT NULL,
     [numero] nvarchar(max)  NOT NULL,
     [rfc] nvarchar(max)  NOT NULL,
-    [Localidad_IdLocalidad] int  NOT NULL,
-    [Solicitud_IdSolicitud] int  NOT NULL
+    [Localidad_IdLocalidad] int  NULL,
+    [Solicitud_IdSolicitud] int  NULL
 );
 GO
 
@@ -53,9 +175,9 @@ GO
 
 -- Creating table 'empresaSet'
 CREATE TABLE [dbo].[empresaSet] (
-    [idBeneficiario] int  NOT NULL,
+    [idBeneficiario] int IDENTITY(1,1) NOT NULL,
     [nombre] nvarchar(max)  NOT NULL,
-    [Beneficiario_idBeneficiario] int  NOT NULL
+    [Beneficiario_idBeneficiario] int  NULL
 );
 GO
 
@@ -82,7 +204,7 @@ CREATE TABLE [dbo].[SolicitudSet] (
     [estado] nvarchar(max)  NOT NULL,
     [fechaCreacion] datetime  NOT NULL,
     [ProyectoFolio] int  NOT NULL,
-    [Dictamen_IdDictamen] int  NOT NULL
+    [Dictamen_IdDictamen] int  NULL
 );
 GO
 
@@ -101,10 +223,10 @@ GO
 CREATE TABLE [dbo].[ArchivoSet] (
     [idArchivo] int IDENTITY(1,1) NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
-    [SolicitudIdSolicitud] int  NOT NULL,
+    [SolicitudIdSolicitud] int  NULL,
     [extension] nvarchar(max)  NOT NULL,
     [contenido] varbinary(max)  NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL
+    [nombre] nvarchar(max) NOT  NULL
 );
 GO
 
@@ -114,7 +236,7 @@ CREATE TABLE [dbo].[DictamenSet] (
     [estado] nvarchar(max)  NOT NULL,
     [comentarios] nvarchar(max)  NOT NULL,
     [fecha] datetime  NOT NULL,
-    [EmpleadoNumeroEmpleado] int  NOT NULL
+    [EmpleadoNumeroEmpleado] int NOT NULL
 );
 GO
 
@@ -146,7 +268,6 @@ GO
 CREATE TABLE [dbo].[LocalidadSet] (
     [IdLocalidad] int IDENTITY(1,1) NOT NULL,
     [nombre] nvarchar(max)  NOT NULL,
-    [BeneficiarioRFC] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -177,15 +298,15 @@ CREATE TABLE [dbo].[ProyectoSet] (
     [tipo] nvarchar(max)  NOT NULL,
     [numeroBeneficiarios] int  NOT NULL,
     [LocalidadDependenciaIdLocalidadDependencia] int  NOT NULL,
-    [OrdenEntrega_IdOrdenEntrega] int  NOT NULL
+    [OrdenEntrega_IdOrdenEntrega] int   NULL
 );
 GO
 
 -- Creating table 'PoliticaProyectoSet'
 CREATE TABLE [dbo].[PoliticaProyectoSet] (
     [IdPoliticaProyecto] int IDENTITY(1,1) NOT NULL,
-    [ProyectoFolio] int  NOT NULL,
-    [PoliticaOtorgamientoIdPolitica] int  NOT NULL
+    [ProyectoFolio] int   NULL,
+    [PoliticaOtorgamientoIdPolitica] int  NULL
 );
 GO
 
