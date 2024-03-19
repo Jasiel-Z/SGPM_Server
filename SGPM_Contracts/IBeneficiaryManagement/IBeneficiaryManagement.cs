@@ -12,7 +12,7 @@ namespace SGPM_Contracts.IBeneficiaryManagement
     public interface IBeneficiaryManagement
     {
         [OperationContract]
-        List<Beneficiario> GetBeneficiaries();
+        List<BeneficiarioSet> GetBeneficiaries();
 
     }
 }

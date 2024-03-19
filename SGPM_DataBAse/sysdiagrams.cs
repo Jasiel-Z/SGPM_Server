@@ -12,15 +12,12 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Dictamen
+    public partial class sysdiagrams
     {
-        public int IdDictamen { get; set; }
-        public string estado { get; set; }
-        public string comentarios { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int EmpleadoNumeroEmpleado { get; set; }
-    
-        public virtual Solicitud Solicitud { get; set; }
-        public virtual Empleado Empleado { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

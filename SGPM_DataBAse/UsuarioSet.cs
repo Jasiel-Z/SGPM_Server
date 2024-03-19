@@ -12,12 +12,19 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class UsuarioSet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UsuarioSet()
+        {
+            this.EmpleadoSet = new HashSet<EmpleadoSet>();
+        }
+    
         public int IdUsuario { get; set; }
         public string correo { get; set; }
         public string contrasena { get; set; }
     
-        public virtual Empleado Empleado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmpleadoSet> EmpleadoSet { get; set; }
     }
 }

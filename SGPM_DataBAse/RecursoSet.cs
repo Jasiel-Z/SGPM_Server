@@ -12,12 +12,19 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Recurso
+    public partial class RecursoSet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RecursoSet()
+        {
+            this.OrdenEntregaSet = new HashSet<OrdenEntregaSet>();
+        }
+    
         public int IdRecurso { get; set; }
         public string concepto { get; set; }
         public string valor { get; set; }
     
-        public virtual OrdenEntrega OrdenEntrega { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrdenEntregaSet> OrdenEntregaSet { get; set; }
     }
 }

@@ -15,15 +15,15 @@ namespace SGPM_Contracts.IRequestManagement
         // methods needed for the use case no.11
 
         [OperationContract]
-        int RegisterRequest(Solicitud request);
+        int RegisterRequest(SolicitudSet request);
 
         [OperationContract]
-        int RegisterRequestDocumentation(List<Archivo> files);
+        int RegisterRequestDocumentation(List<ArchivoSet> files);
 
 
         //methods needed for the use case no.12
         [OperationContract]
-        Solicitud RecoverRequestDetails(int requestId);
+        SolicitudSet RecoverRequestDetails(int requestId);
 
     }
 }

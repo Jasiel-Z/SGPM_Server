@@ -12,28 +12,29 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class Empleado
+    public partial class BeneficiarioSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empleado()
+        public BeneficiarioSet()
         {
-            this.Dictamen = new HashSet<Dictamen>();
+            this.empresaSet = new HashSet<empresaSet>();
+            this.PersonaSet = new HashSet<PersonaSet>();
         }
     
-        public int NumeroEmpleado { get; set; }
-        public string nombre { get; set; }
-        public string apellidoPaterno { get; set; }
-        public string apellidoMaterno { get; set; }
-        public string rol { get; set; }
+        public int idBeneficiario { get; set; }
         public string telefono { get; set; }
         public string ciudad { get; set; }
         public string calle { get; set; }
-        public int numero { get; set; }
-        public int LocalidadIdLocalidad { get; set; }
+        public string numero { get; set; }
+        public string rfc { get; set; }
+        public Nullable<int> Localidad_IdLocalidad { get; set; }
+        public Nullable<int> Solicitud_IdSolicitud { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dictamen> Dictamen { get; set; }
-        public virtual Usuario Usuario { get; set; }
-        public virtual Localidad Localidad { get; set; }
+        public virtual ICollection<empresaSet> empresaSet { get; set; }
+        public virtual LocalidadSet LocalidadSet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonaSet> PersonaSet { get; set; }
+        public virtual SolicitudSet SolicitudSet { get; set; }
     }
 }
