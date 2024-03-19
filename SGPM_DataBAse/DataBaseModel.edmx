@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
         <EntityContainer Name="DataBaseModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -250,7 +250,6 @@
           <Property Name="IdLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" Nullable="false" />
           <NavigationProperty Name="Beneficiario" Relationship="DataBaseModel.BeneficiarioLocalidad" FromRole="Localidad" ToRole="Beneficiario" />
-          <Property Name="BeneficiarioRFC" Type="String" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="DataBaseModel.EmpleadoLocalidad" FromRole="Localidad" ToRole="Empleado" />
           <NavigationProperty Name="LocalidadDependencia" Relationship="DataBaseModel.LocalidadLocalidadDependencia" FromRole="Localidad" ToRole="LocalidadDependencia" />
         </EntityType>
