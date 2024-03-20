@@ -54,6 +54,7 @@
     <Compile Include="ProjectsManagement\ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestManagement\RequestsManager.cs" />
+    <Compile Include="UserManagement\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
