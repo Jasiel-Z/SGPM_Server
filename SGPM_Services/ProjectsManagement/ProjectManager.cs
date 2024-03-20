@@ -20,18 +20,19 @@ namespace SGPM_Services.ProjectsManagement
     {
         public Project GetProjectDetails(int idProject)
         {
-            Project project = new Project();   
+            Project sProject = new Project();   
 
             try
             {
                 using (var context = new DataBaseModelContainer())
                 {
-                    ProyectoSet proyecto = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
-                    project.Folio = proyecto.Folio;
-                    project.Modality = proyecto.modalidad;
-                    project.AttentionGroup = proyecto.grupoAtencion;
-                    project.BeneficiaryNumbers = proyecto.numeroBeneficiarios;
-                    return project;
+                    ProyectoSet dbProyect = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
+                    sProject.Folio = dbProyect.Folio;
+                    sProject.Modality = dbProyect.modalidad;
+                    sProject.AttentionGroup = dbProyect.grupoAtencion;
+                    sProject.BeneficiaryNumbers = dbProyect.numeroBeneficiarios;
+                    sProject.Type = dbProyect.tipo;
+                    return sProject;
                 }
             }
             catch (SqlException exception)

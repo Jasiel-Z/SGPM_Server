@@ -655,7 +655,7 @@
           </Key>
           <Property Name="idArchivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SolicitudIdSolicitud" Type="Int32" />
+          <Property Name="SolicitudIdSolicitud" Type="Int32" Nullable="true" />
           <Property Name="extension" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="contenido" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />

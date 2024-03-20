@@ -49,7 +49,7 @@ namespace SGPM_Services.ProjectsManagement
             return result;
         }
 
-        public int RegisterRequestDocumentation(List<ArchivoSet> files)
+        public int RegisterRequestDocumentation(List<File> files)
         {
             int result = 0;
             try
@@ -58,7 +58,17 @@ namespace SGPM_Services.ProjectsManagement
                 {
                     foreach (var file in files)
                     {
-                        context.ArchivoSet.Add(file);
+
+                        ArchivoSet archivoSet = new ArchivoSet()
+                        {
+                            nombre = file.Name,
+                            extension = file.Extension,
+                            contenido = file.Content,
+                            descripcion = file.Description
+                        };
+                        context.ArchivoSet.Add(archivoSet);
+
+
                     }
                     result = context.SaveChanges();
                 }

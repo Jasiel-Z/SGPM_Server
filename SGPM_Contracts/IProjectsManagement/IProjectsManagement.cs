@@ -35,5 +35,8 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [DataMember]
         public int BeneficiaryNumbers { get; set; }
+
+        [DataMember]
+        public string Type { get; set; }
     }
 }
