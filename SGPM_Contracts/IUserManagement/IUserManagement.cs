@@ -14,6 +14,9 @@ namespace SGPM_Contracts.IUserManagement
     {
         [OperationContract]
         int SaveUser(User user);
+
+        [OperationContract]
+        bool ValidateEmailDoesNotExist(string email);
     }
 
     [DataContract]

@@ -1,4 +1,4 @@
-﻿using SGPM_Contracts.IUserManagement;
+﻿using SGPM_Contracts.IPolicyManagement;
 using SGPM_DataBAse;
 using System;
 using System.Collections.Generic;
@@ -6,26 +6,26 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SGPM_Services.ProjectsManagement
 {
-    public partial class SGPMManager : IUserManagement
+    public partial class SGPMManager : IPolicyManagement
     {
-        public int SaveUser(User user)
+        public int SavePolicy(Policy policy)
         {
-            int result;
+            int result = 0;
             try
             {
                 using (var context = new DataBaseModelContainer())
                 {
-                    UsuarioSet userToBeSaved = new UsuarioSet();
-                    userToBeSaved.correo = user.Email;
-                    userToBeSaved.contrasena = user.Password;
-                    //userToBeSaved.EmpleadoSet = user.StaffNumber;
-                    
-                    context.UsuarioSet.Add(userToBeSaved);
+                    PoliticaOtorgamientoSet politicaToBeSaved = new PoliticaOtorgamientoSet();
+                    politicaToBeSaved.nombre = policy.Name;
+                    politicaToBeSaved.descripcion = policy.Description;
+
+                    context.PoliticaOtorgamientoSet.Add(politicaToBeSaved);
                     result = context.SaveChanges();
                 }
             }
@@ -46,23 +46,6 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return result;
-        }
-
-        public bool ValidateEmailDoesNotExist(string email)
-        {
-            bool isEmailUnique = false;
-
-            using (var context = new DataBaseModelContainer())
-            {
-                var User = context.UsuarioSet.Where(usuario => usuario.correo == email).FirstOrDefault();
-
-                if (User == null)
-                {
-                    isEmailUnique = true;
-                }
-            }
-
-            return isEmailUnique;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using SGPM_Contracts.IUserManagement;
+﻿using SGPM_Contracts.ILocalityManagement;
 using SGPM_DataBAse;
 using System;
 using System.Collections.Generic;
@@ -11,21 +11,19 @@ using System.Threading.Tasks;
 
 namespace SGPM_Services.ProjectsManagement
 {
-    public partial class SGPMManager : IUserManagement
+    public partial class SGPMManager : ILocalityManagement
     {
-        public int SaveUser(User user)
+        public int SaveLocality(Locality locality)
         {
-            int result;
+            int result = 0;
             try
             {
                 using (var context = new DataBaseModelContainer())
                 {
-                    UsuarioSet userToBeSaved = new UsuarioSet();
-                    userToBeSaved.correo = user.Email;
-                    userToBeSaved.contrasena = user.Password;
-                    //userToBeSaved.EmpleadoSet = user.StaffNumber;
-                    
-                    context.UsuarioSet.Add(userToBeSaved);
+                    LocalidadSet localityToBeSaved = new LocalidadSet();
+                    localityToBeSaved.nombre = locality.Name;
+
+                    context.LocalidadSet.Add(localityToBeSaved);
                     result = context.SaveChanges();
                 }
             }
@@ -46,23 +44,6 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return result;
-        }
-
-        public bool ValidateEmailDoesNotExist(string email)
-        {
-            bool isEmailUnique = false;
-
-            using (var context = new DataBaseModelContainer())
-            {
-                var User = context.UsuarioSet.Where(usuario => usuario.correo == email).FirstOrDefault();
-
-                if (User == null)
-                {
-                    isEmailUnique = true;
-                }
-            }
-
-            return isEmailUnique;
         }
     }
 }
