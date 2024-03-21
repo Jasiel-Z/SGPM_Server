@@ -45,5 +45,22 @@ namespace SGPM_Services.ProjectsManagement
 
             return result;
         }
+
+        public bool ValidateLocalityDoesNotExist(string localityName)
+        {
+            bool isLocalityUnique = false;
+
+            using (var context = new DataBaseModelContainer())
+            {
+                var Locality = context.LocalidadSet.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
+
+                if (Locality == null)
+                {
+                    isLocalityUnique = true;
+                }
+            }
+
+            return isLocalityUnique;
+        }
     }
 }

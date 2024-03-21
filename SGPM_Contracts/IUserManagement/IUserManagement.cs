@@ -17,6 +17,9 @@ namespace SGPM_Contracts.IUserManagement
 
         [OperationContract]
         bool ValidateEmailDoesNotExist(string email);
+
+        [OperationContract]
+        bool ValidateStaffNumberDoesNotExist(string staffNumber);
     }
 
     [DataContract]

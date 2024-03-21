@@ -14,6 +14,9 @@ namespace SGPM_Contracts.ILocalityManagement
     {
         [OperationContract]
         int SaveLocality(Locality locality);
+
+        [OperationContract]
+        bool ValidateLocalityDoesNotExist(string localityName);
     }
 
     [DataContract]

@@ -64,5 +64,22 @@ namespace SGPM_Services.ProjectsManagement
 
             return isEmailUnique;
         }
+
+        public bool ValidateStaffNumberDoesNotExist(string staffNumber)
+        {
+            bool isStaffNumberUnique = false;
+
+            /*using (var context = new DataBaseModelContainer())
+            {
+                var User = context.UsuarioSet.Where(usuario => usuario.NumeroEmpleado == staffNumber).FirstOrDefault();
+
+                if (User == null)
+                {
+                    isStaffNumberUnique = true;
+                }
+            }*/
+
+            return isStaffNumberUnique;
+        }
     }
 }
