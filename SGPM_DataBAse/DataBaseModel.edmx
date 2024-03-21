@@ -182,6 +182,7 @@
           <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
           <Property Name="ProyectoFolio" Type="int" Nullable="false" />
           <Property Name="Dictamen_IdDictamen" Type="int" />
+          <Property Name="BeneficiarioId" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -381,6 +382,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Solicitud_Beneficiario">
+          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="0..1" />
+          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BeneficiarioSet">
+              <PropertyRef Name="idBeneficiario" />
+            </Principal>
+            <Dependent Role="SolicitudSet">
+              <PropertyRef Name="BeneficiarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SolicitudArchivo">
           <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="0..1" />
           <End Role="ArchivoSet" Type="Self.ArchivoSet" Multiplicity="*" />
@@ -522,6 +535,10 @@
             <End Role="OrdenEntregaSet" EntitySet="OrdenEntregaSet" />
             <End Role="ProyectoSet" EntitySet="ProyectoSet" />
           </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="Self.FK_Solicitud_Beneficiario">
+            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+          </AssociationSet>
           <AssociationSet Name="FK_SolicitudArchivo" Association="Self.FK_SolicitudArchivo">
             <End Role="SolicitudSet" EntitySet="SolicitudSet" />
             <End Role="ArchivoSet" EntitySet="ArchivoSet" />
@@ -648,6 +665,10 @@
             <End Role="ProyectoSet" EntitySet="ProyectoSet" />
             <End Role="SolicitudSet" EntitySet="SolicitudSet" />
           </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="DataBaseModel.FK_Solicitud_Beneficiario">
+            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ArchivoSet">
           <Key>
@@ -655,7 +676,7 @@
           </Key>
           <Property Name="idArchivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SolicitudIdSolicitud" Type="Int32" />
+          <Property Name="SolicitudIdSolicitud" Type="Int32" Nullable="true" />
           <Property Name="extension" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="contenido" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -677,6 +698,7 @@
           <NavigationProperty Name="LocalidadSet" Relationship="DataBaseModel.FK_BeneficiarioLocalidad" FromRole="BeneficiarioSet" ToRole="LocalidadSet" />
           <NavigationProperty Name="PersonaSet" Relationship="DataBaseModel.FK_BeneficiarioPersona" FromRole="BeneficiarioSet" ToRole="PersonaSet" />
           <NavigationProperty Name="SolicitudSet" Relationship="DataBaseModel.FK_BeneficiarioSolicitud" FromRole="BeneficiarioSet" ToRole="SolicitudSet" />
+          <NavigationProperty Name="SolicitudSet1" Relationship="DataBaseModel.FK_Solicitud_Beneficiario" FromRole="BeneficiarioSet" ToRole="SolicitudSet" />
         </EntityType>
         <EntityType Name="CuentaBancariaSet">
           <Key>
@@ -865,6 +887,8 @@
           <NavigationProperty Name="DevolucionesSet" Relationship="DataBaseModel.FK_SolicitudDevoluciones" FromRole="SolicitudSet" ToRole="DevolucionesSet" />
           <NavigationProperty Name="DictamenSet" Relationship="DataBaseModel.FK_SolicitudDictamen" FromRole="SolicitudSet" ToRole="DictamenSet" />
           <NavigationProperty Name="ProyectoSet" Relationship="DataBaseModel.FK_SolicitudProyecto" FromRole="SolicitudSet" ToRole="ProyectoSet" />
+          <Property Name="BeneficiarioId" Type="Int32" />
+          <NavigationProperty Name="BeneficiarioSet1" Relationship="DataBaseModel.FK_Solicitud_Beneficiario" FromRole="SolicitudSet" ToRole="BeneficiarioSet" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1125,6 +1149,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Solicitud_Beneficiario">
+          <End Type="DataBaseModel.BeneficiarioSet" Role="BeneficiarioSet" Multiplicity="0..1" />
+          <End Type="DataBaseModel.SolicitudSet" Role="SolicitudSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BeneficiarioSet">
+              <PropertyRef Name="idBeneficiario" />
+            </Principal>
+            <Dependent Role="SolicitudSet">
+              <PropertyRef Name="BeneficiarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1319,6 +1355,7 @@
           <EntitySetMapping Name="SolicitudSet">
             <EntityTypeMapping TypeName="DataBaseModel.SolicitudSet">
               <MappingFragment StoreEntitySet="SolicitudSet">
+                <ScalarProperty Name="BeneficiarioId" ColumnName="BeneficiarioId" />
                 <ScalarProperty Name="Dictamen_IdDictamen" ColumnName="Dictamen_IdDictamen" />
                 <ScalarProperty Name="ProyectoFolio" ColumnName="ProyectoFolio" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />

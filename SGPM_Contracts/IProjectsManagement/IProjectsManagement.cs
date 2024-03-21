@@ -15,9 +15,9 @@ namespace SGPM_Contracts.IProjectsManagement
         [OperationContract]
         Project GetProjectDetails(int idProject);
 
+        [OperationContract]
 
-
-
+        List<ProjectPolicy> GetProjectPolicies(int idProject);
 
     }
 
@@ -35,5 +35,26 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [DataMember]
         public int BeneficiaryNumbers { get; set; }
+
+        [DataMember]
+        public string Type { get; set; }
     }
+
+    [DataContract]
+    public class ProjectPolicy{
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int  ProyectFolio { get; set; }
+        [DataMember]
+        public int GrantingPolicy { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
+
+        [DataMember]
+        public string Name { get; set; }
+    }
+
+
 }

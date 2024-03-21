@@ -28,6 +28,7 @@ namespace SGPM_DataBAse
         public System.DateTime fechaCreacion { get; set; }
         public int ProyectoFolio { get; set; }
         public Nullable<int> Dictamen_IdDictamen { get; set; }
+        public Nullable<int> BeneficiarioId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArchivoSet> ArchivoSet { get; set; }
@@ -39,5 +40,6 @@ namespace SGPM_DataBAse
         public virtual ICollection<DevolucionesSet> DevolucionesSet { get; set; }
         public virtual DictamenSet DictamenSet { get; set; }
         public virtual ProyectoSet ProyectoSet { get; set; }
+        public virtual BeneficiarioSet BeneficiarioSet1 { get; set; }
     }
 }
