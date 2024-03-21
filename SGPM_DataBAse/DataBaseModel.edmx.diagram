@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="42c673eef6a7492a97ab22aa3cedbf5b" Name="Diagram1" ZoomLevel="54" >
+      <Diagram DiagramId="42c673eef6a7492a97ab22aa3cedbf5b" Name="Diagram1" ZoomLevel="81" >
         <EntityTypeShape EntityType="DataBaseModel.ArchivoSet" Width="1.5" PointX="9.75" PointY="20.125" />
         <EntityTypeShape EntityType="DataBaseModel.BeneficiarioSet" Width="1.5" PointX="6" PointY="5.375" />
         <EntityTypeShape EntityType="DataBaseModel.CuentaBancariaSet" Width="1.5" PointX="10.5" PointY="8" />
@@ -23,7 +23,6 @@
         <EntityTypeShape EntityType="DataBaseModel.ProyectoSet" Width="1.5" PointX="10.25" PointY="11" />
         <EntityTypeShape EntityType="DataBaseModel.RecursoSet" Width="1.5" PointX="5.75" PointY="1" />
         <EntityTypeShape EntityType="DataBaseModel.SolicitudSet" Width="1.5" PointX="7.5" PointY="13.5" />
-        <EntityTypeShape EntityType="DataBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="DataBaseModel.UsuarioSet" Width="1.5" PointX="0.75" PointY="7.125" />
         <AssociationConnector Association="DataBaseModel.FK_SolicitudArchivo" />
         <AssociationConnector Association="DataBaseModel.FK_Beneficiarioempresa" />
