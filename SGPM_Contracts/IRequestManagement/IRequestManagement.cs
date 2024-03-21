@@ -20,11 +20,18 @@ namespace SGPM_Contracts.IRequestManagement
 
         [OperationContract]
         int RegisterRequestDocumentation(List<File> files);
-
-        //methods needed for the use case no.12
         [OperationContract]
-        SolicitudSet RecoverRequestDetails(int requestId);
+         Request RecoverRequestDetails(int requestId);
+        [OperationContract]
+        int RegisterRequestWithDocuments(SolicitudSet request, List<SGPM_Contracts.IRequestManagement.File> files);
 
+        [OperationContract]
+        bool BeneficiaryHasRequest(int beneficiaryId, int projectFolio);
+
+        [OperationContract]
+        List<File> GetRequestFiles(int requestId);
+        [OperationContract]
+        int RegisterOpinion(Request request);
 
 
     }
@@ -42,9 +49,44 @@ namespace SGPM_Contracts.IRequestManagement
         public string Extension { get; set; }
         [DataMember]
         public byte[] Content { get; set; }
-
         [DataMember]
         public int RequestId { get; set; }
+    }
+
+    [DataContract]
+    public class Request
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string State { get; set; }
+        [DataMember]
+        public System.DateTime CreationTime { get; set; }
+        [DataMember]
+        public int ProyectFolio { get; set; }
+
+        [DataMember]
+        public int BeneficiaryId { get; set;}
+
+    }
+
+    [DataContract]
+    public class Opinion {
+
+        [DataMember]
+        public int OpinionId { get; set; }
+        [DataMember]
+
+        public string State { get; set; }
+        [DataMember]
+
+        public string Comment { get; set; }
+        [DataMember]
+
+        public System.DateTime Date { get; set; }
+        [DataMember]
+
+        public int EmployeeNumber { get; set; }
     }
 }
 

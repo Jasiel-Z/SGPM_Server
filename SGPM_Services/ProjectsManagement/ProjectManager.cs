@@ -52,10 +52,48 @@ namespace SGPM_Services.ProjectsManagement
             }
         }
 
+        public List<ProjectPolicy> GetProjectPolicies(int idProject)
+        {
+            List<ProjectPolicy> policies = new List<ProjectPolicy>();
+
+            try
+            {
+
+                using (var context = new DataBaseModelContainer())
+                {
+                    policies = (from pp in context.PoliticaProyectoSet
+                                where pp.ProyectoFolio == idProject
+                                select new ProjectPolicy
+                                {
+                                    Id = pp.IdPoliticaProyecto,
+                                    ProyectFolio = pp.ProyectoFolio.Value,
+                                    GrantingPolicy = pp.PoliticaOtorgamientoIdPolitica.Value,
+                                    Name = pp.PoliticaOtorgamientoSet.nombre,
+                                    Description = pp.PoliticaOtorgamientoSet.descripcion
+                                }).ToList();
+                }
+                return policies;
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
 
 
-        
 
-        
+
+        }
+
     }
 }

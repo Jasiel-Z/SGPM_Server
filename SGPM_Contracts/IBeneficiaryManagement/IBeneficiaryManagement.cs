@@ -43,6 +43,8 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         public string RFC { get; set; }
         [DataMember]
         public int LocalityId { get; set; }
+
+
     }
 
 
