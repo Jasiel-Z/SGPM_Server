@@ -14,7 +14,14 @@ namespace SGPM_Contracts.IUserManagement
         [OperationContract]
         User GetUser(string username, string password);
 
-       
+        [OperationContract]
+        int SaveUser(User user);
+
+        [OperationContract]
+        bool ValidateEmailDoesNotExist(string email);
+
+        [OperationContract]
+        bool ValidateStaffNumberDoesNotExist(string staffNumber);
     }
 
     [DataContract]
@@ -23,6 +30,9 @@ namespace SGPM_Contracts.IUserManagement
     {
         [DataMember]
         public int UserId { get; set; }
+
+        [DataMember]
+        public string Email { get; set; }
 
         [DataMember]
         public string Username { get; set; }
