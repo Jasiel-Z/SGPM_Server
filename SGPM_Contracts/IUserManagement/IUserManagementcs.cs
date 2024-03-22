@@ -12,7 +12,7 @@ namespace SGPM_Contracts.IUserManagement
     public  interface IUserManagement
     {
         [OperationContract]
-        User GetUser(string username, string password);
+        User GetUser(string email, string password);
 
         [OperationContract]
         int SaveUser(User user);

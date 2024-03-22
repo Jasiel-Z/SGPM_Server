@@ -15,27 +15,39 @@ namespace SGPM_Services.ProjectsManagement
 {
     public partial class SGPMManager : IUserManagement
     {
-        public User GetUser(string username, string password)
+        public User GetUser(string email, string password)
         {
             User user = new User();
 
             try{
 
-                using(var context = new DataBaseModelContainer())
+                //using(var context = new DataBaseModelContainer())
+                //{
+                //    user = (from userS in context.UsuarioSet
+                //            join empleado in context.EmpleadoSet on userS.IdUsuario equals empleado.Usuario_IdUsuario
+                //            where userS.correo == username && userS.contrasena == password
+                //            select new User
+
+                //            {
+                //                UserId = userS.IdUsuario,
+                //                Password = userS.contrasena,
+                //                EmployeeNumber = empleado.NumeroEmpleado,
+                //                LocationId = empleado.LocalidadIdLocalidad,
+
+
+                //            }).FirstOrDefault();
+                //}
+
+                using (var context = new DataBaseModelContainer())
                 {
-                    user = (from userS in context.UsuarioSet
-                            join empleado in context.EmpleadoSet on userS.IdUsuario equals empleado.Usuario_IdUsuario
-                            where userS.correo == username && userS.contrasena == password
-                            select new User
-                        
-                            {
-                                UserId = userS.IdUsuario,
-                                Password = userS.contrasena,
-                                EmployeeNumber = empleado.NumeroEmpleado,
-                                LocationId = empleado.LocalidadIdLocalidad,
-
-
-                            }).FirstOrDefault();
+                    var userSet = context.UsuarioSet.Where(usuario => usuario.contrasena == password
+                                                            && usuario.correo == email).FirstOrDefault();
+                    if (userSet != null)
+                    {
+                        user.Email = userSet.correo;
+                        user.Password = userSet.contrasena;
+                        user.UserId = userSet.IdUsuario;
+                    }
                 }
             }
             catch (SqlException exception)
