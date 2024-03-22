@@ -56,7 +56,7 @@
     <Compile Include="IPolicyManagement\IPolicyManagement.cs" />
     <Compile Include="IProjectsManagement\IProjectsManagement.cs" />
     <Compile Include="IRequestManagement\IRequestManagement.cs" />
-    <Compile Include="IUserManagement\IUserManagement.cs" />
+    <Compile Include="IUserManagement\IUserManagementcs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

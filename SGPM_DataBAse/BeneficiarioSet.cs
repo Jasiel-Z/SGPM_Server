@@ -19,6 +19,7 @@ namespace SGPM_DataBAse
         {
             this.empresaSet = new HashSet<empresaSet>();
             this.PersonaSet = new HashSet<PersonaSet>();
+            this.SolicitudSet1 = new HashSet<SolicitudSet>();
         }
     
         public int idBeneficiario { get; set; }
@@ -36,5 +37,7 @@ namespace SGPM_DataBAse
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonaSet> PersonaSet { get; set; }
         public virtual SolicitudSet SolicitudSet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SolicitudSet> SolicitudSet1 { get; set; }
     }
 }

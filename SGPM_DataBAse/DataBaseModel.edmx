@@ -88,7 +88,7 @@
           <Property Name="calle" Type="nvarchar(max)" Nullable="false" />
           <Property Name="numero" Type="int" Nullable="false" />
           <Property Name="LocalidadIdLocalidad" Type="int" Nullable="false" />
-          <Property Name="Usuario_IdUsuario" Type="int" Nullable="false" />
+          <Property Name="Usuario_IdUsuario" Type="int" />
         </EntityType>
         <EntityType Name="empresaSet">
           <Key>
@@ -164,6 +164,8 @@
           <Property Name="numeroBeneficiarios" Type="int" Nullable="false" />
           <Property Name="LocalidadDependenciaIdLocalidadDependencia" Type="int" Nullable="false" />
           <Property Name="OrdenEntrega_IdOrdenEntrega" Type="int" />
+          <Property Name="nombre" Type="nvarchar(max)" />
+          <Property Name="descripcion" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="RecursoSet">
           <Key>
@@ -182,6 +184,7 @@
           <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
           <Property Name="ProyectoFolio" Type="int" Nullable="false" />
           <Property Name="Dictamen_IdDictamen" Type="int" />
+          <Property Name="BeneficiarioId" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -298,7 +301,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmpleadoUsuario">
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="1" />
+          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="0..1" />
           <End Role="EmpleadoSet" Type="Self.EmpleadoSet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsuarioSet">
@@ -378,6 +381,18 @@
             </Principal>
             <Dependent Role="ProyectoSet">
               <PropertyRef Name="OrdenEntrega_IdOrdenEntrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Beneficiario">
+          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="0..1" />
+          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BeneficiarioSet">
+              <PropertyRef Name="idBeneficiario" />
+            </Principal>
+            <Dependent Role="SolicitudSet">
+              <PropertyRef Name="BeneficiarioId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -522,6 +537,10 @@
             <End Role="OrdenEntregaSet" EntitySet="OrdenEntregaSet" />
             <End Role="ProyectoSet" EntitySet="ProyectoSet" />
           </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="Self.FK_Solicitud_Beneficiario">
+            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+          </AssociationSet>
           <AssociationSet Name="FK_SolicitudArchivo" Association="Self.FK_SolicitudArchivo">
             <End Role="SolicitudSet" EntitySet="SolicitudSet" />
             <End Role="ArchivoSet" EntitySet="ArchivoSet" />
@@ -587,6 +606,10 @@
           <AssociationSet Name="FK_BeneficiarioSolicitud" Association="DataBaseModel.FK_BeneficiarioSolicitud">
             <End Role="SolicitudSet" EntitySet="SolicitudSet" />
             <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="DataBaseModel.FK_Solicitud_Beneficiario">
+            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
           </AssociationSet>
           <AssociationSet Name="FK_CuentaBancariaSolicitudCuentaBancaria" Association="DataBaseModel.FK_CuentaBancariaSolicitudCuentaBancaria">
             <End Role="CuentaBancariaSet" EntitySet="CuentaBancariaSet" />
@@ -677,6 +700,7 @@
           <NavigationProperty Name="LocalidadSet" Relationship="DataBaseModel.FK_BeneficiarioLocalidad" FromRole="BeneficiarioSet" ToRole="LocalidadSet" />
           <NavigationProperty Name="PersonaSet" Relationship="DataBaseModel.FK_BeneficiarioPersona" FromRole="BeneficiarioSet" ToRole="PersonaSet" />
           <NavigationProperty Name="SolicitudSet" Relationship="DataBaseModel.FK_BeneficiarioSolicitud" FromRole="BeneficiarioSet" ToRole="SolicitudSet" />
+          <NavigationProperty Name="SolicitudSet1" Relationship="DataBaseModel.FK_Solicitud_Beneficiario" FromRole="BeneficiarioSet" ToRole="SolicitudSet" />
         </EntityType>
         <EntityType Name="CuentaBancariaSet">
           <Key>
@@ -744,7 +768,7 @@
           <Property Name="calle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="numero" Type="Int32" Nullable="false" />
           <Property Name="LocalidadIdLocalidad" Type="Int32" Nullable="false" />
-          <Property Name="Usuario_IdUsuario" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_IdUsuario" Type="Int32" />
           <NavigationProperty Name="DictamenSet" Relationship="DataBaseModel.FK_DictamenEmpleado" FromRole="EmpleadoSet" ToRole="DictamenSet" />
           <NavigationProperty Name="LocalidadSet" Relationship="DataBaseModel.FK_EmpleadoLocalidad" FromRole="EmpleadoSet" ToRole="LocalidadSet" />
           <NavigationProperty Name="UsuarioSet" Relationship="DataBaseModel.FK_EmpleadoUsuario" FromRole="EmpleadoSet" ToRole="UsuarioSet" />
@@ -836,6 +860,8 @@
           <Property Name="numeroBeneficiarios" Type="Int32" Nullable="false" />
           <Property Name="LocalidadDependenciaIdLocalidadDependencia" Type="Int32" Nullable="false" />
           <Property Name="OrdenEntrega_IdOrdenEntrega" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LocalidadDependenciaSet" Relationship="DataBaseModel.FK_ProyectoLocalidadDependencia" FromRole="ProyectoSet" ToRole="LocalidadDependenciaSet" />
           <NavigationProperty Name="OrdenEntregaSet" Relationship="DataBaseModel.FK_ProyectoOrdenEntrega" FromRole="ProyectoSet" ToRole="OrdenEntregaSet" />
           <NavigationProperty Name="PoliticaProyectoSet" Relationship="DataBaseModel.FK_PoliticaProyectoProyecto" FromRole="ProyectoSet" ToRole="PoliticaProyectoSet" />
@@ -859,8 +885,10 @@
           <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ProyectoFolio" Type="Int32" Nullable="false" />
           <Property Name="Dictamen_IdDictamen" Type="Int32" />
+          <Property Name="BeneficiarioId" Type="Int32" />
           <NavigationProperty Name="ArchivoSet" Relationship="DataBaseModel.FK_SolicitudArchivo" FromRole="SolicitudSet" ToRole="ArchivoSet" />
           <NavigationProperty Name="BeneficiarioSet" Relationship="DataBaseModel.FK_BeneficiarioSolicitud" FromRole="SolicitudSet" ToRole="BeneficiarioSet" />
+          <NavigationProperty Name="BeneficiarioSet1" Relationship="DataBaseModel.FK_Solicitud_Beneficiario" FromRole="SolicitudSet" ToRole="BeneficiarioSet" />
           <NavigationProperty Name="CuentaBancariaSolicitudSet" Relationship="DataBaseModel.FK_SolicitudCuentaBancariaSolicitud" FromRole="SolicitudSet" ToRole="CuentaBancariaSolicitudSet" />
           <NavigationProperty Name="DevolucionesSet" Relationship="DataBaseModel.FK_SolicitudDevoluciones" FromRole="SolicitudSet" ToRole="DevolucionesSet" />
           <NavigationProperty Name="DictamenSet" Relationship="DataBaseModel.FK_SolicitudDictamen" FromRole="SolicitudSet" ToRole="DictamenSet" />
@@ -942,6 +970,18 @@
             </Principal>
             <Dependent Role="BeneficiarioSet">
               <PropertyRef Name="Solicitud_IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Beneficiario">
+          <End Type="DataBaseModel.BeneficiarioSet" Role="BeneficiarioSet" Multiplicity="0..1" />
+          <End Type="DataBaseModel.SolicitudSet" Role="SolicitudSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BeneficiarioSet">
+              <PropertyRef Name="idBeneficiario" />
+            </Principal>
+            <Dependent Role="SolicitudSet">
+              <PropertyRef Name="BeneficiarioId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1030,7 +1070,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmpleadoUsuario">
-          <End Type="DataBaseModel.UsuarioSet" Role="UsuarioSet" Multiplicity="1" />
+          <End Type="DataBaseModel.UsuarioSet" Role="UsuarioSet" Multiplicity="0..1" />
           <End Type="DataBaseModel.EmpleadoSet" Role="EmpleadoSet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsuarioSet">
@@ -1293,6 +1333,8 @@
           <EntitySetMapping Name="ProyectoSet">
             <EntityTypeMapping TypeName="DataBaseModel.ProyectoSet">
               <MappingFragment StoreEntitySet="ProyectoSet">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="OrdenEntrega_IdOrdenEntrega" ColumnName="OrdenEntrega_IdOrdenEntrega" />
                 <ScalarProperty Name="LocalidadDependenciaIdLocalidadDependencia" ColumnName="LocalidadDependenciaIdLocalidadDependencia" />
                 <ScalarProperty Name="numeroBeneficiarios" ColumnName="numeroBeneficiarios" />
@@ -1319,6 +1361,7 @@
           <EntitySetMapping Name="SolicitudSet">
             <EntityTypeMapping TypeName="DataBaseModel.SolicitudSet">
               <MappingFragment StoreEntitySet="SolicitudSet">
+                <ScalarProperty Name="BeneficiarioId" ColumnName="BeneficiarioId" />
                 <ScalarProperty Name="Dictamen_IdDictamen" ColumnName="Dictamen_IdDictamen" />
                 <ScalarProperty Name="ProyectoFolio" ColumnName="ProyectoFolio" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
