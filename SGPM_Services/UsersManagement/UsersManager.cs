@@ -32,6 +32,7 @@ namespace SGPM_Services.ProjectsManagement
                                 UserId = userS.IdUsuario,
                                 Password = userS.contrasena,
                                 EmployeeNumber = empleado.NumeroEmpleado,
+                                LocationId = empleado.LocalidadIdLocalidad,
 
 
                             }).FirstOrDefault();

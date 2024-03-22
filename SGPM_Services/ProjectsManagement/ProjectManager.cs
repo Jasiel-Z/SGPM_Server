@@ -95,5 +95,49 @@ namespace SGPM_Services.ProjectsManagement
 
         }
 
+        public List<Project> GetProjectsFromLocality(int locationId)
+        {
+            List<Project> projects = new List<Project>();
+            try
+            {
+
+                using (var context = new DataBaseModelContainer())
+                {
+                    projects = (from ld in context.LocalidadDependenciaSet
+                                   join p in context.ProyectoSet
+                                   on ld.IdLocalidadDependencia equals p.LocalidadDependenciaIdLocalidadDependencia
+                                   where ld.LocalidadIdLocalidad == locationId
+                                   select new Project
+                                   {
+                                        Folio = p.Folio,
+                                        Modality = p.modalidad,
+                                        AttentionGroup = p.grupoAtencion,
+                                        Type = p.tipo
+ 
+                                    }).ToList();
+                    }
+
+                return projects;
+
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+
+        }
+
+
     }
 }
