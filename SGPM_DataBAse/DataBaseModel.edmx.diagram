@@ -4,46 +4,46 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="42c673eef6a7492a97ab22aa3cedbf5b" Name="Diagram1" ZoomLevel="81" >
-        <EntityTypeShape EntityType="DataBaseModel.ArchivoSet" Width="1.5" PointX="9.75" PointY="20.125" />
-        <EntityTypeShape EntityType="DataBaseModel.BeneficiarioSet" Width="1.5" PointX="6" PointY="5.375" />
-        <EntityTypeShape EntityType="DataBaseModel.CuentaBancariaSet" Width="1.5" PointX="10.5" PointY="8" />
-        <EntityTypeShape EntityType="DataBaseModel.CuentaBancariaSolicitudSet" Width="1.5" PointX="12.75" PointY="14" />
-        <EntityTypeShape EntityType="DataBaseModel.DependenciaSet" Width="1.5" PointX="3.75" PointY="6.25" />
-        <EntityTypeShape EntityType="DataBaseModel.DevolucionesSet" Width="1.5" PointX="9.75" PointY="16.25" />
-        <EntityTypeShape EntityType="DataBaseModel.DictamenSet" Width="1.5" PointX="5.25" PointY="13.875" />
-        <EntityTypeShape EntityType="DataBaseModel.EmpleadoSet" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="DataBaseModel.empresaSet" Width="1.5" PointX="8.25" PointY="4.5" />
-        <EntityTypeShape EntityType="DataBaseModel.LocalidadDependenciaSet" Width="1.5" PointX="6" PointY="9.875" />
-        <EntityTypeShape EntityType="DataBaseModel.LocalidadSet" Width="1.5" PointX="0.75" PointY="10" />
-        <EntityTypeShape EntityType="DataBaseModel.OrdenEntregaSet" Width="1.5" PointX="8" PointY="0.75" />
-        <EntityTypeShape EntityType="DataBaseModel.PersonaSet" Width="1.5" PointX="8.25" PointY="7.125" />
-        <EntityTypeShape EntityType="DataBaseModel.PoliticaOtorgamientoSet" Width="1.5" PointX="10.25" PointY="1.125" />
-        <EntityTypeShape EntityType="DataBaseModel.PoliticaProyectoSet" Width="1.5" PointX="12.5" PointY="11" />
-        <EntityTypeShape EntityType="DataBaseModel.ProyectoSet" Width="1.5" PointX="10.25" PointY="11" />
-        <EntityTypeShape EntityType="DataBaseModel.RecursoSet" Width="1.5" PointX="5.75" PointY="1" />
-        <EntityTypeShape EntityType="DataBaseModel.SolicitudSet" Width="1.5" PointX="7.5" PointY="13.5" />
-        <EntityTypeShape EntityType="DataBaseModel.UsuarioSet" Width="1.5" PointX="0.75" PointY="7.125" />
-        <AssociationConnector Association="DataBaseModel.FK_SolicitudArchivo" />
-        <AssociationConnector Association="DataBaseModel.FK_Beneficiarioempresa" />
-        <AssociationConnector Association="DataBaseModel.FK_BeneficiarioLocalidad" />
-        <AssociationConnector Association="DataBaseModel.FK_BeneficiarioPersona" />
-        <AssociationConnector Association="DataBaseModel.FK_BeneficiarioSolicitud" />
-        <AssociationConnector Association="DataBaseModel.FK_CuentaBancariaSolicitudCuentaBancaria" />
-        <AssociationConnector Association="DataBaseModel.FK_SolicitudCuentaBancariaSolicitud" />
-        <AssociationConnector Association="DataBaseModel.FK_DependenciaLocalidadDependencia" />
-        <AssociationConnector Association="DataBaseModel.FK_SolicitudDevoluciones" />
-        <AssociationConnector Association="DataBaseModel.FK_DictamenEmpleado" />
-        <AssociationConnector Association="DataBaseModel.FK_SolicitudDictamen" />
-        <AssociationConnector Association="DataBaseModel.FK_EmpleadoLocalidad" />
-        <AssociationConnector Association="DataBaseModel.FK_EmpleadoUsuario" />
-        <AssociationConnector Association="DataBaseModel.FK_LocalidadLocalidadDependencia" />
-        <AssociationConnector Association="DataBaseModel.FK_ProyectoLocalidadDependencia" />
-        <AssociationConnector Association="DataBaseModel.FK_OrdenEntregaRecurso" />
-        <AssociationConnector Association="DataBaseModel.FK_ProyectoOrdenEntrega" />
-        <AssociationConnector Association="DataBaseModel.FK_PoliticaOtorgamientoPoliticaProyecto" />
-        <AssociationConnector Association="DataBaseModel.FK_PoliticaProyectoProyecto" />
-        <AssociationConnector Association="DataBaseModel.FK_SolicitudProyecto" />
+      <Diagram DiagramId="e2648c5173a8485b80a74d97b1d1e958" Name="Diagram1">
+        <EntityTypeShape EntityType="SGPMModel.ArchivoSet" Width="1.5" PointX="12.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.BeneficiarioSet" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.CuentaBancariaSet" Width="1.5" PointX="13.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.CuentaBancariaSolicitudSet" Width="1.5" PointX="15.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.DependenciaSet" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.DevolucionesSet" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.DictamenSet" Width="1.5" PointX="8.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.EmpleadoSet" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.empresaSet" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.LocalidadDependenciaSet" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.LocalidadSet" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.OrdenEntregaSet" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.PersonaSet" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.PoliticaOtorgamientoSet" Width="1.5" PointX="8.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.PoliticaProyectoSet" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.ProyectoSet" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.RecursoSet" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.SolicitudSet" Width="1.5" PointX="10.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.UsuarioSet" Width="1.5" PointX="3.75" PointY="18.125" IsExpanded="true" />
+        <AssociationConnector Association="SGPMModel.FK_SolicitudArchivo" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_Beneficiarioempresa" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_BeneficiarioLocalidad" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_BeneficiarioPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_BeneficiarioSolicitud" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_CuentaBancariaSolicitudCuentaBancaria" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_SolicitudCuentaBancariaSolicitud" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_DependenciaLocalidadDependencia" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_SolicitudDevoluciones" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_DictamenEmpleado" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_SolicitudDictamen" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_EmpleadoLocalidad" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_EmpleadoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_LocalidadLocalidadDependencia" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_ProyectoLocalidadDependencia" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_OrdenEntregaRecurso" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_ProyectoOrdenEntrega" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_PoliticaOtorgamientoPoliticaProyecto" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_PoliticaProyectoProyecto" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_SolicitudProyecto" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
