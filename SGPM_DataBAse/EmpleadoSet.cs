@@ -30,7 +30,7 @@ namespace SGPM_DataBAse
         public string calle { get; set; }
         public int numero { get; set; }
         public int LocalidadIdLocalidad { get; set; }
-        public int Usuario_IdUsuario { get; set; }
+        public Nullable<int> Usuario_IdUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DictamenSet> DictamenSet { get; set; }

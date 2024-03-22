@@ -31,7 +31,7 @@ namespace SGPM_Contracts.IRequestManagement
         [OperationContract]
         List<File> GetRequestFiles(int requestId);
         [OperationContract]
-        int RegisterOpinion(Request request);
+        int RegisterOpinion(Opinion opinion, int requestId);
 
         [OperationContract]
         List<Request> GetRequestsOfProject(int projectId);
