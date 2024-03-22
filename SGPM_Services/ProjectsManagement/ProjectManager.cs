@@ -32,6 +32,9 @@ namespace SGPM_Services.ProjectsManagement
                     sProject.AttentionGroup = dbProyect.grupoAtencion;
                     sProject.BeneficiaryNumbers = dbProyect.numeroBeneficiarios;
                     sProject.Type = dbProyect.tipo;
+                    sProject.Name = dbProyect.nombre;
+                    sProject.Description = dbProyect.descripcion;
+
                     return sProject;
                 }
             }
@@ -112,7 +115,10 @@ namespace SGPM_Services.ProjectsManagement
                                         Folio = p.Folio,
                                         Modality = p.modalidad,
                                         AttentionGroup = p.grupoAtencion,
-                                        Type = p.tipo
+                                        Type = p.tipo,
+                                        Name = p.nombre,
+                                        Description = p.descripcion,
+                                        
  
                                     }).ToList();
                     }

@@ -16,9 +16,10 @@ namespace SGPM_Contracts.IProjectsManagement
         [OperationContract]
         Project GetProjectDetails(int idProject);
 
-        [OperationContract]
 
+        [OperationContract]
         List<ProjectPolicy> GetProjectPolicies(int idProject);
+
 
         [OperationContract]
         List<Project> GetProjectsFromLocality(int locationId);
@@ -43,6 +44,11 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [DataMember]
         public string Type { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
+        [DataMember]
+        public string Name { get; set; }
     }
 
     [DataContract]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
@@ -229,9 +230,55 @@ namespace SGPM_Services.ProjectsManagement
 
         }
 
-        public int RegisterOpinion(Request request)
+        public int RegisterOpinion(Opinion opinion, int requestId)
         {
-            throw new NotImplementedException();
+            int  result = 0;
+
+            try
+            {
+                using (var context = new DataBaseModelContainer())
+                {
+                    DictamenSet dictamen = new DictamenSet
+                    {
+                        estado = opinion.State,
+                        comentarios = opinion.Comment,
+                        fecha = opinion.Date,
+                        EmpleadoNumeroEmpleado = opinion.EmployeeNumber
+                    };
+
+                    context.DictamenSet.Add(dictamen);
+                    context.SaveChanges();
+
+                    SolicitudSet solicitud = context.SolicitudSet.Find(requestId);
+
+                    if (solicitud != null)
+                    {
+                        solicitud.estado = opinion.State;
+                        solicitud.Dictamen_IdDictamen = dictamen.IdDictamen;
+
+                        context.SaveChanges();
+
+                        result = dictamen.IdDictamen;
+                    }
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                result = -1;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                result = -1;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                result = -1;
+            }
+
+            return result;
         }
 
         public List<Request> GetRequestsOfProject(int projectId)
