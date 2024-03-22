@@ -31,6 +31,9 @@ namespace SGPM_Contracts.IUserManagement
         [DataMember]
         public int EmployeeNumber  { get; set; }
 
+        [DataMember]
+        public int LocationId { get; set; }
+
 
     }
 

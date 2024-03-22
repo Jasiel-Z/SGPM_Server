@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -18,6 +19,10 @@ namespace SGPM_Contracts.IProjectsManagement
         [OperationContract]
 
         List<ProjectPolicy> GetProjectPolicies(int idProject);
+
+        [OperationContract]
+        List<Project> GetProjectsFromLocality(int locationId);
+
 
     }
 

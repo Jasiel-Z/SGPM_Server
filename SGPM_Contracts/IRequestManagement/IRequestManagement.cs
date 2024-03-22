@@ -33,6 +33,9 @@ namespace SGPM_Contracts.IRequestManagement
         [OperationContract]
         int RegisterOpinion(Request request);
 
+        [OperationContract]
+        List<Request> GetRequestsOfProject(int projectId);
+
 
     }
 

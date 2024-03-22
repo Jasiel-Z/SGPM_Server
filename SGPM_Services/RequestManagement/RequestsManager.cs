@@ -233,5 +233,43 @@ namespace SGPM_Services.ProjectsManagement
         {
             throw new NotImplementedException();
         }
+
+        public List<Request> GetRequestsOfProject(int projectId)
+        {
+            List<Request> requests = new List<Request>();
+
+            try{ 
+          
+                using (var context = new DataBaseModelContainer())
+                {
+                    requests = (from r in context.SolicitudSet
+                                where r.ProyectoFolio == projectId
+                                select new Request
+                                {
+                                    Id = r.IdSolicitud,
+                                    State = r.estado,
+                                    CreationTime = r.fechaCreacion,
+                                    BeneficiaryId = (int)r.BeneficiarioId,
+                                    ProyectFolio = projectId,   
+                                }).ToList();
+                }
+                return requests;
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+        }
     }
 }
