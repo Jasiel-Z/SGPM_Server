@@ -4,565 +4,566 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="ArchivoSet">
-          <Key>
-            <PropertyRef Name="idArchivo" />
-          </Key>
-          <Property Name="idArchivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SolicitudIdSolicitud" Type="int" />
-          <Property Name="extension" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="contenido" Type="varbinary(max)" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="BeneficiarioSet">
-          <Key>
-            <PropertyRef Name="idBeneficiario" />
-          </Key>
-          <Property Name="idBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ciudad" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="calle" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="numero" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="rfc" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Localidad_IdLocalidad" Type="int" />
-          <Property Name="Solicitud_IdSolicitud" Type="int" />
-        </EntityType>
-        <EntityType Name="CuentaBancariaSet">
-          <Key>
-            <PropertyRef Name="numeroCuenta" />
-          </Key>
-          <Property Name="numeroCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombreTitular" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="apellidoPaternoTitular" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="apellidoMaternoTitular" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CuentaBancariaSolicitudSet">
-          <Key>
-            <PropertyRef Name="IdCuentaBancariaSolicitud" />
-          </Key>
-          <Property Name="IdCuentaBancariaSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SolicitudIdSolicitud" Type="int" Nullable="false" />
-          <Property Name="CuentaBancaria_numeroCuenta" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DependenciaSet">
-          <Key>
-            <PropertyRef Name="IdDependencia" />
-          </Key>
-          <Property Name="IdDependencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DevolucionesSet">
-          <Key>
-            <PropertyRef Name="IdDevolucion" />
-          </Key>
-          <Property Name="IdDevolucion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="fechaDevolucion" Type="datetime" Nullable="false" />
-          <Property Name="fechaLimite" Type="datetime" Nullable="false" />
-          <Property Name="montoDeuda" Type="int" Nullable="false" />
-          <Property Name="SolicitudIdSolicitud" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DictamenSet">
-          <Key>
-            <PropertyRef Name="IdDictamen" />
-          </Key>
-          <Property Name="IdDictamen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="comentarios" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
-          <Property Name="EmpleadoNumeroEmpleado" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="EmpleadoSet">
-          <Key>
-            <PropertyRef Name="NumeroEmpleado" />
-          </Key>
-          <Property Name="NumeroEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="apellidoPaterno" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="apellidoMaterno" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="rol" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ciudad" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="calle" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="numero" Type="int" Nullable="false" />
-          <Property Name="LocalidadIdLocalidad" Type="int" Nullable="false" />
-          <Property Name="Usuario_IdUsuario" Type="int" />
-        </EntityType>
-        <EntityType Name="empresaSet">
-          <Key>
-            <PropertyRef Name="idBeneficiario" />
-          </Key>
-          <Property Name="idBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Beneficiario_idBeneficiario" Type="int" />
-        </EntityType>
-        <EntityType Name="LocalidadDependenciaSet">
-          <Key>
-            <PropertyRef Name="IdLocalidadDependencia" />
-          </Key>
-          <Property Name="IdLocalidadDependencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LocalidadIdLocalidad" Type="int" Nullable="false" />
-          <Property Name="DependenciaIdDependencia" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LocalidadSet">
-          <Key>
-            <PropertyRef Name="IdLocalidad" />
-          </Key>
-          <Property Name="IdLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="OrdenEntregaSet">
-          <Key>
-            <PropertyRef Name="IdOrdenEntrega" />
-          </Key>
-          <Property Name="IdOrdenEntrega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fechaEntrega" Type="datetime" Nullable="false" />
-          <Property Name="lugarEntrega" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Recurso_IdRecurso" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PersonaSet">
-          <Key>
-            <PropertyRef Name="idBeneficiario" />
-          </Key>
-          <Property Name="idBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="apellidoPaterno" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="apellidoMaterno" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="curp" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Beneficiario_idBeneficiario" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PoliticaOtorgamientoSet">
-          <Key>
-            <PropertyRef Name="IdPolitica" />
-          </Key>
-          <Property Name="IdPolitica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PoliticaProyectoSet">
-          <Key>
-            <PropertyRef Name="IdPoliticaProyecto" />
-          </Key>
-          <Property Name="IdPoliticaProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProyectoFolio" Type="int" />
-          <Property Name="PoliticaOtorgamientoIdPolitica" Type="int" />
-        </EntityType>
-        <EntityType Name="ProyectoSet">
-          <Key>
-            <PropertyRef Name="Folio" />
-          </Key>
-          <Property Name="Folio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="modalidad" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="grupoAtencion" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="fechaFin" Type="datetime" Nullable="false" />
-          <Property Name="fechaLimiteEvidencia" Type="datetime" Nullable="false" />
-          <Property Name="fechaLimiteSolicitud" Type="datetime" Nullable="false" />
-          <Property Name="tipo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="numeroBeneficiarios" Type="int" Nullable="false" />
-          <Property Name="LocalidadDependenciaIdLocalidadDependencia" Type="int" Nullable="false" />
-          <Property Name="OrdenEntrega_IdOrdenEntrega" Type="int" />
-          <Property Name="nombre" Type="nvarchar(max)" />
-          <Property Name="descripcion" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="RecursoSet">
-          <Key>
-            <PropertyRef Name="IdRecurso" />
-          </Key>
-          <Property Name="IdRecurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="concepto" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="valor" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SolicitudSet">
-          <Key>
-            <PropertyRef Name="IdSolicitud" />
-          </Key>
-          <Property Name="IdSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
-          <Property Name="ProyectoFolio" Type="int" Nullable="false" />
-          <Property Name="Dictamen_IdDictamen" Type="int" />
-          <Property Name="BeneficiarioId" Type="int" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="UsuarioSet">
-          <Key>
-            <PropertyRef Name="IdUsuario" />
-          </Key>
-          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="correo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="contrasena" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Beneficiarioempresa">
-          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="0..1" />
-          <End Role="empresaSet" Type="Self.empresaSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BeneficiarioSet">
-              <PropertyRef Name="idBeneficiario" />
-            </Principal>
-            <Dependent Role="empresaSet">
-              <PropertyRef Name="Beneficiario_idBeneficiario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BeneficiarioLocalidad">
-          <End Role="LocalidadSet" Type="Self.LocalidadSet" Multiplicity="0..1" />
-          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LocalidadSet">
-              <PropertyRef Name="IdLocalidad" />
-            </Principal>
-            <Dependent Role="BeneficiarioSet">
-              <PropertyRef Name="Localidad_IdLocalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BeneficiarioPersona">
-          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="1" />
-          <End Role="PersonaSet" Type="Self.PersonaSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BeneficiarioSet">
-              <PropertyRef Name="idBeneficiario" />
-            </Principal>
-            <Dependent Role="PersonaSet">
-              <PropertyRef Name="Beneficiario_idBeneficiario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BeneficiarioSolicitud">
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="0..1" />
-          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SolicitudSet">
-              <PropertyRef Name="IdSolicitud" />
-            </Principal>
-            <Dependent Role="BeneficiarioSet">
-              <PropertyRef Name="Solicitud_IdSolicitud" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CuentaBancariaSolicitudCuentaBancaria">
-          <End Role="CuentaBancariaSet" Type="Self.CuentaBancariaSet" Multiplicity="1" />
-          <End Role="CuentaBancariaSolicitudSet" Type="Self.CuentaBancariaSolicitudSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CuentaBancariaSet">
-              <PropertyRef Name="numeroCuenta" />
-            </Principal>
-            <Dependent Role="CuentaBancariaSolicitudSet">
-              <PropertyRef Name="CuentaBancaria_numeroCuenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DependenciaLocalidadDependencia">
-          <End Role="DependenciaSet" Type="Self.DependenciaSet" Multiplicity="1" />
-          <End Role="LocalidadDependenciaSet" Type="Self.LocalidadDependenciaSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DependenciaSet">
-              <PropertyRef Name="IdDependencia" />
-            </Principal>
-            <Dependent Role="LocalidadDependenciaSet">
-              <PropertyRef Name="DependenciaIdDependencia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DictamenEmpleado">
-          <End Role="EmpleadoSet" Type="Self.EmpleadoSet" Multiplicity="1" />
-          <End Role="DictamenSet" Type="Self.DictamenSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmpleadoSet">
-              <PropertyRef Name="NumeroEmpleado" />
-            </Principal>
-            <Dependent Role="DictamenSet">
-              <PropertyRef Name="EmpleadoNumeroEmpleado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoLocalidad">
-          <End Role="LocalidadSet" Type="Self.LocalidadSet" Multiplicity="1" />
-          <End Role="EmpleadoSet" Type="Self.EmpleadoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LocalidadSet">
-              <PropertyRef Name="IdLocalidad" />
-            </Principal>
-            <Dependent Role="EmpleadoSet">
-              <PropertyRef Name="LocalidadIdLocalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EmpleadoUsuario">
-          <End Role="UsuarioSet" Type="Self.UsuarioSet" Multiplicity="0..1" />
-          <End Role="EmpleadoSet" Type="Self.EmpleadoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UsuarioSet">
-              <PropertyRef Name="IdUsuario" />
-            </Principal>
-            <Dependent Role="EmpleadoSet">
-              <PropertyRef Name="Usuario_IdUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LocalidadLocalidadDependencia">
-          <End Role="LocalidadSet" Type="Self.LocalidadSet" Multiplicity="1" />
-          <End Role="LocalidadDependenciaSet" Type="Self.LocalidadDependenciaSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LocalidadSet">
-              <PropertyRef Name="IdLocalidad" />
-            </Principal>
-            <Dependent Role="LocalidadDependenciaSet">
-              <PropertyRef Name="LocalidadIdLocalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrdenEntregaRecurso">
-          <End Role="RecursoSet" Type="Self.RecursoSet" Multiplicity="1" />
-          <End Role="OrdenEntregaSet" Type="Self.OrdenEntregaSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RecursoSet">
-              <PropertyRef Name="IdRecurso" />
-            </Principal>
-            <Dependent Role="OrdenEntregaSet">
-              <PropertyRef Name="Recurso_IdRecurso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PoliticaOtorgamientoPoliticaProyecto">
-          <End Role="PoliticaOtorgamientoSet" Type="Self.PoliticaOtorgamientoSet" Multiplicity="0..1" />
-          <End Role="PoliticaProyectoSet" Type="Self.PoliticaProyectoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PoliticaOtorgamientoSet">
-              <PropertyRef Name="IdPolitica" />
-            </Principal>
-            <Dependent Role="PoliticaProyectoSet">
-              <PropertyRef Name="PoliticaOtorgamientoIdPolitica" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PoliticaProyectoProyecto">
-          <End Role="ProyectoSet" Type="Self.ProyectoSet" Multiplicity="0..1" />
-          <End Role="PoliticaProyectoSet" Type="Self.PoliticaProyectoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProyectoSet">
-              <PropertyRef Name="Folio" />
-            </Principal>
-            <Dependent Role="PoliticaProyectoSet">
-              <PropertyRef Name="ProyectoFolio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProyectoLocalidadDependencia">
-          <End Role="LocalidadDependenciaSet" Type="Self.LocalidadDependenciaSet" Multiplicity="1" />
-          <End Role="ProyectoSet" Type="Self.ProyectoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LocalidadDependenciaSet">
-              <PropertyRef Name="IdLocalidadDependencia" />
-            </Principal>
-            <Dependent Role="ProyectoSet">
-              <PropertyRef Name="LocalidadDependenciaIdLocalidadDependencia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProyectoOrdenEntrega">
-          <End Role="OrdenEntregaSet" Type="Self.OrdenEntregaSet" Multiplicity="0..1" />
-          <End Role="ProyectoSet" Type="Self.ProyectoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrdenEntregaSet">
-              <PropertyRef Name="IdOrdenEntrega" />
-            </Principal>
-            <Dependent Role="ProyectoSet">
-              <PropertyRef Name="OrdenEntrega_IdOrdenEntrega" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Solicitud_Beneficiario">
-          <End Role="BeneficiarioSet" Type="Self.BeneficiarioSet" Multiplicity="0..1" />
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BeneficiarioSet">
-              <PropertyRef Name="idBeneficiario" />
-            </Principal>
-            <Dependent Role="SolicitudSet">
-              <PropertyRef Name="BeneficiarioId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolicitudArchivo">
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="0..1" />
-          <End Role="ArchivoSet" Type="Self.ArchivoSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SolicitudSet">
-              <PropertyRef Name="IdSolicitud" />
-            </Principal>
-            <Dependent Role="ArchivoSet">
-              <PropertyRef Name="SolicitudIdSolicitud" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolicitudCuentaBancariaSolicitud">
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="1" />
-          <End Role="CuentaBancariaSolicitudSet" Type="Self.CuentaBancariaSolicitudSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SolicitudSet">
-              <PropertyRef Name="IdSolicitud" />
-            </Principal>
-            <Dependent Role="CuentaBancariaSolicitudSet">
-              <PropertyRef Name="SolicitudIdSolicitud" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolicitudDevoluciones">
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="1" />
-          <End Role="DevolucionesSet" Type="Self.DevolucionesSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SolicitudSet">
-              <PropertyRef Name="IdSolicitud" />
-            </Principal>
-            <Dependent Role="DevolucionesSet">
-              <PropertyRef Name="SolicitudIdSolicitud" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolicitudDictamen">
-          <End Role="DictamenSet" Type="Self.DictamenSet" Multiplicity="0..1" />
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DictamenSet">
-              <PropertyRef Name="IdDictamen" />
-            </Principal>
-            <Dependent Role="SolicitudSet">
-              <PropertyRef Name="Dictamen_IdDictamen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SolicitudProyecto">
-          <End Role="ProyectoSet" Type="Self.ProyectoSet" Multiplicity="1" />
-          <End Role="SolicitudSet" Type="Self.SolicitudSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProyectoSet">
-              <PropertyRef Name="Folio" />
-            </Principal>
-            <Dependent Role="SolicitudSet">
-              <PropertyRef Name="ProyectoFolio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DataBaseModelStoreContainer">
-          <EntitySet Name="ArchivoSet" EntityType="Self.ArchivoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BeneficiarioSet" EntityType="Self.BeneficiarioSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CuentaBancariaSet" EntityType="Self.CuentaBancariaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CuentaBancariaSolicitudSet" EntityType="Self.CuentaBancariaSolicitudSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DependenciaSet" EntityType="Self.DependenciaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DevolucionesSet" EntityType="Self.DevolucionesSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DictamenSet" EntityType="Self.DictamenSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EmpleadoSet" EntityType="Self.EmpleadoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="empresaSet" EntityType="Self.empresaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LocalidadDependenciaSet" EntityType="Self.LocalidadDependenciaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LocalidadSet" EntityType="Self.LocalidadSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrdenEntregaSet" EntityType="Self.OrdenEntregaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PersonaSet" EntityType="Self.PersonaSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PoliticaOtorgamientoSet" EntityType="Self.PoliticaOtorgamientoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PoliticaProyectoSet" EntityType="Self.PoliticaProyectoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProyectoSet" EntityType="Self.ProyectoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RecursoSet" EntityType="Self.RecursoSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SolicitudSet" EntityType="Self.SolicitudSet" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UsuarioSet" EntityType="Self.UsuarioSet" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Beneficiarioempresa" Association="Self.FK_Beneficiarioempresa">
-            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
-            <End Role="empresaSet" EntitySet="empresaSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BeneficiarioLocalidad" Association="Self.FK_BeneficiarioLocalidad">
-            <End Role="LocalidadSet" EntitySet="LocalidadSet" />
-            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BeneficiarioPersona" Association="Self.FK_BeneficiarioPersona">
-            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
-            <End Role="PersonaSet" EntitySet="PersonaSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BeneficiarioSolicitud" Association="Self.FK_BeneficiarioSolicitud">
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CuentaBancariaSolicitudCuentaBancaria" Association="Self.FK_CuentaBancariaSolicitudCuentaBancaria">
-            <End Role="CuentaBancariaSet" EntitySet="CuentaBancariaSet" />
-            <End Role="CuentaBancariaSolicitudSet" EntitySet="CuentaBancariaSolicitudSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DependenciaLocalidadDependencia" Association="Self.FK_DependenciaLocalidadDependencia">
-            <End Role="DependenciaSet" EntitySet="DependenciaSet" />
-            <End Role="LocalidadDependenciaSet" EntitySet="LocalidadDependenciaSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DictamenEmpleado" Association="Self.FK_DictamenEmpleado">
-            <End Role="EmpleadoSet" EntitySet="EmpleadoSet" />
-            <End Role="DictamenSet" EntitySet="DictamenSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoLocalidad" Association="Self.FK_EmpleadoLocalidad">
-            <End Role="LocalidadSet" EntitySet="LocalidadSet" />
-            <End Role="EmpleadoSet" EntitySet="EmpleadoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmpleadoUsuario" Association="Self.FK_EmpleadoUsuario">
-            <End Role="UsuarioSet" EntitySet="UsuarioSet" />
-            <End Role="EmpleadoSet" EntitySet="EmpleadoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LocalidadLocalidadDependencia" Association="Self.FK_LocalidadLocalidadDependencia">
-            <End Role="LocalidadSet" EntitySet="LocalidadSet" />
-            <End Role="LocalidadDependenciaSet" EntitySet="LocalidadDependenciaSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrdenEntregaRecurso" Association="Self.FK_OrdenEntregaRecurso">
-            <End Role="RecursoSet" EntitySet="RecursoSet" />
-            <End Role="OrdenEntregaSet" EntitySet="OrdenEntregaSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PoliticaOtorgamientoPoliticaProyecto" Association="Self.FK_PoliticaOtorgamientoPoliticaProyecto">
-            <End Role="PoliticaOtorgamientoSet" EntitySet="PoliticaOtorgamientoSet" />
-            <End Role="PoliticaProyectoSet" EntitySet="PoliticaProyectoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PoliticaProyectoProyecto" Association="Self.FK_PoliticaProyectoProyecto">
-            <End Role="ProyectoSet" EntitySet="ProyectoSet" />
-            <End Role="PoliticaProyectoSet" EntitySet="PoliticaProyectoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectoLocalidadDependencia" Association="Self.FK_ProyectoLocalidadDependencia">
-            <End Role="LocalidadDependenciaSet" EntitySet="LocalidadDependenciaSet" />
-            <End Role="ProyectoSet" EntitySet="ProyectoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProyectoOrdenEntrega" Association="Self.FK_ProyectoOrdenEntrega">
-            <End Role="OrdenEntregaSet" EntitySet="OrdenEntregaSet" />
-            <End Role="ProyectoSet" EntitySet="ProyectoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="Self.FK_Solicitud_Beneficiario">
-            <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolicitudArchivo" Association="Self.FK_SolicitudArchivo">
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-            <End Role="ArchivoSet" EntitySet="ArchivoSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolicitudCuentaBancariaSolicitud" Association="Self.FK_SolicitudCuentaBancariaSolicitud">
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-            <End Role="CuentaBancariaSolicitudSet" EntitySet="CuentaBancariaSolicitudSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolicitudDevoluciones" Association="Self.FK_SolicitudDevoluciones">
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-            <End Role="DevolucionesSet" EntitySet="DevolucionesSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolicitudDictamen" Association="Self.FK_SolicitudDictamen">
-            <End Role="DictamenSet" EntitySet="DictamenSet" />
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SolicitudProyecto" Association="Self.FK_SolicitudProyecto">
-            <End Role="ProyectoSet" EntitySet="ProyectoSet" />
-            <End Role="SolicitudSet" EntitySet="SolicitudSet" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="DataBaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DataBaseModelStoreContainer">
+    <EntitySet Name="ArchivoSet" EntityType="DataBaseModel.Store.ArchivoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BeneficiarioSet" EntityType="DataBaseModel.Store.BeneficiarioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CuentaBancariaSet" EntityType="DataBaseModel.Store.CuentaBancariaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CuentaBancariaSolicitudSet" EntityType="DataBaseModel.Store.CuentaBancariaSolicitudSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DependenciaSet" EntityType="DataBaseModel.Store.DependenciaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DevolucionesSet" EntityType="DataBaseModel.Store.DevolucionesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DictamenSet" EntityType="DataBaseModel.Store.DictamenSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmpleadoSet" EntityType="DataBaseModel.Store.EmpleadoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="empresaSet" EntityType="DataBaseModel.Store.empresaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocalidadDependenciaSet" EntityType="DataBaseModel.Store.LocalidadDependenciaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocalidadSet" EntityType="DataBaseModel.Store.LocalidadSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrdenEntregaSet" EntityType="DataBaseModel.Store.OrdenEntregaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonaSet" EntityType="DataBaseModel.Store.PersonaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PoliticaOtorgamientoSet" EntityType="DataBaseModel.Store.PoliticaOtorgamientoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PoliticaProyectoSet" EntityType="DataBaseModel.Store.PoliticaProyectoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProyectoSet" EntityType="DataBaseModel.Store.ProyectoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RecursoSet" EntityType="DataBaseModel.Store.RecursoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SolicitudSet" EntityType="DataBaseModel.Store.SolicitudSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="DataBaseModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsuarioSet" EntityType="DataBaseModel.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_SolicitudArchivo" Association="DataBaseModel.Store.FK_SolicitudArchivo">
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+      <End Role="ArchivoSet" EntitySet="ArchivoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Beneficiarioempresa" Association="DataBaseModel.Store.FK_Beneficiarioempresa">
+      <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+      <End Role="empresaSet" EntitySet="empresaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficiarioLocalidad" Association="DataBaseModel.Store.FK_BeneficiarioLocalidad">
+      <End Role="LocalidadSet" EntitySet="LocalidadSet" />
+      <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficiarioPersona" Association="DataBaseModel.Store.FK_BeneficiarioPersona">
+      <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+      <End Role="PersonaSet" EntitySet="PersonaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BeneficiarioSolicitud" Association="DataBaseModel.Store.FK_BeneficiarioSolicitud">
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+      <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Solicitud_Beneficiario" Association="DataBaseModel.Store.FK_Solicitud_Beneficiario">
+      <End Role="BeneficiarioSet" EntitySet="BeneficiarioSet" />
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CuentaBancariaSolicitudCuentaBancaria" Association="DataBaseModel.Store.FK_CuentaBancariaSolicitudCuentaBancaria">
+      <End Role="CuentaBancariaSet" EntitySet="CuentaBancariaSet" />
+      <End Role="CuentaBancariaSolicitudSet" EntitySet="CuentaBancariaSolicitudSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudCuentaBancariaSolicitud" Association="DataBaseModel.Store.FK_SolicitudCuentaBancariaSolicitud">
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+      <End Role="CuentaBancariaSolicitudSet" EntitySet="CuentaBancariaSolicitudSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DependenciaLocalidadDependencia" Association="DataBaseModel.Store.FK_DependenciaLocalidadDependencia">
+      <End Role="DependenciaSet" EntitySet="DependenciaSet" />
+      <End Role="LocalidadDependenciaSet" EntitySet="LocalidadDependenciaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudDevoluciones" Association="DataBaseModel.Store.FK_SolicitudDevoluciones">
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+      <End Role="DevolucionesSet" EntitySet="DevolucionesSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DictamenEmpleado" Association="DataBaseModel.Store.FK_DictamenEmpleado">
+      <End Role="EmpleadoSet" EntitySet="EmpleadoSet" />
+      <End Role="DictamenSet" EntitySet="DictamenSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudDictamen" Association="DataBaseModel.Store.FK_SolicitudDictamen">
+      <End Role="DictamenSet" EntitySet="DictamenSet" />
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoLocalidad" Association="DataBaseModel.Store.FK_EmpleadoLocalidad">
+      <End Role="LocalidadSet" EntitySet="LocalidadSet" />
+      <End Role="EmpleadoSet" EntitySet="EmpleadoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoUsuario" Association="DataBaseModel.Store.FK_EmpleadoUsuario">
+      <End Role="UsuarioSet" EntitySet="UsuarioSet" />
+      <End Role="EmpleadoSet" EntitySet="EmpleadoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalidadLocalidadDependencia" Association="DataBaseModel.Store.FK_LocalidadLocalidadDependencia">
+      <End Role="LocalidadSet" EntitySet="LocalidadSet" />
+      <End Role="LocalidadDependenciaSet" EntitySet="LocalidadDependenciaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProyectoLocalidadDependencia" Association="DataBaseModel.Store.FK_ProyectoLocalidadDependencia">
+      <End Role="LocalidadDependenciaSet" EntitySet="LocalidadDependenciaSet" />
+      <End Role="ProyectoSet" EntitySet="ProyectoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdenEntregaRecurso" Association="DataBaseModel.Store.FK_OrdenEntregaRecurso">
+      <End Role="RecursoSet" EntitySet="RecursoSet" />
+      <End Role="OrdenEntregaSet" EntitySet="OrdenEntregaSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProyectoOrdenEntrega" Association="DataBaseModel.Store.FK_ProyectoOrdenEntrega">
+      <End Role="OrdenEntregaSet" EntitySet="OrdenEntregaSet" />
+      <End Role="ProyectoSet" EntitySet="ProyectoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PoliticaOtorgamientoPoliticaProyecto" Association="DataBaseModel.Store.FK_PoliticaOtorgamientoPoliticaProyecto">
+      <End Role="PoliticaOtorgamientoSet" EntitySet="PoliticaOtorgamientoSet" />
+      <End Role="PoliticaProyectoSet" EntitySet="PoliticaProyectoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PoliticaProyectoProyecto" Association="DataBaseModel.Store.FK_PoliticaProyectoProyecto">
+      <End Role="ProyectoSet" EntitySet="ProyectoSet" />
+      <End Role="PoliticaProyectoSet" EntitySet="PoliticaProyectoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SolicitudProyecto" Association="DataBaseModel.Store.FK_SolicitudProyecto">
+      <End Role="ProyectoSet" EntitySet="ProyectoSet" />
+      <End Role="SolicitudSet" EntitySet="SolicitudSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ArchivoSet">
+    <Key>
+      <PropertyRef Name="idArchivo" />
+    </Key>
+    <Property Name="idArchivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SolicitudIdSolicitud" Type="int" Nullable="true" />
+    <Property Name="extension" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contenido" Type="varbinary(max)" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeneficiarioSet">
+    <Key>
+      <PropertyRef Name="idBeneficiario" />
+    </Key>
+    <Property Name="idBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ciudad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="calle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="numero" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="rfc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Localidad_IdLocalidad" Type="int" Nullable="true" />
+    <Property Name="Solicitud_IdSolicitud" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="CuentaBancariaSet">
+    <Key>
+      <PropertyRef Name="numeroCuenta" />
+    </Key>
+    <Property Name="numeroCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreTitular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="apellidoPaternoTitular" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="apellidoMaternoTitular" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CuentaBancariaSolicitudSet">
+    <Key>
+      <PropertyRef Name="IdCuentaBancariaSolicitud" />
+    </Key>
+    <Property Name="IdCuentaBancariaSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SolicitudIdSolicitud" Type="int" Nullable="false" />
+    <Property Name="CuentaBancaria_numeroCuenta" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DependenciaSet">
+    <Key>
+      <PropertyRef Name="IdDependencia" />
+    </Key>
+    <Property Name="IdDependencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DevolucionesSet">
+    <Key>
+      <PropertyRef Name="IdDevolucion" />
+    </Key>
+    <Property Name="IdDevolucion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fechaDevolucion" Type="datetime" Nullable="false" />
+    <Property Name="fechaLimite" Type="datetime" Nullable="false" />
+    <Property Name="montoDeuda" Type="int" Nullable="false" />
+    <Property Name="SolicitudIdSolicitud" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DictamenSet">
+    <Key>
+      <PropertyRef Name="IdDictamen" />
+    </Key>
+    <Property Name="IdDictamen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="comentarios" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="EmpleadoNumeroEmpleado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmpleadoSet">
+    <Key>
+      <PropertyRef Name="NumeroEmpleado" />
+    </Key>
+    <Property Name="NumeroEmpleado" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="apellidoPaterno" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="apellidoMaterno" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="rol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ciudad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="calle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="numero" Type="int" Nullable="false" />
+    <Property Name="LocalidadIdLocalidad" Type="int" Nullable="false" />
+    <Property Name="Usuario_IdUsuario" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="empresaSet">
+    <Key>
+      <PropertyRef Name="idBeneficiario" />
+    </Key>
+    <Property Name="idBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Beneficiario_idBeneficiario" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="LocalidadDependenciaSet">
+    <Key>
+      <PropertyRef Name="IdLocalidadDependencia" />
+    </Key>
+    <Property Name="IdLocalidadDependencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocalidadIdLocalidad" Type="int" Nullable="false" />
+    <Property Name="DependenciaIdDependencia" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocalidadSet">
+    <Key>
+      <PropertyRef Name="IdLocalidad" />
+    </Key>
+    <Property Name="IdLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="municipio" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrdenEntregaSet">
+    <Key>
+      <PropertyRef Name="IdOrdenEntrega" />
+    </Key>
+    <Property Name="IdOrdenEntrega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fechaEntrega" Type="datetime" Nullable="false" />
+    <Property Name="lugarEntrega" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Recurso_IdRecurso" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonaSet">
+    <Key>
+      <PropertyRef Name="idBeneficiario" />
+    </Key>
+    <Property Name="idBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="apellidoPaterno" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="apellidoMaterno" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="curp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Beneficiario_idBeneficiario" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PoliticaOtorgamientoSet">
+    <Key>
+      <PropertyRef Name="IdPolitica" />
+    </Key>
+    <Property Name="IdPolitica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PoliticaProyectoSet">
+    <Key>
+      <PropertyRef Name="IdPoliticaProyecto" />
+    </Key>
+    <Property Name="IdPoliticaProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProyectoFolio" Type="int" Nullable="true" />
+    <Property Name="PoliticaOtorgamientoIdPolitica" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ProyectoSet">
+    <Key>
+      <PropertyRef Name="Folio" />
+    </Key>
+    <Property Name="Folio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="modalidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="grupoAtencion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fechaFin" Type="datetime" Nullable="false" />
+    <Property Name="fechaLimiteEvidencia" Type="datetime" Nullable="false" />
+    <Property Name="fechaLimiteSolicitud" Type="datetime" Nullable="false" />
+    <Property Name="tipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="numeroBeneficiarios" Type="int" Nullable="false" />
+    <Property Name="LocalidadDependenciaIdLocalidadDependencia" Type="int" Nullable="false" />
+    <Property Name="OrdenEntrega_IdOrdenEntrega" Type="int" Nullable="true" />
+    <Property Name="nombre" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RecursoSet">
+    <Key>
+      <PropertyRef Name="IdRecurso" />
+    </Key>
+    <Property Name="IdRecurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="concepto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="valor" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SolicitudSet">
+    <Key>
+      <PropertyRef Name="IdSolicitud" />
+    </Key>
+    <Property Name="IdSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="ProyectoFolio" Type="int" Nullable="false" />
+    <Property Name="Dictamen_IdDictamen" Type="int" Nullable="true" />
+    <Property Name="BeneficiarioId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UsuarioSet">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contrasena" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SolicitudArchivo">
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="0..1" />
+    <End Role="ArchivoSet" Type="DataBaseModel.Store.ArchivoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudSet">
+        <PropertyRef Name="IdSolicitud" />
+      </Principal>
+      <Dependent Role="ArchivoSet">
+        <PropertyRef Name="SolicitudIdSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Beneficiarioempresa">
+    <End Role="BeneficiarioSet" Type="DataBaseModel.Store.BeneficiarioSet" Multiplicity="0..1" />
+    <End Role="empresaSet" Type="DataBaseModel.Store.empresaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeneficiarioSet">
+        <PropertyRef Name="idBeneficiario" />
+      </Principal>
+      <Dependent Role="empresaSet">
+        <PropertyRef Name="Beneficiario_idBeneficiario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficiarioLocalidad">
+    <End Role="LocalidadSet" Type="DataBaseModel.Store.LocalidadSet" Multiplicity="0..1" />
+    <End Role="BeneficiarioSet" Type="DataBaseModel.Store.BeneficiarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalidadSet">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="BeneficiarioSet">
+        <PropertyRef Name="Localidad_IdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficiarioPersona">
+    <End Role="BeneficiarioSet" Type="DataBaseModel.Store.BeneficiarioSet" Multiplicity="1" />
+    <End Role="PersonaSet" Type="DataBaseModel.Store.PersonaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeneficiarioSet">
+        <PropertyRef Name="idBeneficiario" />
+      </Principal>
+      <Dependent Role="PersonaSet">
+        <PropertyRef Name="Beneficiario_idBeneficiario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BeneficiarioSolicitud">
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="0..1" />
+    <End Role="BeneficiarioSet" Type="DataBaseModel.Store.BeneficiarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudSet">
+        <PropertyRef Name="IdSolicitud" />
+      </Principal>
+      <Dependent Role="BeneficiarioSet">
+        <PropertyRef Name="Solicitud_IdSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Solicitud_Beneficiario">
+    <End Role="BeneficiarioSet" Type="DataBaseModel.Store.BeneficiarioSet" Multiplicity="0..1" />
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeneficiarioSet">
+        <PropertyRef Name="idBeneficiario" />
+      </Principal>
+      <Dependent Role="SolicitudSet">
+        <PropertyRef Name="BeneficiarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CuentaBancariaSolicitudCuentaBancaria">
+    <End Role="CuentaBancariaSet" Type="DataBaseModel.Store.CuentaBancariaSet" Multiplicity="1" />
+    <End Role="CuentaBancariaSolicitudSet" Type="DataBaseModel.Store.CuentaBancariaSolicitudSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentaBancariaSet">
+        <PropertyRef Name="numeroCuenta" />
+      </Principal>
+      <Dependent Role="CuentaBancariaSolicitudSet">
+        <PropertyRef Name="CuentaBancaria_numeroCuenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudCuentaBancariaSolicitud">
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="1" />
+    <End Role="CuentaBancariaSolicitudSet" Type="DataBaseModel.Store.CuentaBancariaSolicitudSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudSet">
+        <PropertyRef Name="IdSolicitud" />
+      </Principal>
+      <Dependent Role="CuentaBancariaSolicitudSet">
+        <PropertyRef Name="SolicitudIdSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DependenciaLocalidadDependencia">
+    <End Role="DependenciaSet" Type="DataBaseModel.Store.DependenciaSet" Multiplicity="1" />
+    <End Role="LocalidadDependenciaSet" Type="DataBaseModel.Store.LocalidadDependenciaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DependenciaSet">
+        <PropertyRef Name="IdDependencia" />
+      </Principal>
+      <Dependent Role="LocalidadDependenciaSet">
+        <PropertyRef Name="DependenciaIdDependencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudDevoluciones">
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="1" />
+    <End Role="DevolucionesSet" Type="DataBaseModel.Store.DevolucionesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SolicitudSet">
+        <PropertyRef Name="IdSolicitud" />
+      </Principal>
+      <Dependent Role="DevolucionesSet">
+        <PropertyRef Name="SolicitudIdSolicitud" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DictamenEmpleado">
+    <End Role="EmpleadoSet" Type="DataBaseModel.Store.EmpleadoSet" Multiplicity="1" />
+    <End Role="DictamenSet" Type="DataBaseModel.Store.DictamenSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmpleadoSet">
+        <PropertyRef Name="NumeroEmpleado" />
+      </Principal>
+      <Dependent Role="DictamenSet">
+        <PropertyRef Name="EmpleadoNumeroEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudDictamen">
+    <End Role="DictamenSet" Type="DataBaseModel.Store.DictamenSet" Multiplicity="0..1" />
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DictamenSet">
+        <PropertyRef Name="IdDictamen" />
+      </Principal>
+      <Dependent Role="SolicitudSet">
+        <PropertyRef Name="Dictamen_IdDictamen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoLocalidad">
+    <End Role="LocalidadSet" Type="DataBaseModel.Store.LocalidadSet" Multiplicity="1" />
+    <End Role="EmpleadoSet" Type="DataBaseModel.Store.EmpleadoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalidadSet">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="EmpleadoSet">
+        <PropertyRef Name="LocalidadIdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoUsuario">
+    <End Role="UsuarioSet" Type="DataBaseModel.Store.UsuarioSet" Multiplicity="0..1" />
+    <End Role="EmpleadoSet" Type="DataBaseModel.Store.EmpleadoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UsuarioSet">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="EmpleadoSet">
+        <PropertyRef Name="Usuario_IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalidadLocalidadDependencia">
+    <End Role="LocalidadSet" Type="DataBaseModel.Store.LocalidadSet" Multiplicity="1" />
+    <End Role="LocalidadDependenciaSet" Type="DataBaseModel.Store.LocalidadDependenciaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalidadSet">
+        <PropertyRef Name="IdLocalidad" />
+      </Principal>
+      <Dependent Role="LocalidadDependenciaSet">
+        <PropertyRef Name="LocalidadIdLocalidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProyectoLocalidadDependencia">
+    <End Role="LocalidadDependenciaSet" Type="DataBaseModel.Store.LocalidadDependenciaSet" Multiplicity="1" />
+    <End Role="ProyectoSet" Type="DataBaseModel.Store.ProyectoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalidadDependenciaSet">
+        <PropertyRef Name="IdLocalidadDependencia" />
+      </Principal>
+      <Dependent Role="ProyectoSet">
+        <PropertyRef Name="LocalidadDependenciaIdLocalidadDependencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdenEntregaRecurso">
+    <End Role="RecursoSet" Type="DataBaseModel.Store.RecursoSet" Multiplicity="1" />
+    <End Role="OrdenEntregaSet" Type="DataBaseModel.Store.OrdenEntregaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecursoSet">
+        <PropertyRef Name="IdRecurso" />
+      </Principal>
+      <Dependent Role="OrdenEntregaSet">
+        <PropertyRef Name="Recurso_IdRecurso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProyectoOrdenEntrega">
+    <End Role="OrdenEntregaSet" Type="DataBaseModel.Store.OrdenEntregaSet" Multiplicity="0..1" />
+    <End Role="ProyectoSet" Type="DataBaseModel.Store.ProyectoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdenEntregaSet">
+        <PropertyRef Name="IdOrdenEntrega" />
+      </Principal>
+      <Dependent Role="ProyectoSet">
+        <PropertyRef Name="OrdenEntrega_IdOrdenEntrega" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PoliticaOtorgamientoPoliticaProyecto">
+    <End Role="PoliticaOtorgamientoSet" Type="DataBaseModel.Store.PoliticaOtorgamientoSet" Multiplicity="0..1" />
+    <End Role="PoliticaProyectoSet" Type="DataBaseModel.Store.PoliticaProyectoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PoliticaOtorgamientoSet">
+        <PropertyRef Name="IdPolitica" />
+      </Principal>
+      <Dependent Role="PoliticaProyectoSet">
+        <PropertyRef Name="PoliticaOtorgamientoIdPolitica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PoliticaProyectoProyecto">
+    <End Role="ProyectoSet" Type="DataBaseModel.Store.ProyectoSet" Multiplicity="0..1" />
+    <End Role="PoliticaProyectoSet" Type="DataBaseModel.Store.PoliticaProyectoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProyectoSet">
+        <PropertyRef Name="Folio" />
+      </Principal>
+      <Dependent Role="PoliticaProyectoSet">
+        <PropertyRef Name="ProyectoFolio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SolicitudProyecto">
+    <End Role="ProyectoSet" Type="DataBaseModel.Store.ProyectoSet" Multiplicity="1" />
+    <End Role="SolicitudSet" Type="DataBaseModel.Store.SolicitudSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProyectoSet">
+        <PropertyRef Name="Folio" />
+      </Principal>
+      <Dependent Role="SolicitudSet">
+        <PropertyRef Name="ProyectoFolio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataBaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -758,7 +759,7 @@
           <Key>
             <PropertyRef Name="NumeroEmpleado" />
           </Key>
-          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="apellidoPaterno" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="apellidoMaterno" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -802,6 +803,7 @@
           <NavigationProperty Name="BeneficiarioSet" Relationship="DataBaseModel.FK_BeneficiarioLocalidad" FromRole="LocalidadSet" ToRole="BeneficiarioSet" />
           <NavigationProperty Name="EmpleadoSet" Relationship="DataBaseModel.FK_EmpleadoLocalidad" FromRole="LocalidadSet" ToRole="EmpleadoSet" />
           <NavigationProperty Name="LocalidadDependenciaSet" Relationship="DataBaseModel.FK_LocalidadLocalidadDependencia" FromRole="LocalidadSet" ToRole="LocalidadDependenciaSet" />
+          <Property Name="municipio" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="OrdenEntregaSet">
           <Key>
@@ -1171,226 +1173,227 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DataBaseModelStoreContainer" CdmEntityContainer="DataBaseModelContainer">
-          <EntitySetMapping Name="ArchivoSet">
-            <EntityTypeMapping TypeName="DataBaseModel.ArchivoSet">
-              <MappingFragment StoreEntitySet="ArchivoSet">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="contenido" ColumnName="contenido" />
-                <ScalarProperty Name="extension" ColumnName="extension" />
-                <ScalarProperty Name="SolicitudIdSolicitud" ColumnName="SolicitudIdSolicitud" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idArchivo" ColumnName="idArchivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BeneficiarioSet">
-            <EntityTypeMapping TypeName="DataBaseModel.BeneficiarioSet">
-              <MappingFragment StoreEntitySet="BeneficiarioSet">
-                <ScalarProperty Name="Solicitud_IdSolicitud" ColumnName="Solicitud_IdSolicitud" />
-                <ScalarProperty Name="Localidad_IdLocalidad" ColumnName="Localidad_IdLocalidad" />
-                <ScalarProperty Name="rfc" ColumnName="rfc" />
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="calle" ColumnName="calle" />
-                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="idBeneficiario" ColumnName="idBeneficiario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CuentaBancariaSet">
-            <EntityTypeMapping TypeName="DataBaseModel.CuentaBancariaSet">
-              <MappingFragment StoreEntitySet="CuentaBancariaSet">
-                <ScalarProperty Name="apellidoMaternoTitular" ColumnName="apellidoMaternoTitular" />
-                <ScalarProperty Name="apellidoPaternoTitular" ColumnName="apellidoPaternoTitular" />
-                <ScalarProperty Name="nombreTitular" ColumnName="nombreTitular" />
-                <ScalarProperty Name="numeroCuenta" ColumnName="numeroCuenta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CuentaBancariaSolicitudSet">
-            <EntityTypeMapping TypeName="DataBaseModel.CuentaBancariaSolicitudSet">
-              <MappingFragment StoreEntitySet="CuentaBancariaSolicitudSet">
-                <ScalarProperty Name="CuentaBancaria_numeroCuenta" ColumnName="CuentaBancaria_numeroCuenta" />
-                <ScalarProperty Name="SolicitudIdSolicitud" ColumnName="SolicitudIdSolicitud" />
-                <ScalarProperty Name="IdCuentaBancariaSolicitud" ColumnName="IdCuentaBancariaSolicitud" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DependenciaSet">
-            <EntityTypeMapping TypeName="DataBaseModel.DependenciaSet">
-              <MappingFragment StoreEntitySet="DependenciaSet">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DevolucionesSet">
-            <EntityTypeMapping TypeName="DataBaseModel.DevolucionesSet">
-              <MappingFragment StoreEntitySet="DevolucionesSet">
-                <ScalarProperty Name="SolicitudIdSolicitud" ColumnName="SolicitudIdSolicitud" />
-                <ScalarProperty Name="montoDeuda" ColumnName="montoDeuda" />
-                <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
-                <ScalarProperty Name="fechaDevolucion" ColumnName="fechaDevolucion" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="IdDevolucion" ColumnName="IdDevolucion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DictamenSet">
-            <EntityTypeMapping TypeName="DataBaseModel.DictamenSet">
-              <MappingFragment StoreEntitySet="DictamenSet">
-                <ScalarProperty Name="EmpleadoNumeroEmpleado" ColumnName="EmpleadoNumeroEmpleado" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="IdDictamen" ColumnName="IdDictamen" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmpleadoSet">
-            <EntityTypeMapping TypeName="DataBaseModel.EmpleadoSet">
-              <MappingFragment StoreEntitySet="EmpleadoSet">
-                <ScalarProperty Name="Usuario_IdUsuario" ColumnName="Usuario_IdUsuario" />
-                <ScalarProperty Name="LocalidadIdLocalidad" ColumnName="LocalidadIdLocalidad" />
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="calle" ColumnName="calle" />
-                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="rol" ColumnName="rol" />
-                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
-                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="empresaSet">
-            <EntityTypeMapping TypeName="DataBaseModel.empresaSet">
-              <MappingFragment StoreEntitySet="empresaSet">
-                <ScalarProperty Name="Beneficiario_idBeneficiario" ColumnName="Beneficiario_idBeneficiario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idBeneficiario" ColumnName="idBeneficiario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LocalidadDependenciaSet">
-            <EntityTypeMapping TypeName="DataBaseModel.LocalidadDependenciaSet">
-              <MappingFragment StoreEntitySet="LocalidadDependenciaSet">
-                <ScalarProperty Name="DependenciaIdDependencia" ColumnName="DependenciaIdDependencia" />
-                <ScalarProperty Name="LocalidadIdLocalidad" ColumnName="LocalidadIdLocalidad" />
-                <ScalarProperty Name="IdLocalidadDependencia" ColumnName="IdLocalidadDependencia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LocalidadSet">
-            <EntityTypeMapping TypeName="DataBaseModel.LocalidadSet">
-              <MappingFragment StoreEntitySet="LocalidadSet">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrdenEntregaSet">
-            <EntityTypeMapping TypeName="DataBaseModel.OrdenEntregaSet">
-              <MappingFragment StoreEntitySet="OrdenEntregaSet">
-                <ScalarProperty Name="Recurso_IdRecurso" ColumnName="Recurso_IdRecurso" />
-                <ScalarProperty Name="lugarEntrega" ColumnName="lugarEntrega" />
-                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
-                <ScalarProperty Name="IdOrdenEntrega" ColumnName="IdOrdenEntrega" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PersonaSet">
-            <EntityTypeMapping TypeName="DataBaseModel.PersonaSet">
-              <MappingFragment StoreEntitySet="PersonaSet">
-                <ScalarProperty Name="Beneficiario_idBeneficiario" ColumnName="Beneficiario_idBeneficiario" />
-                <ScalarProperty Name="curp" ColumnName="curp" />
-                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
-                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idBeneficiario" ColumnName="idBeneficiario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PoliticaOtorgamientoSet">
-            <EntityTypeMapping TypeName="DataBaseModel.PoliticaOtorgamientoSet">
-              <MappingFragment StoreEntitySet="PoliticaOtorgamientoSet">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="IdPolitica" ColumnName="IdPolitica" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PoliticaProyectoSet">
-            <EntityTypeMapping TypeName="DataBaseModel.PoliticaProyectoSet">
-              <MappingFragment StoreEntitySet="PoliticaProyectoSet">
-                <ScalarProperty Name="PoliticaOtorgamientoIdPolitica" ColumnName="PoliticaOtorgamientoIdPolitica" />
-                <ScalarProperty Name="ProyectoFolio" ColumnName="ProyectoFolio" />
-                <ScalarProperty Name="IdPoliticaProyecto" ColumnName="IdPoliticaProyecto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProyectoSet">
-            <EntityTypeMapping TypeName="DataBaseModel.ProyectoSet">
-              <MappingFragment StoreEntitySet="ProyectoSet">
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="OrdenEntrega_IdOrdenEntrega" ColumnName="OrdenEntrega_IdOrdenEntrega" />
-                <ScalarProperty Name="LocalidadDependenciaIdLocalidadDependencia" ColumnName="LocalidadDependenciaIdLocalidadDependencia" />
-                <ScalarProperty Name="numeroBeneficiarios" ColumnName="numeroBeneficiarios" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="fechaLimiteSolicitud" ColumnName="fechaLimiteSolicitud" />
-                <ScalarProperty Name="fechaLimiteEvidencia" ColumnName="fechaLimiteEvidencia" />
-                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
-                <ScalarProperty Name="grupoAtencion" ColumnName="grupoAtencion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
-                <ScalarProperty Name="Folio" ColumnName="Folio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RecursoSet">
-            <EntityTypeMapping TypeName="DataBaseModel.RecursoSet">
-              <MappingFragment StoreEntitySet="RecursoSet">
-                <ScalarProperty Name="valor" ColumnName="valor" />
-                <ScalarProperty Name="concepto" ColumnName="concepto" />
-                <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SolicitudSet">
-            <EntityTypeMapping TypeName="DataBaseModel.SolicitudSet">
-              <MappingFragment StoreEntitySet="SolicitudSet">
-                <ScalarProperty Name="BeneficiarioId" ColumnName="BeneficiarioId" />
-                <ScalarProperty Name="Dictamen_IdDictamen" ColumnName="Dictamen_IdDictamen" />
-                <ScalarProperty Name="ProyectoFolio" ColumnName="ProyectoFolio" />
-                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DataBaseModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UsuarioSet">
-            <EntityTypeMapping TypeName="DataBaseModel.UsuarioSet">
-              <MappingFragment StoreEntitySet="UsuarioSet">
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+    <EntitySetMapping Name="ArchivoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.ArchivoSet)">
+        <MappingFragment StoreEntitySet="ArchivoSet">
+          <ScalarProperty Name="idArchivo" ColumnName="idArchivo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="SolicitudIdSolicitud" ColumnName="SolicitudIdSolicitud" />
+          <ScalarProperty Name="extension" ColumnName="extension" />
+          <ScalarProperty Name="contenido" ColumnName="contenido" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BeneficiarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.BeneficiarioSet)">
+        <MappingFragment StoreEntitySet="BeneficiarioSet">
+          <ScalarProperty Name="idBeneficiario" ColumnName="idBeneficiario" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="Localidad_IdLocalidad" ColumnName="Localidad_IdLocalidad" />
+          <ScalarProperty Name="Solicitud_IdSolicitud" ColumnName="Solicitud_IdSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CuentaBancariaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.CuentaBancariaSet)">
+        <MappingFragment StoreEntitySet="CuentaBancariaSet">
+          <ScalarProperty Name="numeroCuenta" ColumnName="numeroCuenta" />
+          <ScalarProperty Name="nombreTitular" ColumnName="nombreTitular" />
+          <ScalarProperty Name="apellidoPaternoTitular" ColumnName="apellidoPaternoTitular" />
+          <ScalarProperty Name="apellidoMaternoTitular" ColumnName="apellidoMaternoTitular" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CuentaBancariaSolicitudSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.CuentaBancariaSolicitudSet)">
+        <MappingFragment StoreEntitySet="CuentaBancariaSolicitudSet">
+          <ScalarProperty Name="IdCuentaBancariaSolicitud" ColumnName="IdCuentaBancariaSolicitud" />
+          <ScalarProperty Name="SolicitudIdSolicitud" ColumnName="SolicitudIdSolicitud" />
+          <ScalarProperty Name="CuentaBancaria_numeroCuenta" ColumnName="CuentaBancaria_numeroCuenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DependenciaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.DependenciaSet)">
+        <MappingFragment StoreEntitySet="DependenciaSet">
+          <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DevolucionesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.DevolucionesSet)">
+        <MappingFragment StoreEntitySet="DevolucionesSet">
+          <ScalarProperty Name="IdDevolucion" ColumnName="IdDevolucion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fechaDevolucion" ColumnName="fechaDevolucion" />
+          <ScalarProperty Name="fechaLimite" ColumnName="fechaLimite" />
+          <ScalarProperty Name="montoDeuda" ColumnName="montoDeuda" />
+          <ScalarProperty Name="SolicitudIdSolicitud" ColumnName="SolicitudIdSolicitud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DictamenSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.DictamenSet)">
+        <MappingFragment StoreEntitySet="DictamenSet">
+          <ScalarProperty Name="IdDictamen" ColumnName="IdDictamen" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="EmpleadoNumeroEmpleado" ColumnName="EmpleadoNumeroEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmpleadoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.EmpleadoSet)">
+        <MappingFragment StoreEntitySet="EmpleadoSet">
+          <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+          <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+          <ScalarProperty Name="rol" ColumnName="rol" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="LocalidadIdLocalidad" ColumnName="LocalidadIdLocalidad" />
+          <ScalarProperty Name="Usuario_IdUsuario" ColumnName="Usuario_IdUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.empresaSet)">
+        <MappingFragment StoreEntitySet="empresaSet">
+          <ScalarProperty Name="idBeneficiario" ColumnName="idBeneficiario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="Beneficiario_idBeneficiario" ColumnName="Beneficiario_idBeneficiario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalidadDependenciaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.LocalidadDependenciaSet)">
+        <MappingFragment StoreEntitySet="LocalidadDependenciaSet">
+          <ScalarProperty Name="IdLocalidadDependencia" ColumnName="IdLocalidadDependencia" />
+          <ScalarProperty Name="LocalidadIdLocalidad" ColumnName="LocalidadIdLocalidad" />
+          <ScalarProperty Name="DependenciaIdDependencia" ColumnName="DependenciaIdDependencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocalidadSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.LocalidadSet)">
+        <MappingFragment StoreEntitySet="LocalidadSet">
+          <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="municipio" ColumnName="municipio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrdenEntregaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.OrdenEntregaSet)">
+        <MappingFragment StoreEntitySet="OrdenEntregaSet">
+          <ScalarProperty Name="IdOrdenEntrega" ColumnName="IdOrdenEntrega" />
+          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+          <ScalarProperty Name="lugarEntrega" ColumnName="lugarEntrega" />
+          <ScalarProperty Name="Recurso_IdRecurso" ColumnName="Recurso_IdRecurso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.PersonaSet)">
+        <MappingFragment StoreEntitySet="PersonaSet">
+          <ScalarProperty Name="idBeneficiario" ColumnName="idBeneficiario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+          <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+          <ScalarProperty Name="curp" ColumnName="curp" />
+          <ScalarProperty Name="Beneficiario_idBeneficiario" ColumnName="Beneficiario_idBeneficiario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PoliticaOtorgamientoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.PoliticaOtorgamientoSet)">
+        <MappingFragment StoreEntitySet="PoliticaOtorgamientoSet">
+          <ScalarProperty Name="IdPolitica" ColumnName="IdPolitica" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PoliticaProyectoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.PoliticaProyectoSet)">
+        <MappingFragment StoreEntitySet="PoliticaProyectoSet">
+          <ScalarProperty Name="IdPoliticaProyecto" ColumnName="IdPoliticaProyecto" />
+          <ScalarProperty Name="ProyectoFolio" ColumnName="ProyectoFolio" />
+          <ScalarProperty Name="PoliticaOtorgamientoIdPolitica" ColumnName="PoliticaOtorgamientoIdPolitica" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProyectoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.ProyectoSet)">
+        <MappingFragment StoreEntitySet="ProyectoSet">
+          <ScalarProperty Name="Folio" ColumnName="Folio" />
+          <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="grupoAtencion" ColumnName="grupoAtencion" />
+          <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+          <ScalarProperty Name="fechaLimiteEvidencia" ColumnName="fechaLimiteEvidencia" />
+          <ScalarProperty Name="fechaLimiteSolicitud" ColumnName="fechaLimiteSolicitud" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="numeroBeneficiarios" ColumnName="numeroBeneficiarios" />
+          <ScalarProperty Name="LocalidadDependenciaIdLocalidadDependencia" ColumnName="LocalidadDependenciaIdLocalidadDependencia" />
+          <ScalarProperty Name="OrdenEntrega_IdOrdenEntrega" ColumnName="OrdenEntrega_IdOrdenEntrega" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecursoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.RecursoSet)">
+        <MappingFragment StoreEntitySet="RecursoSet">
+          <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
+          <ScalarProperty Name="concepto" ColumnName="concepto" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SolicitudSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.SolicitudSet)">
+        <MappingFragment StoreEntitySet="SolicitudSet">
+          <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="ProyectoFolio" ColumnName="ProyectoFolio" />
+          <ScalarProperty Name="Dictamen_IdDictamen" ColumnName="Dictamen_IdDictamen" />
+          <ScalarProperty Name="BeneficiarioId" ColumnName="BeneficiarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DataBaseModel.UsuarioSet)">
+        <MappingFragment StoreEntitySet="UsuarioSet">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

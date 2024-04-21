@@ -21,13 +21,37 @@ namespace SGPM_Contracts.IUserManagement
         bool ValidateEmailDoesNotExist(string email);
 
         [OperationContract]
-        bool ValidateStaffNumberDoesNotExist(string staffNumber);
+        bool ValidateEmployeeNumberDoesNotExist(string employeeNumber);
     }
 
     [DataContract]
 
     public class User
     {
+        [DataMember]
+        public string Name { get; set; }
+
+        [DataMember]
+        public string MiddleName { get; set; }
+
+        [DataMember]
+        public string LastName { get; set; }
+
+        [DataMember]
+        public string Role {  get; set; }
+
+        [DataMember]
+        public string PhoneNumber { get; set; }
+
+        [DataMember]
+        public string City{ get; set; }
+
+        [DataMember]
+        public string Street {  get; set; }
+
+        [DataMember]
+        public int Number { get; set; }
+
         [DataMember]
         public int UserId { get; set; }
 
@@ -38,6 +62,7 @@ namespace SGPM_Contracts.IUserManagement
         public string Username { get; set; }
         [DataMember]
         public string Password { get; set; }
+
         [DataMember]
         public int EmployeeNumber  { get; set; }
 

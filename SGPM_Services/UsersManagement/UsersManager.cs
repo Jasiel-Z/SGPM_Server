@@ -42,11 +42,24 @@ namespace SGPM_Services.ProjectsManagement
                 {
                     var userSet = context.UsuarioSet.Where(usuario => usuario.contrasena == password
                                                             && usuario.correo == email).FirstOrDefault();
-                    if (userSet != null)
+                    var employeeSet = context.EmpleadoSet.Where(empleado => empleado.Usuario_IdUsuario == userSet.IdUsuario).FirstOrDefault();
+
+                    if (userSet != null && employeeSet != null)
                     {
+                        user.UserId = userSet.IdUsuario;
                         user.Email = userSet.correo;
                         user.Password = userSet.contrasena;
-                        user.UserId = userSet.IdUsuario;
+                        
+                        user.EmployeeNumber = employeeSet.NumeroEmpleado;
+                        user.Name = employeeSet.nombre;
+                        user.MiddleName = employeeSet.apellidoPaterno;
+                        user.LastName = employeeSet.apellidoMaterno;
+                        user.Role = employeeSet.rol;
+                        user.PhoneNumber = employeeSet.telefono;
+                        user.City = employeeSet.ciudad;
+                        user.Street = employeeSet.calle;
+                        user.Number = employeeSet.numero;
+                        user.LocationId = employeeSet.LocalidadIdLocalidad;
                     }
                 }
             }
@@ -66,41 +79,69 @@ namespace SGPM_Services.ProjectsManagement
                 user = null;
             }
 
-
             return user;
         }
 
         public int SaveUser(User user)
         {
-            int result;
-            try
+            int result = 0;
+            
+            using (var context = new DataBaseModelContainer())
             {
-                using (var context = new DataBaseModelContainer())
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    UsuarioSet userToBeSaved = new UsuarioSet();
-                    userToBeSaved.correo = user.Email;
-                    userToBeSaved.contrasena = user.Password;
-                    //userToBeSaved.EmpleadoSet = user.StaffNumber;
+                    try
+                    {
+                        UsuarioSet userToBeSaved = new UsuarioSet
+                        {
+                            correo = user.Email,
+                            contrasena = user.Password
+                        };
 
-                    context.UsuarioSet.Add(userToBeSaved);
-                    result = context.SaveChanges();
+                        context.UsuarioSet.Add(userToBeSaved);
+                        result = context.SaveChanges();
+
+                        EmpleadoSet employeeToBeSaved = new EmpleadoSet
+                        {
+                            NumeroEmpleado = user.EmployeeNumber,
+                            nombre = user.Name,
+                            apellidoPaterno = user.MiddleName,
+                            apellidoMaterno = user.LastName,
+                            rol = user.Role,
+                            ciudad = user.City,
+                            calle = user.Street,
+                            numero = user.Number,
+                            telefono = user.PhoneNumber,
+                            LocalidadIdLocalidad = user.LocationId,
+                            Usuario_IdUsuario = userToBeSaved.IdUsuario,
+                        };
+
+                        context.EmpleadoSet.Add(employeeToBeSaved);
+                        result += context.SaveChanges();
+
+                        transaction.Commit();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                        transaction.Rollback();
+                        result = -1;
+                    }
+                    catch (DbEntityValidationException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                        transaction.Rollback();
+                        result = -1;
+                    }
+                    catch (EntityException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                        transaction.Rollback();
+                        result = -1;
+                    }
                 }
             }
-            catch (SqlException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-            catch (DbEntityValidationException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-            catch (EntityException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
+            
 
             return result;
         }
@@ -122,21 +163,22 @@ namespace SGPM_Services.ProjectsManagement
             return isEmailUnique;
         }
 
-        public bool ValidateStaffNumberDoesNotExist(string staffNumber)
+        public bool ValidateEmployeeNumberDoesNotExist(string employeeNumber)
         {
-            bool isStaffNumberUnique = false;
+            bool isEmployeeNumberUnique = false;
+            int employeeNumberInt = int.Parse(employeeNumber);
 
-            /*using (var context = new DataBaseModelContainer())
+            using (var context = new DataBaseModelContainer())
             {
-                var User = context.UsuarioSet.Where(usuario => usuario.NumeroEmpleado == staffNumber).FirstOrDefault();
+                var employee = context.EmpleadoSet.Where(empleado => empleado.NumeroEmpleado == employeeNumberInt).FirstOrDefault();
 
-                if (User == null)
+                if (employee == null)
                 {
-                    isStaffNumberUnique = true;
+                    isEmployeeNumberUnique = true;
                 }
-            }*/
+            }
 
-            return isStaffNumberUnique;
+            return isEmployeeNumberUnique;
         }
     }
 }

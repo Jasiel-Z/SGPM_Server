@@ -22,6 +22,7 @@ namespace SGPM_Services.ProjectsManagement
                 {
                     LocalidadSet localityToBeSaved = new LocalidadSet();
                     localityToBeSaved.nombre = locality.Name;
+                    localityToBeSaved.municipio = locality.Township;
 
                     context.LocalidadSet.Add(localityToBeSaved);
                     result = context.SaveChanges();
@@ -52,15 +53,37 @@ namespace SGPM_Services.ProjectsManagement
 
             using (var context = new DataBaseModelContainer())
             {
-                var Locality = context.LocalidadSet.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
+                var locality = context.LocalidadSet.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
 
-                if (Locality == null)
+                if (locality == null)
                 {
                     isLocalityUnique = true;
                 }
             }
 
             return isLocalityUnique;
+        }
+
+        public List<Locality> GetLocalities() 
+        {         
+            List<Locality> localityList = new List<Locality>();
+
+            using (var context = new DataBaseModelContainer())
+            {
+                var localitiesFromDatabase = context.LocalidadSet.ToList();
+
+                foreach (var locality in localitiesFromDatabase)
+                {
+                    localityList.Add(new Locality
+                    {
+                        LocalityID = locality.IdLocalidad,
+                        Name = locality.nombre,
+                        Township = locality.municipio
+                    });
+                }
+            }
+
+            return localityList;
         }
     }
 }
