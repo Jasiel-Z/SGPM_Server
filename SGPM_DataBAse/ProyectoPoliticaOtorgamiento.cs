@@ -12,13 +12,13 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class PoliticaProyectoSet
+    public partial class ProyectoPoliticaOtorgamiento
     {
-        public int IdPoliticaProyecto { get; set; }
-        public Nullable<int> ProyectoFolio { get; set; }
-        public Nullable<int> PoliticaOtorgamientoIdPolitica { get; set; }
+        public int IdProyectoPoliticaOtorgamiento { get; set; }
+        public string Folio { get; set; }
+        public Nullable<int> IdPoliticaOtorgamiento { get; set; }
     
-        public virtual PoliticaOtorgamientoSet PoliticaOtorgamientoSet { get; set; }
-        public virtual ProyectoSet ProyectoSet { get; set; }
+        public virtual PoliticasOtorgamiento PoliticasOtorgamiento { get; set; }
+        public virtual Proyectos Proyectos { get; set; }
     }
 }

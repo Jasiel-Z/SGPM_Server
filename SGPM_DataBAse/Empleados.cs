@@ -12,12 +12,13 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class EmpleadoSet
+    public partial class Empleados
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EmpleadoSet()
+        public Empleados()
         {
-            this.DictamenSet = new HashSet<DictamenSet>();
+            this.Dictamenes = new HashSet<Dictamenes>();
+            this.Usuarios1 = new HashSet<Usuarios>();
         }
     
         public int NumeroEmpleado { get; set; }
@@ -28,13 +29,15 @@ namespace SGPM_DataBAse
         public string telefono { get; set; }
         public string ciudad { get; set; }
         public string calle { get; set; }
-        public int numero { get; set; }
-        public int LocalidadIdLocalidad { get; set; }
-        public Nullable<int> Usuario_IdUsuario { get; set; }
+        public Nullable<int> numeroCasa { get; set; }
+        public Nullable<int> IdLocalidad { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DictamenSet> DictamenSet { get; set; }
-        public virtual LocalidadSet LocalidadSet { get; set; }
-        public virtual UsuarioSet UsuarioSet { get; set; }
+        public virtual ICollection<Dictamenes> Dictamenes { get; set; }
+        public virtual Localidades Localidades { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
     }
 }

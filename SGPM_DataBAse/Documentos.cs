@@ -12,13 +12,13 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class CuentaBancariaSolicitudSet
+    public partial class Documentos
     {
-        public int IdCuentaBancariaSolicitud { get; set; }
-        public int SolicitudIdSolicitud { get; set; }
-        public int CuentaBancaria_numeroCuenta { get; set; }
+        public int IdDocumento { get; set; }
+        public string nombre { get; set; }
+        public string direccion { get; set; }
+        public Nullable<int> IdSolicitud { get; set; }
     
-        public virtual CuentaBancariaSet CuentaBancariaSet { get; set; }
-        public virtual SolicitudSet SolicitudSet { get; set; }
+        public virtual Solicitudes Solicitudes { get; set; }
     }
 }

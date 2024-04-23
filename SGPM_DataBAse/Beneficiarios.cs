@@ -12,34 +12,36 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class SolicitudSet
+    public partial class Beneficiarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SolicitudSet()
+        public Beneficiarios()
         {
-            this.ArchivoSet = new HashSet<ArchivoSet>();
-            this.BeneficiarioSet = new HashSet<BeneficiarioSet>();
-            this.CuentaBancariaSolicitudSet = new HashSet<CuentaBancariaSolicitudSet>();
-            this.DevolucionesSet = new HashSet<DevolucionesSet>();
+            this.CuentasBancarias1 = new HashSet<CuentasBancarias>();
+            this.Empresas = new HashSet<Empresas>();
+            this.Personas = new HashSet<Personas>();
+            this.Solicitudes = new HashSet<Solicitudes>();
         }
     
-        public int IdSolicitud { get; set; }
-        public string estado { get; set; }
-        public System.DateTime fechaCreacion { get; set; }
-        public int ProyectoFolio { get; set; }
-        public Nullable<int> Dictamen_IdDictamen { get; set; }
-        public Nullable<int> BeneficiarioId { get; set; }
+        public int IdBeneficiario { get; set; }
+        public string telefono { get; set; }
+        public string tiudad { get; set; }
+        public string direccion { get; set; }
+        public string rfc { get; set; }
+        public Nullable<int> IdPersona { get; set; }
+        public Nullable<int> IdEmpresa { get; set; }
+        public string CuentaBancaria { get; set; }
+        public Nullable<int> IdLocalidad { get; set; }
     
+        public virtual CuentasBancarias CuentasBancarias { get; set; }
+        public virtual Localidades Localidades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ArchivoSet> ArchivoSet { get; set; }
+        public virtual ICollection<CuentasBancarias> CuentasBancarias1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BeneficiarioSet> BeneficiarioSet { get; set; }
-        public virtual BeneficiarioSet BeneficiarioSet1 { get; set; }
+        public virtual ICollection<Empresas> Empresas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CuentaBancariaSolicitudSet> CuentaBancariaSolicitudSet { get; set; }
+        public virtual ICollection<Personas> Personas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DevolucionesSet> DevolucionesSet { get; set; }
-        public virtual DictamenSet DictamenSet { get; set; }
-        public virtual ProyectoSet ProyectoSet { get; set; }
+        public virtual ICollection<Solicitudes> Solicitudes { get; set; }
     }
 }

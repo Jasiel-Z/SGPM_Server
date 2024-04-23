@@ -16,17 +16,17 @@ namespace SGPM_Contracts.IRequestManagement
         // methods needed for the use case no.11
 
         [OperationContract]
-        int RegisterRequest(SolicitudSet request);
+        int RegisterRequest(Solicitudes request);
 
         [OperationContract]
         int RegisterRequestDocumentation(List<File> files);
         [OperationContract]
          Request RecoverRequestDetails(int requestId);
         [OperationContract]
-        int RegisterRequestWithDocuments(SolicitudSet request, List<SGPM_Contracts.IRequestManagement.File> files);
+        int RegisterRequestWithDocuments(Solicitudes request, List<SGPM_Contracts.IRequestManagement.File> files);
 
         [OperationContract]
-        bool BeneficiaryHasRequest(int beneficiaryId, int projectFolio);
+        bool BeneficiaryHasRequest(int beneficiaryId, string projectFolio);
 
         [OperationContract]
         List<File> GetRequestFiles(int requestId);
@@ -34,7 +34,7 @@ namespace SGPM_Contracts.IRequestManagement
         int RegisterOpinion(Opinion opinion, int requestId);
 
         [OperationContract]
-        List<Request> GetRequestsOfProject(int projectId);
+        List<Request> GetRequestsOfProject(string projectId);
 
 
     }
@@ -66,7 +66,7 @@ namespace SGPM_Contracts.IRequestManagement
         [DataMember]
         public System.DateTime CreationTime { get; set; }
         [DataMember]
-        public int ProyectFolio { get; set; }
+        public string ProyectFolio { get; set; }
 
         [DataMember]
         public int BeneficiaryId { get; set;}

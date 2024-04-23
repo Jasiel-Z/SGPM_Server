@@ -12,24 +12,24 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class LocalidadSet
+    public partial class OrdenesEntrega
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LocalidadSet()
+        public OrdenesEntrega()
         {
-            this.BeneficiarioSet = new HashSet<BeneficiarioSet>();
-            this.EmpleadoSet = new HashSet<EmpleadoSet>();
-            this.LocalidadDependenciaSet = new HashSet<LocalidadDependenciaSet>();
+            this.Proyectos = new HashSet<Proyectos>();
+            this.Recursos1 = new HashSet<Recursos>();
         }
     
-        public int IdLocalidad { get; set; }
-        public string nombre { get; set; }
+        public int IdOrdenEntrega { get; set; }
+        public Nullable<System.DateTime> fechaEntrega { get; set; }
+        public string lugarEntrega { get; set; }
+        public Nullable<int> IdRecurso { get; set; }
     
+        public virtual Recursos Recursos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BeneficiarioSet> BeneficiarioSet { get; set; }
+        public virtual ICollection<Proyectos> Proyectos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmpleadoSet> EmpleadoSet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LocalidadDependenciaSet> LocalidadDependenciaSet { get; set; }
+        public virtual ICollection<Recursos> Recursos1 { get; set; }
     }
 }

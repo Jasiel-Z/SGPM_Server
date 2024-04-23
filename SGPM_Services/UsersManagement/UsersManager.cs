@@ -21,10 +21,10 @@ namespace SGPM_Services.ProjectsManagement
 
             try{
 
-                using(var context = new DataBaseModelContainer())
+                using(var context = new SGPMEntities())
                 {
-                    user = (from userS in context.UsuarioSet
-                            join empleado in context.EmpleadoSet on userS.IdUsuario equals empleado.Usuario_IdUsuario
+                    user = (from userS in context.Usuarios
+                            join empleado in context.Empleados on userS.IdUsuario equals empleado.IdUsuario
                             where userS.correo == username && userS.contrasena == password
                             select new User
                         
@@ -32,7 +32,7 @@ namespace SGPM_Services.ProjectsManagement
                                 UserId = userS.IdUsuario,
                                 Password = userS.contrasena,
                                 EmployeeNumber = empleado.NumeroEmpleado,
-                                LocationId = empleado.LocalidadIdLocalidad,
+                                LocationId = (int)empleado.IdLocalidad,
 
 
                             }).FirstOrDefault();

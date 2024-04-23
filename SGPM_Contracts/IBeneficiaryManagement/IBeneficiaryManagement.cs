@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SGPM_Contracts.IBeneficiaryManagement
@@ -20,6 +21,22 @@ namespace SGPM_Contracts.IBeneficiaryManagement
 
         [OperationContract]
         List<Company> GetCompanies(string name);
+
+        [OperationContract]
+        int RegisterPerson(Beneficiary beneficiary, Person person);
+
+        [OperationContract]
+        int RegisterCompany(Beneficiary beneficiary, Company company);
+
+        [OperationContract]
+        int setBeneficiaryDetails(Beneficiary beneficiary);
+
+        [OperationContract]
+        bool RfcInUse(string rfc);
+
+        [OperationContract]
+        bool CurpInUse(string curp);
+
 
     }
 
