@@ -37,7 +37,11 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         [OperationContract]
         bool CurpInUse(string curp);
 
+        [OperationContract]
+        Person getPerson(int beneficiaryId);
 
+        [OperationContract]
+        Company getCompany(int beneficiaryId);
     }
 
 
@@ -61,6 +65,12 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         [DataMember]
         public int LocalityId { get; set; }
 
+        [DataMember]
+        public int PersonId { get; set; }
+        [DataMember]
+        public int CompanyId { get; set; }
+        [DataMember]
+        public string AccountId { get; set; }
 
     }
 
@@ -86,6 +96,8 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         public string Street { get; set; }
         [DataMember]
         public int BeneficiaryId { get; set; }
+
+
     }
 
 

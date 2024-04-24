@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SGPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SGPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beneficiarios">
           <Key>
             <PropertyRef Name="IdBeneficiario" />
@@ -582,7 +582,8 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SGPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -727,9 +728,9 @@
           <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
           <Property Name="lugarEntrega" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdRecurso" Type="Int32" />
+          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Recursos" Relationship="Self.FK_OrdenEntrega_Recurso" FromRole="OrdenesEntrega" ToRole="Recursos" />
           <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyecto_OrdenEntrega" FromRole="OrdenesEntrega" ToRole="Proyectos" />
-          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Personas">
           <Key>
@@ -792,6 +793,7 @@
           </Key>
           <Property Name="IdRecurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrdenesEntrega" Relationship="Self.FK_OrdenEntrega_Recurso" FromRole="Recursos" ToRole="OrdenesEntrega" />
         </EntityType>
         <EntityType Name="Solicitudes">
           <Key>
@@ -1334,11 +1336,11 @@
           <EntitySetMapping Name="OrdenesEntrega">
             <EntityTypeMapping TypeName="SGPMModel.OrdenesEntrega">
               <MappingFragment StoreEntitySet="OrdenesEntrega">
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="IdOrdenEntrega" ColumnName="IdOrdenEntrega" />
                 <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
                 <ScalarProperty Name="lugarEntrega" ColumnName="lugarEntrega" />
                 <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1398,7 +1400,7 @@
               <MappingFragment StoreEntitySet="Recursos">
                 <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                </MappingFragment>
+              </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Solicitudes">

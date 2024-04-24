@@ -18,7 +18,48 @@ namespace SGPM_Services.ProjectsManagement
     {
         public List<Beneficiary> GetBeneficiaries()
         {
-            throw new NotImplementedException();
+            List<Beneficiary> beneficiaries = new List<Beneficiary>();
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var query = from benef in context.Beneficiarios
+                                select
+                                benef;
+                    foreach (var benefDb in query)
+                    {
+                        Beneficiary beneficiary = new Beneficiary
+                        {
+                            Id = benefDb.IdBeneficiario,
+                            City = benefDb.tiudad,
+                            RFC = benefDb.rfc,
+                            Street = benefDb.direccion,
+                            PhoneNumber = benefDb.telefono,
+                            CompanyId = benefDb.IdEmpresa != null ? (int)benefDb.IdEmpresa.GetValueOrDefault() : 0,
+                            PersonId = benefDb.IdPersona != null ? (int)benefDb.IdPersona.GetValueOrDefault() : 0,
+                            AccountId = !string.IsNullOrEmpty(benefDb.CuentaBancaria) ? benefDb.CuentaBancaria : "N/A"
+
+                        };
+                        beneficiaries.Add(beneficiary);
+                    }
+                    return beneficiaries;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
         }
 
         public List<Company> GetCompanies(string name)
@@ -125,29 +166,32 @@ namespace SGPM_Services.ProjectsManagement
             {
                 using (var context = new SGPMEntities())
                 {
-                    Beneficiarios newBeneficiario = new Beneficiarios
+                    Beneficiarios newBeneficiary = new Beneficiarios
                     {
                         telefono = beneficiary.PhoneNumber,
                         tiudad = beneficiary.City,
                         direccion = beneficiary.Street,
                         rfc = beneficiary.RFC
                     };
-                    context.Beneficiarios.Add(newBeneficiario);
+                    context.Beneficiarios.Add(newBeneficiary);
                     result = context.SaveChanges();
 
-                    if(result > 0)
+                    if (result > 0)
                     {
-                        int beneficiarioId = newBeneficiario.IdBeneficiario;
+                        int beneficiarioId = newBeneficiary.IdBeneficiario;
 
                         Empresas newEmpresa = new Empresas
                         {
                             nombre = company.Name,
-                            IdBeneficiario = beneficiarioId 
+                            IdBeneficiario = beneficiarioId
                         };
 
                         context.Empresas.Add(newEmpresa);
                         result = context.SaveChanges();
-                    } 
+
+                        newBeneficiary.IdEmpresa = newEmpresa.IdEmpresa;
+                        context.SaveChanges();
+                    }
                 }
             }
             catch (SqlException exception)
@@ -248,7 +292,7 @@ namespace SGPM_Services.ProjectsManagement
 
                     if (result > 0)
                     {
-                        int beneficiarioId = newBeneficiary.IdBeneficiario;
+                        int beneficiaryId = newBeneficiary.IdBeneficiario;
 
                         Personas newPersona = new Personas
                         {
@@ -256,11 +300,14 @@ namespace SGPM_Services.ProjectsManagement
                             curp = person.CURP,
                             apellidoPaterno = person.LastName,
                             apellidoMaterno = person.SurName,
-                            IdBeneficiario = beneficiarioId
+                            IdBeneficiario = beneficiaryId
                         };
 
                         context.Personas.Add(newPersona);
                         result = context.SaveChanges();
+
+                        newBeneficiary.IdPersona = newPersona.IdPersona;
+                        context.SaveChanges();
                     }
                 }
             }
@@ -281,6 +328,91 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return result;
+        }
+
+        Person IBeneficiaryManagement.getPerson(int beneficiaryId)
+        {
+            SGPMEntities context = null;
+            try
+            {
+                context = new SGPMEntities();
+                Personas personDb = context.Personas.FirstOrDefault(p => p.IdBeneficiario == beneficiaryId);
+
+                if (personDb != null)
+                {
+                    Person person = new Person
+                    {
+                        Name = personDb.nombre,
+                        LastName = personDb.apellidoPaterno,
+                        SurName = personDb.apellidoMaterno,
+                        CURP = personDb.curp,
+                        BeneficiaryId = beneficiaryId
+
+                    };
+
+                    return person;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+        }
+
+        Company IBeneficiaryManagement.getCompany(int beneficiaryId)
+        {
+            SGPMEntities context = null;
+            try
+            {
+                context = new SGPMEntities();
+                Empresas companyDb = context.Empresas.FirstOrDefault(p => p.IdBeneficiario == beneficiaryId);
+
+                if (companyDb != null)
+                {
+                    Company company = new Company
+                    {
+                        Name = companyDb.nombre,
+                        BeneficiaryId = beneficiaryId
+
+                    };
+
+                    return company;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
         }
     }
 }

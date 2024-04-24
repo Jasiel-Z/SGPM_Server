@@ -28,6 +28,9 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [OperationContract]
         List<Dependency> GetDependencies();
+
+        [OperationContract]
+        List<Project> GetProjectsFromLocality(int locationId);
     }
 
     [DataContract]

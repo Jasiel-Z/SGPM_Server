@@ -73,15 +73,19 @@ namespace SGPM_Services.ProjectsManagement
             {
                 var localitiesFromDatabase = context.Localidades.ToList();
 
-                foreach (var locality in localitiesFromDatabase)
+                if (localitiesFromDatabase != null)
                 {
-                    localityList.Add(new Locality
+                    foreach (var locality in localitiesFromDatabase)
                     {
-                        LocalityID = locality.IdLocalidad,
-                        Name = locality.nombre,
-                        Township = locality.municipio
-                    });
+                        localityList.Add(new Locality
+                        {
+                            LocalityID = locality.IdLocalidad,
+                            Name = locality.nombre,
+                            Township = locality.municipio
+                        });
+                    }
                 }
+                
             }
 
             return localityList;

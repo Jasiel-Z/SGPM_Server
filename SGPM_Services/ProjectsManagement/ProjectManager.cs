@@ -162,7 +162,7 @@ namespace SGPM_Services.ProjectsManagement
                                         Name = p.nombre,
                                         Description = p.descripcion,
                                    }).ToList();
-                    }
+                }
 
                 return projects;
 
