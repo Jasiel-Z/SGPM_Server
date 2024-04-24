@@ -69,7 +69,6 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         public string Street { get; set; }
         [DataMember]
         public int BeneficiaryId { get; set; }
- 
     }
 
 

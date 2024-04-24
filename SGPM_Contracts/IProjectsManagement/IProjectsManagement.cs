@@ -14,11 +14,11 @@ namespace SGPM_Contracts.IProjectsManagement
     public interface IProjectsManagement
     {
         [OperationContract]
-        Project GetProjectDetails(int idProject);
+        Project GetProjectDetails(string idProject);
 
 
         [OperationContract]
-        List<ProjectPolicy> GetProjectPolicies(int idProject);
+        List<ProjectPolicy> GetProjectPolicies(string idProject);
 
 
         [OperationContract]
@@ -31,7 +31,7 @@ namespace SGPM_Contracts.IProjectsManagement
     public class Project
     {
         [DataMember]
-        public int Folio {  get; set; }
+        public string Folio {  get; set; }
 
         [DataMember]
         public string  Modality { get; set; }
@@ -56,7 +56,9 @@ namespace SGPM_Contracts.IProjectsManagement
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public int  ProyectFolio { get; set; }
+        public string  ProyectFolio { get; set; }
+        [DataMember]
+        public int PolicyID { get; set; }
         [DataMember]
         public int GrantingPolicy { get; set; }
 

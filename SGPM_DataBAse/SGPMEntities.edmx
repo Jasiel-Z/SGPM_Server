@@ -1,0 +1,1449 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SGPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Beneficiarios">
+          <Key>
+            <PropertyRef Name="IdBeneficiario" />
+          </Key>
+          <Property Name="IdBeneficiario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="10" />
+          <Property Name="tiudad" Type="nvarchar" MaxLength="25" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="75" />
+          <Property Name="rfc" Type="nvarchar" MaxLength="13" />
+          <Property Name="IdPersona" Type="int" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="CuentaBancaria" Type="nvarchar" MaxLength="18" />
+          <Property Name="IdLocalidad" Type="int" />
+        </EntityType>
+        <EntityType Name="CuentasBancarias">
+          <Key>
+            <PropertyRef Name="CuentaBancaria" />
+          </Key>
+          <Property Name="CuentaBancaria" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="titular" Type="nvarchar" MaxLength="75" />
+          <Property Name="IdBeneficiario" Type="int" />
+        </EntityType>
+        <EntityType Name="DependenciaLocalidad">
+          <Key>
+            <PropertyRef Name="IdDependenciaLocalidad" />
+          </Key>
+          <Property Name="IdDependenciaLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDependencia" Type="int" />
+          <Property Name="IdLocalidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Dependencias">
+          <Key>
+            <PropertyRef Name="IdDependencia" />
+          </Key>
+          <Property Name="IdDependencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="Devoluciones">
+          <Key>
+            <PropertyRef Name="IdDevolucion" />
+          </Key>
+          <Property Name="IdDevolucion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="fechaCreacion" Type="date" />
+          <Property Name="monto" Type="float" />
+          <Property Name="IdSolicitud" Type="int" />
+        </EntityType>
+        <EntityType Name="Dictamenes">
+          <Key>
+            <PropertyRef Name="IdDictamen" />
+          </Key>
+          <Property Name="IdDictamen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comentario" Type="nvarchar" MaxLength="500" />
+          <Property Name="estado" Type="nvarchar" MaxLength="25" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="NumeroEmpleado" Type="int" />
+        </EntityType>
+        <EntityType Name="Documentos">
+          <Key>
+            <PropertyRef Name="IdDocumento" />
+          </Key>
+          <Property Name="IdDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="200" />
+          <Property Name="IdSolicitud" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellidoPaterno" Type="nvarchar" MaxLength="35" />
+          <Property Name="apellidoMaterno" Type="nvarchar" MaxLength="35" />
+          <Property Name="rol" Type="nvarchar" MaxLength="30" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="10" />
+          <Property Name="ciudad" Type="nvarchar" MaxLength="20" />
+          <Property Name="calle" Type="nvarchar" MaxLength="50" />
+          <Property Name="numeroCasa" Type="int" />
+          <Property Name="IdLocalidad" Type="int" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdBeneficiario" Type="int" />
+        </EntityType>
+        <EntityType Name="Evidencias">
+          <Key>
+            <PropertyRef Name="IdEvidencia" />
+          </Key>
+          <Property Name="IdEvidencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="fechaEntrega" Type="date" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdSolicitud" Type="int" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="IdLocalidad" />
+          </Key>
+          <Property Name="IdLocalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="30" />
+          <Property Name="municipio" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="OrdenesEntrega">
+          <Key>
+            <PropertyRef Name="IdOrdenEntrega" />
+          </Key>
+          <Property Name="IdOrdenEntrega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaEntrega" Type="date" />
+          <Property Name="lugarEntrega" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdRecurso" Type="int" />
+          <Property Name="cantidad" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellidoPaterno" Type="nvarchar" MaxLength="35" />
+          <Property Name="apellidoMaterno" Type="nvarchar" MaxLength="35" />
+          <Property Name="curp" Type="nvarchar" MaxLength="18" />
+          <Property Name="IdBeneficiario" Type="int" />
+        </EntityType>
+        <EntityType Name="PoliticasOtorgamiento">
+          <Key>
+            <PropertyRef Name="IdPoliticaOtorgamiento" />
+          </Key>
+          <Property Name="IdPoliticaOtorgamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="35" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProyectoPoliticaOtorgamiento">
+          <Key>
+            <PropertyRef Name="IdProyectoPoliticaOtorgamiento" />
+          </Key>
+          <Property Name="IdProyectoPoliticaOtorgamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Folio" Type="nvarchar" MaxLength="25" />
+          <Property Name="IdPoliticaOtorgamiento" Type="int" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="Folio" />
+          </Key>
+          <Property Name="Folio" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="150" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="estado" Type="nvarchar" MaxLength="30" />
+          <Property Name="grupoAtencion" Type="nvarchar" MaxLength="35" />
+          <Property Name="modalidad" Type="nvarchar" MaxLength="20" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="30" />
+          <Property Name="montoApoyo" Type="float" />
+          <Property Name="numeroBeneficiarios" Type="int" />
+          <Property Name="fechaInicio" Type="date" />
+          <Property Name="fechaLimiteSolicitudes" Type="date" />
+          <Property Name="fechaFin" Type="date" />
+          <Property Name="fechaLimiteEvidencias" Type="date" />
+          <Property Name="IdDependencia" Type="int" />
+          <Property Name="IdOrdenEntrega" Type="int" />
+        </EntityType>
+        <EntityType Name="Recursos">
+          <Key>
+            <PropertyRef Name="IdRecurso" />
+          </Key>
+          <Property Name="IdRecurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="Solicitudes">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="16" />
+          <Property Name="fechaCreacion" Type="date" />
+          <Property Name="IdDictamen" Type="int" />
+          <Property Name="IdBeneficiario" Type="int" />
+          <Property Name="Folio" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="40" />
+          <Property Name="contrasena" Type="nvarchar" MaxLength="64" />
+          <Property Name="NumeroEmpleado" Type="int" />
+        </EntityType>
+        <Association Name="FK_Beneficiario_CuentaBancaria">
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentasBancarias">
+              <PropertyRef Name="CuentaBancaria" />
+            </Principal>
+            <Dependent Role="Beneficiarios">
+              <PropertyRef Name="CuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beneficiario_Localidad">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="Beneficiarios">
+              <PropertyRef Name="IdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentaBancaria_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1" />
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="CuentasBancarias">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dependencia_Localidad">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+          <End Role="DependenciaLocalidad" Type="Self.DependenciaLocalidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="DependenciaLocalidad">
+              <PropertyRef Name="IdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devolucion_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="0..1" />
+          <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Devoluciones">
+              <PropertyRef Name="IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dictamen_Empleado">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Dictamenes" Type="Self.Dictamenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Dictamenes">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documento_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="0..1" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Localidad">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="IdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evidencia_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="0..1" />
+          <End Role="Evidencias" Type="Self.Evidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Evidencias">
+              <PropertyRef Name="IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localidad_Dependencia">
+          <End Role="Dependencias" Type="Self.Dependencias" Multiplicity="0..1" />
+          <End Role="DependenciaLocalidad" Type="Self.DependenciaLocalidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dependencias">
+              <PropertyRef Name="IdDependencia" />
+            </Principal>
+            <Dependent Role="DependenciaLocalidad">
+              <PropertyRef Name="IdDependencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenEntrega_Recurso">
+          <End Role="Recursos" Type="Self.Recursos" Multiplicity="0..1" />
+          <End Role="OrdenesEntrega" Type="Self.OrdenesEntrega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recursos">
+              <PropertyRef Name="IdRecurso" />
+            </Principal>
+            <Dependent Role="OrdenesEntrega">
+              <PropertyRef Name="IdRecurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Dependencia">
+          <End Role="Dependencias" Type="Self.Dependencias" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dependencias">
+              <PropertyRef Name="IdDependencia" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="IdDependencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_OrdenEntrega">
+          <End Role="OrdenesEntrega" Type="Self.OrdenesEntrega" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenesEntrega">
+              <PropertyRef Name="IdOrdenEntrega" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="IdOrdenEntrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento">
+          <End Role="PoliticasOtorgamiento" Type="Self.PoliticasOtorgamiento" Multiplicity="0..1" />
+          <End Role="ProyectoPoliticaOtorgamiento" Type="Self.ProyectoPoliticaOtorgamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliticasOtorgamiento">
+              <PropertyRef Name="IdPoliticaOtorgamiento" />
+            </Principal>
+            <Dependent Role="ProyectoPoliticaOtorgamiento">
+              <PropertyRef Name="IdPoliticaOtorgamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProyectoPoliticaOtorgamiento_Proyecto">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+          <End Role="ProyectoPoliticaOtorgamiento" Type="Self.ProyectoPoliticaOtorgamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="Folio" />
+            </Principal>
+            <Dependent Role="ProyectoPoliticaOtorgamiento">
+              <PropertyRef Name="Folio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Dictamen">
+          <End Role="Dictamenes" Type="Self.Dictamenes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dictamenes">
+              <PropertyRef Name="IdDictamen" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="IdDictamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Proyecto">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="Folio" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="Folio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Empleado">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SGPMModelStoreContainer">
+          <EntitySet Name="Beneficiarios" EntityType="Self.Beneficiarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasBancarias" EntityType="Self.CuentasBancarias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DependenciaLocalidad" EntityType="Self.DependenciaLocalidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dependencias" EntityType="Self.Dependencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Devoluciones" EntityType="Self.Devoluciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dictamenes" EntityType="Self.Dictamenes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documentos" EntityType="Self.Documentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evidencias" EntityType="Self.Evidencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenesEntrega" EntityType="Self.OrdenesEntrega" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PoliticasOtorgamiento" EntityType="Self.PoliticasOtorgamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProyectoPoliticaOtorgamiento" EntityType="Self.ProyectoPoliticaOtorgamiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recursos" EntityType="Self.Recursos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Solicitudes" EntityType="Self.Solicitudes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Beneficiario_CuentaBancaria" Association="Self.FK_Beneficiario_CuentaBancaria">
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beneficiario_Localidad" Association="Self.FK_Beneficiario_Localidad">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentaBancaria_Beneficiario" Association="Self.FK_CuentaBancaria_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dependencia_Localidad" Association="Self.FK_Dependencia_Localidad">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="DependenciaLocalidad" EntitySet="DependenciaLocalidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Devolucion_Solicitud" Association="Self.FK_Devolucion_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Devoluciones" EntitySet="Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dictamen_Empleado" Association="Self.FK_Dictamen_Empleado">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Dictamenes" EntitySet="Dictamenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documento_Solicitud" Association="Self.FK_Documento_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Documentos" EntitySet="Documentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Localidad" Association="Self.FK_Empleado_Localidad">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Usuario" Association="Self.FK_Empleado_Usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Beneficiario" Association="Self.FK_Empresa_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evidencia_Solicitud" Association="Self.FK_Evidencia_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Evidencias" EntitySet="Evidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localidad_Dependencia" Association="Self.FK_Localidad_Dependencia">
+            <End Role="Dependencias" EntitySet="Dependencias" />
+            <End Role="DependenciaLocalidad" EntitySet="DependenciaLocalidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenEntrega_Recurso" Association="Self.FK_OrdenEntrega_Recurso">
+            <End Role="Recursos" EntitySet="Recursos" />
+            <End Role="OrdenesEntrega" EntitySet="OrdenesEntrega" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Beneficiario" Association="Self.FK_Persona_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Dependencia" Association="Self.FK_Proyecto_Dependencia">
+            <End Role="Dependencias" EntitySet="Dependencias" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_OrdenEntrega" Association="Self.FK_Proyecto_OrdenEntrega">
+            <End Role="OrdenesEntrega" EntitySet="OrdenesEntrega" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento" Association="Self.FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento">
+            <End Role="PoliticasOtorgamiento" EntitySet="PoliticasOtorgamiento" />
+            <End Role="ProyectoPoliticaOtorgamiento" EntitySet="ProyectoPoliticaOtorgamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectoPoliticaOtorgamiento_Proyecto" Association="Self.FK_ProyectoPoliticaOtorgamiento_Proyecto">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ProyectoPoliticaOtorgamiento" EntitySet="ProyectoPoliticaOtorgamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="Self.FK_Solicitud_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Dictamen" Association="Self.FK_Solicitud_Dictamen">
+            <End Role="Dictamenes" EntitySet="Dictamenes" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Proyecto" Association="Self.FK_Solicitud_Proyecto">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Empleado" Association="Self.FK_Usuario_Empleado">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SGPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Beneficiarios">
+          <Key>
+            <PropertyRef Name="IdBeneficiario" />
+          </Key>
+          <Property Name="IdBeneficiario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="tiudad" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="IdPersona" Type="Int32" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="CuentaBancaria" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdLocalidad" Type="Int32" />
+          <NavigationProperty Name="CuentasBancarias" Relationship="Self.FK_Beneficiario_CuentaBancaria" FromRole="Beneficiarios" ToRole="CuentasBancarias" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK_Beneficiario_Localidad" FromRole="Beneficiarios" ToRole="Localidades" />
+          <NavigationProperty Name="CuentasBancarias1" Relationship="Self.FK_CuentaBancaria_Beneficiario" FromRole="Beneficiarios" ToRole="CuentasBancarias" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresa_Beneficiario" FromRole="Beneficiarios" ToRole="Empresas" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Persona_Beneficiario" FromRole="Beneficiarios" ToRole="Personas" />
+          <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Solicitud_Beneficiario" FromRole="Beneficiarios" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="CuentasBancarias">
+          <Key>
+            <PropertyRef Name="CuentaBancaria" />
+          </Key>
+          <Property Name="CuentaBancaria" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="titular" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="IdBeneficiario" Type="Int32" />
+          <NavigationProperty Name="Beneficiarios" Relationship="Self.FK_Beneficiario_CuentaBancaria" FromRole="CuentasBancarias" ToRole="Beneficiarios" />
+          <NavigationProperty Name="Beneficiarios1" Relationship="Self.FK_CuentaBancaria_Beneficiario" FromRole="CuentasBancarias" ToRole="Beneficiarios" />
+        </EntityType>
+        <EntityType Name="DependenciaLocalidad">
+          <Key>
+            <PropertyRef Name="IdDependenciaLocalidad" />
+          </Key>
+          <Property Name="IdDependenciaLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDependencia" Type="Int32" />
+          <Property Name="IdLocalidad" Type="Int32" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK_Dependencia_Localidad" FromRole="DependenciaLocalidad" ToRole="Localidades" />
+          <NavigationProperty Name="Dependencias" Relationship="Self.FK_Localidad_Dependencia" FromRole="DependenciaLocalidad" ToRole="Dependencias" />
+        </EntityType>
+        <EntityType Name="Dependencias">
+          <Key>
+            <PropertyRef Name="IdDependencia" />
+          </Key>
+          <Property Name="IdDependencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DependenciaLocalidad" Relationship="Self.FK_Localidad_Dependencia" FromRole="Dependencias" ToRole="DependenciaLocalidad" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyecto_Dependencia" FromRole="Dependencias" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Devoluciones">
+          <Key>
+            <PropertyRef Name="IdDevolucion" />
+          </Key>
+          <Property Name="IdDevolucion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="monto" Type="Double" />
+          <Property Name="IdSolicitud" Type="Int32" />
+          <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Devolucion_Solicitud" FromRole="Devoluciones" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="Dictamenes">
+          <Key>
+            <PropertyRef Name="IdDictamen" />
+          </Key>
+          <Property Name="IdDictamen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comentario" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="NumeroEmpleado" Type="Int32" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_Dictamen_Empleado" FromRole="Dictamenes" ToRole="Empleados" />
+          <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Solicitud_Dictamen" FromRole="Dictamenes" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="Documentos">
+          <Key>
+            <PropertyRef Name="IdDocumento" />
+          </Key>
+          <Property Name="IdDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdSolicitud" Type="Int32" />
+          <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Documento_Solicitud" FromRole="Documentos" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="NumeroEmpleado" />
+          </Key>
+          <Property Name="NumeroEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ciudad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="numeroCasa" Type="Int32" />
+          <Property Name="IdLocalidad" Type="Int32" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <NavigationProperty Name="Dictamenes" Relationship="Self.FK_Dictamen_Empleado" FromRole="Empleados" ToRole="Dictamenes" />
+          <NavigationProperty Name="Localidades" Relationship="Self.FK_Empleado_Localidad" FromRole="Empleados" ToRole="Localidades" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Empleado_Usuario" FromRole="Empleados" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios1" Relationship="Self.FK_Usuario_Empleado" FromRole="Empleados" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdBeneficiario" Type="Int32" />
+          <NavigationProperty Name="Beneficiarios" Relationship="Self.FK_Empresa_Beneficiario" FromRole="Empresas" ToRole="Beneficiarios" />
+        </EntityType>
+        <EntityType Name="Evidencias">
+          <Key>
+            <PropertyRef Name="IdEvidencia" />
+          </Key>
+          <Property Name="IdEvidencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdSolicitud" Type="Int32" />
+          <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Evidencia_Solicitud" FromRole="Evidencias" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="IdLocalidad" />
+          </Key>
+          <Property Name="IdLocalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="municipio" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Beneficiarios" Relationship="Self.FK_Beneficiario_Localidad" FromRole="Localidades" ToRole="Beneficiarios" />
+          <NavigationProperty Name="DependenciaLocalidad" Relationship="Self.FK_Dependencia_Localidad" FromRole="Localidades" ToRole="DependenciaLocalidad" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_Empleado_Localidad" FromRole="Localidades" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="OrdenesEntrega">
+          <Key>
+            <PropertyRef Name="IdOrdenEntrega" />
+          </Key>
+          <Property Name="IdOrdenEntrega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="lugarEntrega" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdRecurso" Type="Int32" />
+          <NavigationProperty Name="Recursos" Relationship="Self.FK_OrdenEntrega_Recurso" FromRole="OrdenesEntrega" ToRole="Recursos" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Proyecto_OrdenEntrega" FromRole="OrdenesEntrega" ToRole="Proyectos" />
+          <Property Name="cantidad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoPaterno" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="apellidoMaterno" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="curp" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="IdBeneficiario" Type="Int32" />
+          <NavigationProperty Name="Beneficiarios" Relationship="Self.FK_Persona_Beneficiario" FromRole="Personas" ToRole="Beneficiarios" />
+        </EntityType>
+        <EntityType Name="PoliticasOtorgamiento">
+          <Key>
+            <PropertyRef Name="IdPoliticaOtorgamiento" />
+          </Key>
+          <Property Name="IdPoliticaOtorgamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProyectoPoliticaOtorgamiento" Relationship="Self.FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento" FromRole="PoliticasOtorgamiento" ToRole="ProyectoPoliticaOtorgamiento" />
+        </EntityType>
+        <EntityType Name="ProyectoPoliticaOtorgamiento">
+          <Key>
+            <PropertyRef Name="IdProyectoPoliticaOtorgamiento" />
+          </Key>
+          <Property Name="IdProyectoPoliticaOtorgamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Folio" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="IdPoliticaOtorgamiento" Type="Int32" />
+          <NavigationProperty Name="PoliticasOtorgamiento" Relationship="Self.FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento" FromRole="ProyectoPoliticaOtorgamiento" ToRole="PoliticasOtorgamiento" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_ProyectoPoliticaOtorgamiento_Proyecto" FromRole="ProyectoPoliticaOtorgamiento" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="Folio" />
+          </Key>
+          <Property Name="Folio" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="grupoAtencion" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="modalidad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="montoApoyo" Type="Double" />
+          <Property Name="numeroBeneficiarios" Type="Int32" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="fechaLimiteSolicitudes" Type="DateTime" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Precision="0" />
+          <Property Name="fechaLimiteEvidencias" Type="DateTime" Precision="0" />
+          <Property Name="IdDependencia" Type="Int32" />
+          <Property Name="IdOrdenEntrega" Type="Int32" />
+          <NavigationProperty Name="Dependencias" Relationship="Self.FK_Proyecto_Dependencia" FromRole="Proyectos" ToRole="Dependencias" />
+          <NavigationProperty Name="OrdenesEntrega" Relationship="Self.FK_Proyecto_OrdenEntrega" FromRole="Proyectos" ToRole="OrdenesEntrega" />
+          <NavigationProperty Name="ProyectoPoliticaOtorgamiento" Relationship="Self.FK_ProyectoPoliticaOtorgamiento_Proyecto" FromRole="Proyectos" ToRole="ProyectoPoliticaOtorgamiento" />
+          <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Solicitud_Proyecto" FromRole="Proyectos" ToRole="Solicitudes" />
+        </EntityType>
+        <EntityType Name="Recursos">
+          <Key>
+            <PropertyRef Name="IdRecurso" />
+          </Key>
+          <Property Name="IdRecurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Solicitudes">
+          <Key>
+            <PropertyRef Name="IdSolicitud" />
+          </Key>
+          <Property Name="IdSolicitud" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="0" />
+          <Property Name="IdDictamen" Type="Int32" />
+          <Property Name="IdBeneficiario" Type="Int32" />
+          <Property Name="Folio" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Beneficiarios" Relationship="Self.FK_Solicitud_Beneficiario" FromRole="Solicitudes" ToRole="Beneficiarios" />
+          <NavigationProperty Name="Devoluciones" Relationship="Self.FK_Devolucion_Solicitud" FromRole="Solicitudes" ToRole="Devoluciones" />
+          <NavigationProperty Name="Dictamenes" Relationship="Self.FK_Solicitud_Dictamen" FromRole="Solicitudes" ToRole="Dictamenes" />
+          <NavigationProperty Name="Documentos" Relationship="Self.FK_Documento_Solicitud" FromRole="Solicitudes" ToRole="Documentos" />
+          <NavigationProperty Name="Evidencias" Relationship="Self.FK_Evidencia_Solicitud" FromRole="Solicitudes" ToRole="Evidencias" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_Solicitud_Proyecto" FromRole="Solicitudes" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="contrasena" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroEmpleado" Type="Int32" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_Empleado_Usuario" FromRole="Usuarios" ToRole="Empleados" />
+          <NavigationProperty Name="Empleados1" Relationship="Self.FK_Usuario_Empleado" FromRole="Usuarios" ToRole="Empleados" />
+        </EntityType>
+        <Association Name="FK_Beneficiario_CuentaBancaria">
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentasBancarias">
+              <PropertyRef Name="CuentaBancaria" />
+            </Principal>
+            <Dependent Role="Beneficiarios">
+              <PropertyRef Name="CuentaBancaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Beneficiario_Localidad">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="Beneficiarios">
+              <PropertyRef Name="IdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentaBancaria_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1" />
+          <End Role="CuentasBancarias" Type="Self.CuentasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="CuentasBancarias">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresa_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Beneficiario">
+          <End Role="Beneficiarios" Type="Self.Beneficiarios" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Beneficiarios">
+              <PropertyRef Name="IdBeneficiario" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="IdBeneficiario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dependencia_Localidad">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+          <End Role="DependenciaLocalidad" Type="Self.DependenciaLocalidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="DependenciaLocalidad">
+              <PropertyRef Name="IdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localidad_Dependencia">
+          <End Role="Dependencias" Type="Self.Dependencias" Multiplicity="0..1" />
+          <End Role="DependenciaLocalidad" Type="Self.DependenciaLocalidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dependencias">
+              <PropertyRef Name="IdDependencia" />
+            </Principal>
+            <Dependent Role="DependenciaLocalidad">
+              <PropertyRef Name="IdDependencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Dependencia">
+          <End Role="Dependencias" Type="Self.Dependencias" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dependencias">
+              <PropertyRef Name="IdDependencia" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="IdDependencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Devolucion_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="0..1" />
+          <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Devoluciones">
+              <PropertyRef Name="IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dictamen_Empleado">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Dictamenes" Type="Self.Dictamenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Dictamenes">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Dictamen">
+          <End Role="Dictamenes" Type="Self.Dictamenes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dictamenes">
+              <PropertyRef Name="IdDictamen" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="IdDictamen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Documento_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="0..1" />
+          <End Role="Documentos" Type="Self.Documentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Documentos">
+              <PropertyRef Name="IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Localidad">
+          <End Role="Localidades" Type="Self.Localidades" Multiplicity="0..1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="IdLocalidad" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="IdLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Usuario">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="IdUsuario" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Empleado">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="NumeroEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evidencia_Solicitud">
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="0..1" />
+          <End Role="Evidencias" Type="Self.Evidencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Solicitudes">
+              <PropertyRef Name="IdSolicitud" />
+            </Principal>
+            <Dependent Role="Evidencias">
+              <PropertyRef Name="IdSolicitud" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdenEntrega_Recurso">
+          <End Role="Recursos" Type="Self.Recursos" Multiplicity="0..1" />
+          <End Role="OrdenesEntrega" Type="Self.OrdenesEntrega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recursos">
+              <PropertyRef Name="IdRecurso" />
+            </Principal>
+            <Dependent Role="OrdenesEntrega">
+              <PropertyRef Name="IdRecurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_OrdenEntrega">
+          <End Role="OrdenesEntrega" Type="Self.OrdenesEntrega" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenesEntrega">
+              <PropertyRef Name="IdOrdenEntrega" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="IdOrdenEntrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento">
+          <End Role="PoliticasOtorgamiento" Type="Self.PoliticasOtorgamiento" Multiplicity="0..1" />
+          <End Role="ProyectoPoliticaOtorgamiento" Type="Self.ProyectoPoliticaOtorgamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PoliticasOtorgamiento">
+              <PropertyRef Name="IdPoliticaOtorgamiento" />
+            </Principal>
+            <Dependent Role="ProyectoPoliticaOtorgamiento">
+              <PropertyRef Name="IdPoliticaOtorgamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProyectoPoliticaOtorgamiento_Proyecto">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+          <End Role="ProyectoPoliticaOtorgamiento" Type="Self.ProyectoPoliticaOtorgamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="Folio" />
+            </Principal>
+            <Dependent Role="ProyectoPoliticaOtorgamiento">
+              <PropertyRef Name="Folio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Solicitud_Proyecto">
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="0..1" />
+          <End Role="Solicitudes" Type="Self.Solicitudes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="Folio" />
+            </Principal>
+            <Dependent Role="Solicitudes">
+              <PropertyRef Name="Folio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SGPMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beneficiarios" EntityType="Self.Beneficiarios" />
+          <EntitySet Name="CuentasBancarias" EntityType="Self.CuentasBancarias" />
+          <EntitySet Name="DependenciaLocalidad" EntityType="Self.DependenciaLocalidad" />
+          <EntitySet Name="Dependencias" EntityType="Self.Dependencias" />
+          <EntitySet Name="Devoluciones" EntityType="Self.Devoluciones" />
+          <EntitySet Name="Dictamenes" EntityType="Self.Dictamenes" />
+          <EntitySet Name="Documentos" EntityType="Self.Documentos" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" />
+          <EntitySet Name="Evidencias" EntityType="Self.Evidencias" />
+          <EntitySet Name="Localidades" EntityType="Self.Localidades" />
+          <EntitySet Name="OrdenesEntrega" EntityType="Self.OrdenesEntrega" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" />
+          <EntitySet Name="PoliticasOtorgamiento" EntityType="Self.PoliticasOtorgamiento" />
+          <EntitySet Name="ProyectoPoliticaOtorgamiento" EntityType="Self.ProyectoPoliticaOtorgamiento" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
+          <EntitySet Name="Recursos" EntityType="Self.Recursos" />
+          <EntitySet Name="Solicitudes" EntityType="Self.Solicitudes" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_Beneficiario_CuentaBancaria" Association="Self.FK_Beneficiario_CuentaBancaria">
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Beneficiario_Localidad" Association="Self.FK_Beneficiario_Localidad">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentaBancaria_Beneficiario" Association="Self.FK_CuentaBancaria_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresa_Beneficiario" Association="Self.FK_Empresa_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Beneficiario" Association="Self.FK_Persona_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Beneficiario" Association="Self.FK_Solicitud_Beneficiario">
+            <End Role="Beneficiarios" EntitySet="Beneficiarios" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dependencia_Localidad" Association="Self.FK_Dependencia_Localidad">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="DependenciaLocalidad" EntitySet="DependenciaLocalidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localidad_Dependencia" Association="Self.FK_Localidad_Dependencia">
+            <End Role="Dependencias" EntitySet="Dependencias" />
+            <End Role="DependenciaLocalidad" EntitySet="DependenciaLocalidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Dependencia" Association="Self.FK_Proyecto_Dependencia">
+            <End Role="Dependencias" EntitySet="Dependencias" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Devolucion_Solicitud" Association="Self.FK_Devolucion_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Devoluciones" EntitySet="Devoluciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dictamen_Empleado" Association="Self.FK_Dictamen_Empleado">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Dictamenes" EntitySet="Dictamenes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Dictamen" Association="Self.FK_Solicitud_Dictamen">
+            <End Role="Dictamenes" EntitySet="Dictamenes" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Documento_Solicitud" Association="Self.FK_Documento_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Documentos" EntitySet="Documentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Localidad" Association="Self.FK_Empleado_Localidad">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Usuario" Association="Self.FK_Empleado_Usuario">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Empleado" Association="Self.FK_Usuario_Empleado">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evidencia_Solicitud" Association="Self.FK_Evidencia_Solicitud">
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+            <End Role="Evidencias" EntitySet="Evidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdenEntrega_Recurso" Association="Self.FK_OrdenEntrega_Recurso">
+            <End Role="Recursos" EntitySet="Recursos" />
+            <End Role="OrdenesEntrega" EntitySet="OrdenesEntrega" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_OrdenEntrega" Association="Self.FK_Proyecto_OrdenEntrega">
+            <End Role="OrdenesEntrega" EntitySet="OrdenesEntrega" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento" Association="Self.FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento">
+            <End Role="PoliticasOtorgamiento" EntitySet="PoliticasOtorgamiento" />
+            <End Role="ProyectoPoliticaOtorgamiento" EntitySet="ProyectoPoliticaOtorgamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProyectoPoliticaOtorgamiento_Proyecto" Association="Self.FK_ProyectoPoliticaOtorgamiento_Proyecto">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ProyectoPoliticaOtorgamiento" EntitySet="ProyectoPoliticaOtorgamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Solicitud_Proyecto" Association="Self.FK_Solicitud_Proyecto">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Solicitudes" EntitySet="Solicitudes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SGPMModelStoreContainer" CdmEntityContainer="SGPMEntities">
+          <EntitySetMapping Name="Beneficiarios">
+            <EntityTypeMapping TypeName="SGPMModel.Beneficiarios">
+              <MappingFragment StoreEntitySet="Beneficiarios">
+                <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="tiudad" ColumnName="tiudad" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="CuentaBancaria" ColumnName="CuentaBancaria" />
+                <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasBancarias">
+            <EntityTypeMapping TypeName="SGPMModel.CuentasBancarias">
+              <MappingFragment StoreEntitySet="CuentasBancarias">
+                <ScalarProperty Name="CuentaBancaria" ColumnName="CuentaBancaria" />
+                <ScalarProperty Name="titular" ColumnName="titular" />
+                <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DependenciaLocalidad">
+            <EntityTypeMapping TypeName="SGPMModel.DependenciaLocalidad">
+              <MappingFragment StoreEntitySet="DependenciaLocalidad">
+                <ScalarProperty Name="IdDependenciaLocalidad" ColumnName="IdDependenciaLocalidad" />
+                <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
+                <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dependencias">
+            <EntityTypeMapping TypeName="SGPMModel.Dependencias">
+              <MappingFragment StoreEntitySet="Dependencias">
+                <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Devoluciones">
+            <EntityTypeMapping TypeName="SGPMModel.Devoluciones">
+              <MappingFragment StoreEntitySet="Devoluciones">
+                <ScalarProperty Name="IdDevolucion" ColumnName="IdDevolucion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dictamenes">
+            <EntityTypeMapping TypeName="SGPMModel.Dictamenes">
+              <MappingFragment StoreEntitySet="Dictamenes">
+                <ScalarProperty Name="IdDictamen" ColumnName="IdDictamen" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documentos">
+            <EntityTypeMapping TypeName="SGPMModel.Documentos">
+              <MappingFragment StoreEntitySet="Documentos">
+                <ScalarProperty Name="IdDocumento" ColumnName="IdDocumento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="SGPMModel.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numeroCasa" ColumnName="numeroCasa" />
+                <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="SGPMModel.Empresas">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evidencias">
+            <EntityTypeMapping TypeName="SGPMModel.Evidencias">
+              <MappingFragment StoreEntitySet="Evidencias">
+                <ScalarProperty Name="IdEvidencia" ColumnName="IdEvidencia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidades">
+            <EntityTypeMapping TypeName="SGPMModel.Localidades">
+              <MappingFragment StoreEntitySet="Localidades">
+                <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenesEntrega">
+            <EntityTypeMapping TypeName="SGPMModel.OrdenesEntrega">
+              <MappingFragment StoreEntitySet="OrdenesEntrega">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="IdOrdenEntrega" ColumnName="IdOrdenEntrega" />
+                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
+                <ScalarProperty Name="lugarEntrega" ColumnName="lugarEntrega" />
+                <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="SGPMModel.Personas">
+              <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidoPaterno" ColumnName="apellidoPaterno" />
+                <ScalarProperty Name="apellidoMaterno" ColumnName="apellidoMaterno" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PoliticasOtorgamiento">
+            <EntityTypeMapping TypeName="SGPMModel.PoliticasOtorgamiento">
+              <MappingFragment StoreEntitySet="PoliticasOtorgamiento">
+                <ScalarProperty Name="IdPoliticaOtorgamiento" ColumnName="IdPoliticaOtorgamiento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProyectoPoliticaOtorgamiento">
+            <EntityTypeMapping TypeName="SGPMModel.ProyectoPoliticaOtorgamiento">
+              <MappingFragment StoreEntitySet="ProyectoPoliticaOtorgamiento">
+                <ScalarProperty Name="IdProyectoPoliticaOtorgamiento" ColumnName="IdProyectoPoliticaOtorgamiento" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="IdPoliticaOtorgamiento" ColumnName="IdPoliticaOtorgamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyectos">
+            <EntityTypeMapping TypeName="SGPMModel.Proyectos">
+              <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="grupoAtencion" ColumnName="grupoAtencion" />
+                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="montoApoyo" ColumnName="montoApoyo" />
+                <ScalarProperty Name="numeroBeneficiarios" ColumnName="numeroBeneficiarios" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaLimiteSolicitudes" ColumnName="fechaLimiteSolicitudes" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaLimiteEvidencias" ColumnName="fechaLimiteEvidencias" />
+                <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
+                <ScalarProperty Name="IdOrdenEntrega" ColumnName="IdOrdenEntrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recursos">
+            <EntityTypeMapping TypeName="SGPMModel.Recursos">
+              <MappingFragment StoreEntitySet="Recursos">
+                <ScalarProperty Name="IdRecurso" ColumnName="IdRecurso" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Solicitudes">
+            <EntityTypeMapping TypeName="SGPMModel.Solicitudes">
+              <MappingFragment StoreEntitySet="Solicitudes">
+                <ScalarProperty Name="IdSolicitud" ColumnName="IdSolicitud" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="IdDictamen" ColumnName="IdDictamen" />
+                <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="SGPMModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
+                <ScalarProperty Name="NumeroEmpleado" ColumnName="NumeroEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

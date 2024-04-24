@@ -12,25 +12,31 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class LocalidadSet
+    public partial class Solicitudes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LocalidadSet()
+        public Solicitudes()
         {
-            this.BeneficiarioSet = new HashSet<BeneficiarioSet>();
-            this.EmpleadoSet = new HashSet<EmpleadoSet>();
-            this.LocalidadDependenciaSet = new HashSet<LocalidadDependenciaSet>();
+            this.Devoluciones = new HashSet<Devoluciones>();
+            this.Documentos = new HashSet<Documentos>();
+            this.Evidencias = new HashSet<Evidencias>();
         }
     
-        public int IdLocalidad { get; set; }
-        public string nombre { get; set; }
-        public string municipio { get; set; }
+        public int IdSolicitud { get; set; }
+        public string estado { get; set; }
+        public Nullable<System.DateTime> fechaCreacion { get; set; }
+        public Nullable<int> IdDictamen { get; set; }
+        public Nullable<int> IdBeneficiario { get; set; }
+        public string Folio { get; set; }
     
+        public virtual Beneficiarios Beneficiarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BeneficiarioSet> BeneficiarioSet { get; set; }
+        public virtual ICollection<Devoluciones> Devoluciones { get; set; }
+        public virtual Dictamenes Dictamenes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmpleadoSet> EmpleadoSet { get; set; }
+        public virtual ICollection<Documentos> Documentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LocalidadDependenciaSet> LocalidadDependenciaSet { get; set; }
+        public virtual ICollection<Evidencias> Evidencias { get; set; }
+        public virtual Proyectos Proyectos { get; set; }
     }
 }

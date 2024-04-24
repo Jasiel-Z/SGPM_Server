@@ -12,32 +12,32 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class BeneficiarioSet
+    public partial class Empleados
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BeneficiarioSet()
+        public Empleados()
         {
-            this.empresaSet = new HashSet<empresaSet>();
-            this.PersonaSet = new HashSet<PersonaSet>();
-            this.SolicitudSet1 = new HashSet<SolicitudSet>();
+            this.Dictamenes = new HashSet<Dictamenes>();
+            this.Usuarios1 = new HashSet<Usuarios>();
         }
     
-        public int idBeneficiario { get; set; }
+        public int NumeroEmpleado { get; set; }
+        public string nombre { get; set; }
+        public string apellidoPaterno { get; set; }
+        public string apellidoMaterno { get; set; }
+        public string rol { get; set; }
         public string telefono { get; set; }
         public string ciudad { get; set; }
         public string calle { get; set; }
-        public string numero { get; set; }
-        public string rfc { get; set; }
-        public Nullable<int> Localidad_IdLocalidad { get; set; }
-        public Nullable<int> Solicitud_IdSolicitud { get; set; }
+        public Nullable<int> numeroCasa { get; set; }
+        public Nullable<int> IdLocalidad { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empresaSet> empresaSet { get; set; }
-        public virtual LocalidadSet LocalidadSet { get; set; }
+        public virtual ICollection<Dictamenes> Dictamenes { get; set; }
+        public virtual Localidades Localidades { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonaSet> PersonaSet { get; set; }
-        public virtual SolicitudSet SolicitudSet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SolicitudSet> SolicitudSet1 { get; set; }
+        public virtual ICollection<Usuarios> Usuarios1 { get; set; }
     }
 }

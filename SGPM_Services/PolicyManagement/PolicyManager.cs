@@ -19,13 +19,13 @@ namespace SGPM_Services.ProjectsManagement
             int result = 0;
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    PoliticaOtorgamientoSet politicaToBeSaved = new PoliticaOtorgamientoSet();
+                    PoliticasOtorgamiento politicaToBeSaved = new PoliticasOtorgamiento();
                     politicaToBeSaved.nombre = policy.Name;
                     politicaToBeSaved.descripcion = policy.Description;
 
-                    context.PoliticaOtorgamientoSet.Add(politicaToBeSaved);
+                    context.PoliticasOtorgamiento.Add(politicaToBeSaved);
                     result = context.SaveChanges();
                 }
             }

@@ -23,14 +23,14 @@ namespace SGPM_Services.ProjectsManagement
         public List<Company> GetCompanies(string name)
         {
             List<Company> companies = new List<Company>();
-            DataBaseModelContainer context = null;
+            SGPMEntities context = null;
 
             try
             {
-                context = new DataBaseModelContainer();
+                context = new SGPMEntities();
 
-                var query = from empresa in context.empresaSet
-                            join beneficiario in context.BeneficiarioSet on empresa.Beneficiario_idBeneficiario equals beneficiario.idBeneficiario
+                var query = from empresa in context.Empresas
+                            join beneficiario in context.Beneficiarios on empresa.IdBeneficiario equals beneficiario.IdBeneficiario
                             where empresa.nombre.ToLower().Contains(name.ToLower())
                             select new { Empresa = empresa, Beneficiario = beneficiario };
 
@@ -38,11 +38,11 @@ namespace SGPM_Services.ProjectsManagement
                 {
                     Company company = new Company
                     {
-                        Id = result.Empresa.idBeneficiario,
+                        Id = (int)result.Empresa.IdBeneficiario,
                         Name = result.Empresa.nombre,
                         PhoneNumber = result.Beneficiario.telefono,
-                        Street = result.Beneficiario.calle,
-                        BeneficiaryId = result.Beneficiario.idBeneficiario
+                        Street = result.Beneficiario.direccion,
+                        BeneficiaryId = result.Beneficiario.IdBeneficiario
                     };
 
                     companies.Add(company);
@@ -72,25 +72,25 @@ namespace SGPM_Services.ProjectsManagement
             List<Person> sPersons = new List<Person>();
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    var query = from persona in context.PersonaSet
+                    var query = from persona in context.Personas
                                 where persona.nombre.Contains(name)
-                                join beneficiario in context.BeneficiarioSet on persona.Beneficiario_idBeneficiario equals beneficiario.idBeneficiario
+                                join beneficiario in context.Beneficiarios on persona.IdBeneficiario equals beneficiario.IdBeneficiario
                                 select new { Persona = persona, Beneficiario = beneficiario };
 
                     foreach (var result in query)
                     {
                         Person person = new Person
                         {
-                            Id = result.Persona.idBeneficiario,
+                            Id = result.Persona.IdPersona,
                             Name = result.Persona.nombre,
                             LastName = result.Persona.apellidoPaterno,
                             SurName = result.Persona.apellidoMaterno,
                             CURP = result.Persona.curp,
                             PhoneNumber = result.Beneficiario.telefono,
-                            Street = result.Beneficiario.calle,
-                            BeneficiaryId = result.Persona.Beneficiario_idBeneficiario
+                            Street = result.Beneficiario.direccion,
+                            BeneficiaryId = result.Beneficiario.IdBeneficiario
                         };
 
                         sPersons.Add(person);

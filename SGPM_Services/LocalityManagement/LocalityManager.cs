@@ -19,13 +19,13 @@ namespace SGPM_Services.ProjectsManagement
             int result = 0;
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    LocalidadSet localityToBeSaved = new LocalidadSet();
+                    Localidades localityToBeSaved = new Localidades();
                     localityToBeSaved.nombre = locality.Name;
                     localityToBeSaved.municipio = locality.Township;
 
-                    context.LocalidadSet.Add(localityToBeSaved);
+                    context.Localidades.Add(localityToBeSaved);
                     result = context.SaveChanges();
                 }
             }
@@ -52,9 +52,9 @@ namespace SGPM_Services.ProjectsManagement
         {
             bool isLocalityUnique = false;
 
-            using (var context = new DataBaseModelContainer())
+            using (var context = new SGPMEntities())
             {
-                var locality = context.LocalidadSet.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
+                var locality = context.Localidades.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
 
                 if (locality == null)
                 {
@@ -69,9 +69,9 @@ namespace SGPM_Services.ProjectsManagement
         {         
             List<Locality> localityList = new List<Locality>();
 
-            using (var context = new DataBaseModelContainer())
+            using (var context = new SGPMEntities())
             {
-                var localitiesFromDatabase = context.LocalidadSet.ToList();
+                var localitiesFromDatabase = context.Localidades.ToList();
 
                 foreach (var locality in localitiesFromDatabase)
                 {
@@ -93,9 +93,9 @@ namespace SGPM_Services.ProjectsManagement
 
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    var localityFromDB = context.LocalidadSet
+                    var localityFromDB = context.Localidades
                                                 .Where(localidad => localidad.IdLocalidad == locality.LocalityID)
                                                 .SingleOrDefault();
 

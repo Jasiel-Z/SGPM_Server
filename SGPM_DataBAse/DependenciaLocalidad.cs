@@ -12,12 +12,13 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class empresaSet
+    public partial class DependenciaLocalidad
     {
-        public int idBeneficiario { get; set; }
-        public string nombre { get; set; }
-        public Nullable<int> Beneficiario_idBeneficiario { get; set; }
+        public int IdDependenciaLocalidad { get; set; }
+        public Nullable<int> IdDependencia { get; set; }
+        public Nullable<int> IdLocalidad { get; set; }
     
-        public virtual BeneficiarioSet BeneficiarioSet { get; set; }
+        public virtual Localidades Localidades { get; set; }
+        public virtual Dependencias Dependencias { get; set; }
     }
 }
