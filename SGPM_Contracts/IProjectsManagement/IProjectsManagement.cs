@@ -69,10 +69,6 @@ namespace SGPM_Contracts.IProjectsManagement
         [DataMember]
         public string Type { get; set; }
 
-        [DataMember]
-        public string Description { get; set; }
-        [DataMember]
-        public string Name { get; set; }
         public DateTime Start {  get; set; }
 
         [DataMember]

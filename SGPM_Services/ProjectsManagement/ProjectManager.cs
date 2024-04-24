@@ -66,7 +66,7 @@ namespace SGPM_Services.ProjectsManagement
             return localidadList;
         }
 
-        public Project GetProjectDetails(int idProject)
+        public Project GetProjectDetails(string idProject)
         {
             Project sProject = new Project();   
 
