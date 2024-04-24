@@ -57,8 +57,7 @@ namespace SGPM_Contracts.IProjectsManagement
         public int Id { get; set; }
         [DataMember]
         public string  ProyectFolio { get; set; }
-        [DataMember]
-        public int PolicyID { get; set; }
+        
         [DataMember]
         public int GrantingPolicy { get; set; }
 

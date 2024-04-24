@@ -148,7 +148,8 @@ namespace SGPM_Services.ProjectsManagement
                         {
                             nombre = file.Name,
                             direccion = file.Description,
-                            IdSolicitud = solicitudId,
+                            IdSolicitud = solicitudId
+                            
                         };
                         context.Documentos.Add(archivoSet);
                     }
@@ -179,7 +180,8 @@ namespace SGPM_Services.ProjectsManagement
         public bool BeneficiaryHasRequest(int beneficiaryId, string projectFolio)
         {
             bool result = false;
-            using (var context = new SGPMEntities())
+            using (var context = new SGPMEntities
+                ())
             {
             result = context.Solicitudes.Any(s => s.IdBeneficiario == beneficiaryId && s.Folio == projectFolio);
             }

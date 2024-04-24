@@ -26,7 +26,8 @@ namespace SGPM_Contracts.IRequestManagement
         int RegisterRequestWithDocuments(Solicitudes request, List<SGPM_Contracts.IRequestManagement.File> files);
 
         [OperationContract]
-        bool BeneficiaryHasRequest(int beneficiaryId, String projectFolio);
+
+        bool BeneficiaryHasRequest(int beneficiaryId, string projectFolio);
 
         [OperationContract]
         List<File> GetRequestFiles(int requestId);
@@ -34,7 +35,7 @@ namespace SGPM_Contracts.IRequestManagement
         int RegisterOpinion(Opinion opinion, int requestId);
 
         [OperationContract]
-        List<Request> GetRequestsOfProject(String projectId);
+        List<Request> GetRequestsOfProject(string projectId);
 
 
     }
