@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IBankAccountManagement\IBankAccountManagement.cs" />
     <Compile Include="IBeneficiaryManagement\IBeneficiaryManagement.cs" />
     <Compile Include="ILocalityManagement\ILocalityManagement.cs" />
     <Compile Include="IPolicyManagement\IPolicyManagement.cs" />
+    <Compile Include="IDeliveryOrdenManagement\IDeliveryOrdenManagement.cs" />
     <Compile Include="IProjectsManagement\IProjectsManagement.cs" />
     <Compile Include="IRequestManagement\IRequestManagement.cs" />
     <Compile Include="IUserManagement\IUserManagementcs.cs" />

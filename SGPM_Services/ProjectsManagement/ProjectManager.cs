@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,7 +19,54 @@ namespace SGPM_Services.ProjectsManagement
 
     public partial class SGPMManager : IProjectsManagement
     {
-        public Project GetProjectDetails(string idProject)
+        public List<Project> GetAllProjects()
+        {
+            List<Project> projects = new List<Project>();
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var proyectos = context.Proyectos.ToList();
+                    foreach (var proyecto in proyectos)
+                    {
+                    }
+                    return projects;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+        }
+
+        public List<Dependency> GetDependencies()
+        {
+            List<Dependency> dependenciesList = new List<Dependency>();
+
+            return dependenciesList;
+        }
+
+        public List<Localidad> GetLocalidads()
+        {
+            List<Localidad> localidadList = new List<Localidad>();
+
+
+            return localidadList;
+        }
+
+        public Project GetProjectDetails(int idProject)
         {
             Project sProject = new Project();   
 
@@ -91,10 +139,6 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-
-
-
-
         }
 
         public List<Project> GetProjectsFromLocality(int locationId)
@@ -142,5 +186,32 @@ namespace SGPM_Services.ProjectsManagement
         }
 
 
+        public int RegisteredProjects(Project project)
+        {
+            int result = 1;
+            if (project == null)
+            {
+                try
+                {
+                    using (var context = new SGPMEntities())
+                    {
+                    }
+                }
+                catch (SqlException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+                catch (DbEntityValidationException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+                catch (EntityException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
+
+            return result;
+        }
     }
 }

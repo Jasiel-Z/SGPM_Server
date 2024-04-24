@@ -49,10 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankAccountManagement\BankAccountManagement.cs" />
     <Compile Include="BeneficiaryManagement\BeneficiaryManager.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="LocalityManagement\LocalityManager.cs" />
     <Compile Include="PolicyManagement\PolicyManager.cs" />
+    <Compile Include="DeliveryOrdenManagement.cs" />
     <Compile Include="ProjectsManagement\ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestManagement\RequestsManager.cs" />
