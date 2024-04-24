@@ -3,6 +3,7 @@ using SGPM_DataBAse;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
@@ -84,6 +85,33 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return localityList;
+        }
+
+        public int UpdateLocality(Locality locality)
+        {
+            int result = 0;
+
+            try
+            {
+                using (var context = new DataBaseModelContainer())
+                {
+                    var localityFromDB = context.LocalidadSet
+                                                .Where(localidad => localidad.IdLocalidad == locality.LocalityID)
+                                                .SingleOrDefault();
+
+                    if (localityFromDB != null)
+                    {
+                        localityFromDB.nombre = locality.Name;
+                        localityFromDB.municipio = locality.Township;
+
+                        result = context.SaveChanges();
+                    }
+                }
+            } catch (Exception ex) when (ex is DbUpdateException || ex is DbEntityValidationException || ex is InvalidOperationException || ex is SqlException) {
+                result = -1;
+            }
+
+            return result;
         }
     }
 }

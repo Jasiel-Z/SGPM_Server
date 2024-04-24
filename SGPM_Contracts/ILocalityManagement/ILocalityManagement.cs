@@ -20,6 +20,9 @@ namespace SGPM_Contracts.ILocalityManagement
         
         [OperationContract]
         List<Locality> GetLocalities();
+
+        [OperationContract]
+        int UpdateLocality(Locality locality);
     }
 
     [DataContract]
