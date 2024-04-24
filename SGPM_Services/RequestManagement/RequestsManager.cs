@@ -14,8 +14,9 @@ using SGPM_DataBAse;
 
 namespace SGPM_Services.ProjectsManagement
 {
-    public partial class SGPMManager : IRequestManagement
+    public partial class SGPMManager
     {
+        /*
         public SolicitudSet RecoverRequestDetails(int idRequest)
         {
             throw new NotImplementedException();
@@ -80,6 +81,6 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return result;
-        }
+        }*/
     }
 }

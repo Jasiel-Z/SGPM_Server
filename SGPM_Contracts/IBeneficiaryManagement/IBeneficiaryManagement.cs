@@ -10,9 +10,9 @@ namespace SGPM_Contracts.IBeneficiaryManagement
 {
     [ServiceContract]
     public interface IBeneficiaryManagement
-    {
+    {/*
         [OperationContract]
-        List<BeneficiarioSet> GetBeneficiaries();
+        List<BeneficiarioSet> GetBeneficiaries();*/
 
     }
 }

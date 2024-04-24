@@ -13,8 +13,9 @@ using System.Threading.Tasks;
 namespace SGPM_Services.ProjectsManagement
 {
 
-    public partial class SGPMManager: IBeneficiaryManagement
+    public partial class SGPMManager
     {
+        /*
         List<BeneficiarioSet> IBeneficiaryManagement.GetBeneficiaries()
         {
             try
@@ -41,6 +42,6 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-        }
+        }*/
     }
 }

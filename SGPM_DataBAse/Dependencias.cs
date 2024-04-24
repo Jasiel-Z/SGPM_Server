@@ -12,29 +12,21 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class BeneficiarioSet
+    public partial class Dependencias
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BeneficiarioSet()
+        public Dependencias()
         {
-            this.empresaSet = new HashSet<empresaSet>();
-            this.PersonaSet = new HashSet<PersonaSet>();
+            this.DependenciaLocalidad = new HashSet<DependenciaLocalidad>();
+            this.Proyectos = new HashSet<Proyectos>();
         }
     
-        public int idBeneficiario { get; set; }
-        public string telefono { get; set; }
-        public string ciudad { get; set; }
-        public string calle { get; set; }
-        public string numero { get; set; }
-        public string rfc { get; set; }
-        public Nullable<int> Localidad_IdLocalidad { get; set; }
-        public Nullable<int> Solicitud_IdSolicitud { get; set; }
+        public int IdDependencia { get; set; }
+        public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empresaSet> empresaSet { get; set; }
-        public virtual LocalidadSet LocalidadSet { get; set; }
+        public virtual ICollection<DependenciaLocalidad> DependenciaLocalidad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonaSet> PersonaSet { get; set; }
-        public virtual SolicitudSet SolicitudSet { get; set; }
+        public virtual ICollection<Proyectos> Proyectos { get; set; }
     }
 }

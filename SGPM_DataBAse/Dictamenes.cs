@@ -12,19 +12,22 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class PoliticaOtorgamientoSet
+    public partial class Dictamenes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PoliticaOtorgamientoSet()
+        public Dictamenes()
         {
-            this.PoliticaProyectoSet = new HashSet<PoliticaProyectoSet>();
+            this.Solicitudes = new HashSet<Solicitudes>();
         }
     
-        public int IdPolitica { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
+        public int IdDictamen { get; set; }
+        public string comentario { get; set; }
+        public string estado { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> NumeroEmpleado { get; set; }
     
+        public virtual Empleados Empleados { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PoliticaProyectoSet> PoliticaProyectoSet { get; set; }
+        public virtual ICollection<Solicitudes> Solicitudes { get; set; }
     }
 }

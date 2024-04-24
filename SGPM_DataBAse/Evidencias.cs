@@ -12,15 +12,14 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class PersonaSet
+    public partial class Evidencias
     {
-        public int idBeneficiario { get; set; }
+        public int IdEvidencia { get; set; }
         public string nombre { get; set; }
-        public string apellidoPaterno { get; set; }
-        public string apellidoMaterno { get; set; }
-        public string curp { get; set; }
-        public int Beneficiario_idBeneficiario { get; set; }
+        public Nullable<System.DateTime> fechaEntrega { get; set; }
+        public string direccion { get; set; }
+        public Nullable<int> IdSolicitud { get; set; }
     
-        public virtual BeneficiarioSet BeneficiarioSet { get; set; }
+        public virtual Solicitudes Solicitudes { get; set; }
     }
 }

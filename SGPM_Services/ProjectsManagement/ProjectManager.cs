@@ -25,19 +25,11 @@ namespace SGPM_Services.ProjectsManagement
 
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    var proyectos = context.ProyectoSet.ToList();
+                    var proyectos = context.Proyectos.ToList();
                     foreach (var proyecto in proyectos)
                     {
-                        Project project = new Project
-                        {
-                            Folio = proyecto.Folio,
-                            Modality = proyecto.modalidad,
-                            AttentionGroup = proyecto.grupoAtencion,
-                            BeneficiaryNumbers = proyecto.numeroBeneficiarios
-                        };
-                        projects.Add(project);
                     }
                     return projects;
                 }
@@ -61,40 +53,15 @@ namespace SGPM_Services.ProjectsManagement
 
         public List<Dependency> GetDependencies()
         {
-            List<DependenciaSet> dependencies = new List<DependenciaSet>(); 
             List<Dependency> dependenciesList = new List<Dependency>();
-
-            using(var context = new DataBaseModelContainer())
-            {
-                dependencies = context.DependenciaSet.ToList();
-                foreach(var dep in dependencies)
-                {
-                    Dependency dependency = new Dependency();
-                    dependency.IdDependency = dep.IdDependencia;
-                    dependency.NameDependency = dep.nombre;
-                    dependenciesList.Add(dependency);
-                }
-            }
 
             return dependenciesList;
         }
 
         public List<Localidad> GetLocalidads()
         {
-            List<LocalidadSet> localidads = new List<LocalidadSet>();
             List<Localidad> localidadList = new List<Localidad>();
 
-            using (var context = new DataBaseModelContainer())
-            {
-                localidads = context.LocalidadSet.ToList();
-                foreach (var loc in localidads)
-                {
-                    Localidad dependency = new Localidad();
-                    dependency.IdLocalidad = loc.IdLocalidad;
-                    dependency.NameLocalidad = loc.nombre;
-                    localidadList.Add(dependency);
-                }
-            }
 
             return localidadList;
         }
@@ -105,13 +72,8 @@ namespace SGPM_Services.ProjectsManagement
 
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    ProyectoSet proyecto = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
-                    project.Folio = proyecto.Folio;
-                    project.Modality = proyecto.modalidad;
-                    project.AttentionGroup = proyecto.grupoAtencion;
-                    project.BeneficiaryNumbers = proyecto.numeroBeneficiarios;
                     return project;
                 }
             }
@@ -139,20 +101,8 @@ namespace SGPM_Services.ProjectsManagement
             {
                 try
                 {
-                    using (var context = new DataBaseModelContainer())
+                    using (var context = new SGPMEntities())
                     {
-                        ProyectoSet proyecto = new ProyectoSet();
-                        proyecto.Folio = project.Folio;
-                        proyecto.grupoAtencion = project.AttentionGroup;
-                        proyecto.estado = project.Status;
-                        proyecto.tipo = project.Modality;
-                        proyecto.fechaFin = project.End;
-                        proyecto.fechaLimiteEvidencia = project.Evidence;
-                        proyecto.fechaLimiteSolicitud = project.Start;
-
-                        context.ProyectoSet.AddOrUpdate(proyecto);
-                        context.SaveChanges();
-                        result = 0;
                     }
                 }
                 catch (SqlException exception)
