@@ -20,33 +20,28 @@ namespace SGPM_Services.ProjectsManagement
             User user = new User();
 
             try{
-
-                //using(var context = new DataBaseModelContainer())
-                //{
-                //    user = (from userS in context.UsuarioSet
-                //            join empleado in context.EmpleadoSet on userS.IdUsuario equals empleado.Usuario_IdUsuario
-                //            where userS.correo == username && userS.contrasena == password
-                //            select new User
-
-                //            {
-                //                UserId = userS.IdUsuario,
-                //                Password = userS.contrasena,
-                //                EmployeeNumber = empleado.NumeroEmpleado,
-                //                LocationId = empleado.LocalidadIdLocalidad,
-
-
-                //            }).FirstOrDefault();
-                //}
-
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    var userSet = context.UsuarioSet.Where(usuario => usuario.contrasena == password
+                    var userFromDB = context.Usuarios.Where(usuario => usuario.contrasena == password
                                                             && usuario.correo == email).FirstOrDefault();
-                    if (userSet != null)
+                    var employeeFromDB = context.Empleados.Where(empleado => empleado.IdUsuario == userFromDB.IdUsuario).FirstOrDefault();
+
+                    if (userFromDB != null && employeeFromDB != null)
                     {
-                        user.Email = userSet.correo;
-                        user.Password = userSet.contrasena;
-                        user.UserId = userSet.IdUsuario;
+                        user.UserId = userFromDB.IdUsuario;
+                        user.Email = userFromDB.correo;
+                        user.Password = userFromDB.contrasena;
+                        
+                        user.EmployeeNumber = employeeFromDB.NumeroEmpleado;
+                        user.Name = employeeFromDB.nombre;
+                        user.MiddleName = employeeFromDB.apellidoPaterno;
+                        user.LastName = employeeFromDB.apellidoMaterno;
+                        user.Role = employeeFromDB.rol;
+                        user.PhoneNumber = employeeFromDB.telefono;
+                        user.City = employeeFromDB.ciudad;
+                        user.Street = employeeFromDB.calle;
+                        user.Number = (int)employeeFromDB.numeroCasa;
+                        user.LocationId = (int)employeeFromDB.IdLocalidad;
                     }
                 }
             }
@@ -66,41 +61,69 @@ namespace SGPM_Services.ProjectsManagement
                 user = null;
             }
 
-
             return user;
         }
 
         public int SaveUser(User user)
         {
-            int result;
-            try
+            int result = 0;
+            
+            using (var context = new SGPMEntities())
             {
-                using (var context = new DataBaseModelContainer())
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    UsuarioSet userToBeSaved = new UsuarioSet();
-                    userToBeSaved.correo = user.Email;
-                    userToBeSaved.contrasena = user.Password;
-                    //userToBeSaved.EmpleadoSet = user.StaffNumber;
+                    try
+                    {
+                        Usuarios userToBeSaved = new Usuarios
+                        {
+                            correo = user.Email,
+                            contrasena = user.Password
+                        };
 
-                    context.UsuarioSet.Add(userToBeSaved);
-                    result = context.SaveChanges();
+                        context.Usuarios.Add(userToBeSaved);
+                        result = context.SaveChanges();
+
+                        Empleados employeeToBeSaved = new Empleados
+                        {
+                            NumeroEmpleado = user.EmployeeNumber,
+                            nombre = user.Name,
+                            apellidoPaterno = user.MiddleName,
+                            apellidoMaterno = user.LastName,
+                            rol = user.Role,
+                            ciudad = user.City,
+                            calle = user.Street,
+                            numeroCasa = user.Number,
+                            telefono = user.PhoneNumber,
+                            IdLocalidad = user.LocationId,
+                            IdUsuario = userToBeSaved.IdUsuario,
+                        };
+
+                        context.Empleados.Add(employeeToBeSaved);
+                        result += context.SaveChanges();
+
+                        transaction.Commit();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                        transaction.Rollback();
+                        result = -1;
+                    }
+                    catch (DbEntityValidationException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                        transaction.Rollback();
+                        result = -1;
+                    }
+                    catch (EntityException exception)
+                    {
+                        Console.WriteLine(exception.Message);
+                        transaction.Rollback();
+                        result = -1;
+                    }
                 }
             }
-            catch (SqlException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-            catch (DbEntityValidationException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-            catch (EntityException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
+            
 
             return result;
         }
@@ -109,9 +132,9 @@ namespace SGPM_Services.ProjectsManagement
         {
             bool isEmailUnique = false;
 
-            using (var context = new DataBaseModelContainer())
+            using (var context = new SGPMEntities())
             {
-                var User = context.UsuarioSet.Where(usuario => usuario.correo == email).FirstOrDefault();
+                var User = context.Usuarios.Where(usuario => usuario.correo == email).FirstOrDefault();
 
                 if (User == null)
                 {
@@ -122,21 +145,22 @@ namespace SGPM_Services.ProjectsManagement
             return isEmailUnique;
         }
 
-        public bool ValidateStaffNumberDoesNotExist(string staffNumber)
+        public bool ValidateEmployeeNumberDoesNotExist(string employeeNumber)
         {
-            bool isStaffNumberUnique = false;
+            bool isEmployeeNumberUnique = false;
+            int employeeNumberInt = int.Parse(employeeNumber);
 
-            /*using (var context = new DataBaseModelContainer())
+            using (var context = new SGPMEntities())
             {
-                var User = context.UsuarioSet.Where(usuario => usuario.NumeroEmpleado == staffNumber).FirstOrDefault();
+                var employee = context.Empleados.Where(empleado => empleado.NumeroEmpleado == employeeNumberInt).FirstOrDefault();
 
-                if (User == null)
+                if (employee == null)
                 {
-                    isStaffNumberUnique = true;
+                    isEmployeeNumberUnique = true;
                 }
-            }*/
+            }
 
-            return isStaffNumberUnique;
+            return isEmployeeNumberUnique;
         }
     }
 }

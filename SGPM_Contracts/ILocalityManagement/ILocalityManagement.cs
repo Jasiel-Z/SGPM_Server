@@ -17,6 +17,12 @@ namespace SGPM_Contracts.ILocalityManagement
 
         [OperationContract]
         bool ValidateLocalityDoesNotExist(string localityName);
+        
+        [OperationContract]
+        List<Locality> GetLocalities();
+
+        [OperationContract]
+        int UpdateLocality(Locality locality);
     }
 
     [DataContract]
@@ -29,5 +35,7 @@ namespace SGPM_Contracts.ILocalityManagement
         [DataMember]
         public string Name { get; set; }
 
+        [DataMember]
+        public string Township {  get; set; }
     }
 }

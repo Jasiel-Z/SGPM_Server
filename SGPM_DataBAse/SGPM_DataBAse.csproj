@@ -42,6 +42,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,106 +52,111 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchivoSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Beneficiarios.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="BeneficiarioSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="CuentasBancarias.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuentaBancariaSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="DependenciaLocalidad.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuentaBancariaSolicitudSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Dependencias.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.Context.tt</DependentUpon>
+    <Compile Include="Devoluciones.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Dictamenes.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+    <Compile Include="Documentos.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DependenciaSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Empleados.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DevolucionesSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Empresas.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DictamenSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Evidencias.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmpleadoSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Localidades.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="empresaSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="OrdenesEntrega.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="LocalidadDependenciaSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Personas.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="LocalidadSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrdenEntregaSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PersonaSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PoliticaOtorgamientoSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PoliticaProyectoSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="PoliticasOtorgamiento.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProyectoSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RecursoSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="ProyectoPoliticaOtorgamiento.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SolicitudSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Proyectos.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="Recursos.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioSet.cs">
-      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    <Compile Include="SGPMEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGPMEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SGPMEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SGPMEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SGPMEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Solicitudes.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DataBaseModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataBaseModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DataBaseModel.edmx.diagram">
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="SGPMEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SGPMEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SGPMEntities.edmx.diagram">
+      <DependentUpon>SGPMEntities.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBaseModel.Context.tt">
+    <Content Include="SGPMEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataBaseModel.Context.cs</LastGenOutput>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+      <DependentUpon>SGPMEntities.edmx</DependentUpon>
+      <LastGenOutput>SGPMEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataBaseModel.edmx.sql" />
-    <Content Include="DataBaseModel.tt">
+    <Content Include="SGPMEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataBaseModel.cs</LastGenOutput>
-      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+      <DependentUpon>SGPMEntities.edmx</DependentUpon>
+      <LastGenOutput>SGPMEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

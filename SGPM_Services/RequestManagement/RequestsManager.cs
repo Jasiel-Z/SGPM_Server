@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
@@ -24,15 +25,15 @@ namespace SGPM_Services.ProjectsManagement
             Request request = new Request();
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    request = (from req in context.SolicitudSet
+                    request = (from req in context.Solicitudes
                                  where req.IdSolicitud == idRequest
                                  select new Request
                                  {
                                      Id = req.IdSolicitud,
-                                     CreationTime = req.fechaCreacion,
-                                     BeneficiaryId = (int)req.BeneficiarioId,
+                                     CreationTime = (DateTime)req.fechaCreacion,
+                                     BeneficiaryId = (int)req.IdBeneficiario,
                                     
                                  }).FirstOrDefault();
                 }
@@ -49,7 +50,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 request = null;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 request = null;
@@ -59,14 +60,14 @@ namespace SGPM_Services.ProjectsManagement
             return request;
         }
 
-        public int RegisterRequest(SolicitudSet request)
+        public int RegisterRequest(Solicitudes request)
         {
             int result = 0;
             try
             {
-                using(var context = new DataBaseModelContainer())
+                using(var context = new SGPMEntities())
                 {
-                    context.SolicitudSet.Add(request);
+                    context.Solicitudes.Add(request);
                     result = context.SaveChanges();
                 }
             }catch(SqlException exception) {
@@ -78,7 +79,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);  
                 result = -1;
             }
-            catch(EntityException exception)
+            catch(System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -92,20 +93,18 @@ namespace SGPM_Services.ProjectsManagement
             int result = 0;
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
                     foreach (var file in files)
                     {
 
-                        ArchivoSet archivoSet = new ArchivoSet()
+                        Documentos archivoSet = new Documentos()
                         {
                             nombre = file.Name,
-                            extension = file.Extension,
-                            contenido = new byte[0],
-                            descripcion = file.Description,
-                            SolicitudIdSolicitud = 1
+                            direccion = file.Description,
+                            IdSolicitud = 1
                         };
-                        context.ArchivoSet.Add(archivoSet);
+                        context.Documentos.Add(archivoSet);
                     }
                     result = context.SaveChanges();
                 }
@@ -121,7 +120,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 result = -1;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -132,30 +131,28 @@ namespace SGPM_Services.ProjectsManagement
 
 
 
-        public int RegisterRequestWithDocuments(SolicitudSet request, List<SGPM_Contracts.IRequestManagement.File> files)
+        public int RegisterRequestWithDocuments(Solicitudes request, List<SGPM_Contracts.IRequestManagement.File> files)
         {
             int result = 0;
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    context.SolicitudSet.Add(request);
+                    context.Solicitudes.Add(request);
                     context.SaveChanges();
 
                     int solicitudId = request.IdSolicitud;
 
                     foreach (var file in files)
                     {
-                        ArchivoSet archivoSet = new ArchivoSet()
+                        Documentos archivoSet = new Documentos()
                         {
                             nombre = file.Name,
-                            extension = file.Extension,
-                            contenido = new byte[0],
-                            descripcion = file.Description,
-                            SolicitudIdSolicitud = solicitudId
+                            direccion = file.Description,
+                            IdSolicitud = solicitudId
                             
                         };
-                        context.ArchivoSet.Add(archivoSet);
+                        context.Documentos.Add(archivoSet);
                     }
 
                     result = context.SaveChanges();
@@ -171,7 +168,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 result = -1;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -181,12 +178,13 @@ namespace SGPM_Services.ProjectsManagement
         }
 
 
-        public bool BeneficiaryHasRequest(int beneficiaryId, int projectFolio)
+        public bool BeneficiaryHasRequest(int beneficiaryId, string projectFolio)
         {
             bool result = false;
-            using (var context = new DataBaseModelContainer())
+            using (var context = new SGPMEntities
+                ())
             {
-            result = context.SolicitudSet.Any(s => s.BeneficiarioId == beneficiaryId && s.ProyectoFolio == projectFolio);
+            result = context.Solicitudes.Any(s => s.IdBeneficiario == beneficiaryId && s.Folio == projectFolio);
             }
 
             return result;
@@ -198,15 +196,14 @@ namespace SGPM_Services.ProjectsManagement
             List<SGPM_Contracts.IRequestManagement.File> files = new List<SGPM_Contracts.IRequestManagement.File>();
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    files = (from file in context.ArchivoSet
-                             where file.SolicitudIdSolicitud == requestId
+                    files = (from file in context.Documentos
+                             where file.IdSolicitud == requestId
                              select new SGPM_Contracts.IRequestManagement.File
                              {
                                  Name = file.nombre,
-                                 Extension = file.extension,
-                                 Description = file.descripcion,
+                                 Description = file.direccion,
                              }).ToList();
 
                 }
@@ -222,7 +219,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 return null;
@@ -236,25 +233,25 @@ namespace SGPM_Services.ProjectsManagement
 
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    DictamenSet dictamen = new DictamenSet
+                    Dictamenes dictamen = new Dictamenes
                     {
                         estado = opinion.State,
-                        comentarios = opinion.Comment,
+                        comentario = opinion.Comment,
                         fecha = opinion.Date,
-                        EmpleadoNumeroEmpleado = opinion.EmployeeNumber
+                        NumeroEmpleado = opinion.EmployeeNumber
                     };
 
-                    context.DictamenSet.Add(dictamen);
+                    context.Dictamenes.Add(dictamen);
                     context.SaveChanges();
 
-                    SolicitudSet solicitud = context.SolicitudSet.Find(requestId);
+                    Solicitudes solicitud = context.Solicitudes.Find(requestId);
 
                     if (solicitud != null)
                     {
                         solicitud.estado = opinion.State;
-                        solicitud.Dictamen_IdDictamen = dictamen.IdDictamen;
+                        solicitud.IdDictamen = dictamen.IdDictamen;
 
                         context.SaveChanges();
 
@@ -272,7 +269,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 result = -1;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -281,22 +278,22 @@ namespace SGPM_Services.ProjectsManagement
             return result;
         }
 
-        public List<Request> GetRequestsOfProject(int projectId)
+        public List<Request> GetRequestsOfProject(string projectId)
         {
             List<Request> requests = new List<Request>();
 
             try{ 
           
-                using (var context = new DataBaseModelContainer())
+                using (SGPMEntities context = new SGPMEntities())
                 {
-                    requests = (from r in context.SolicitudSet
-                                where r.ProyectoFolio == projectId
+                    requests = (from r in context.Solicitudes
+                                where r.Folio.Equals(projectId) && r.estado.Equals("creada")
                                 select new Request
                                 {
                                     Id = r.IdSolicitud,
                                     State = r.estado,
-                                    CreationTime = r.fechaCreacion,
-                                    BeneficiaryId = (int)r.BeneficiarioId,
+                                    CreationTime = (DateTime)r.fechaCreacion,
+                                    BeneficiaryId = (int)r.IdBeneficiario,
                                     ProyectFolio = projectId,   
                                 }).ToList();
                 }
@@ -312,7 +309,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 return null;

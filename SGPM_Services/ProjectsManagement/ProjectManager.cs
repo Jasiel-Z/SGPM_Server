@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,19 +19,66 @@ namespace SGPM_Services.ProjectsManagement
 
     public partial class SGPMManager : IProjectsManagement
     {
-        public Project GetProjectDetails(int idProject)
+        public List<Project> GetAllProjects()
+        {
+            List<Project> projects = new List<Project>();
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var proyectos = context.Proyectos.ToList();
+                    foreach (var proyecto in proyectos)
+                    {
+                    }
+                    return projects;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return null;
+            }
+        }
+
+        public List<Dependency> GetDependencies()
+        {
+            List<Dependency> dependenciesList = new List<Dependency>();
+
+            return dependenciesList;
+        }
+
+        public List<Localidad> GetLocalidads()
+        {
+            List<Localidad> localidadList = new List<Localidad>();
+
+
+            return localidadList;
+        }
+
+        public Project GetProjectDetails(string idProject)
         {
             Project sProject = new Project();   
 
             try
             {
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    ProyectoSet dbProyect = context.ProyectoSet.FirstOrDefault(p => p.Folio == idProject);
+                    Proyectos dbProyect = context.Proyectos.FirstOrDefault(p => p.Folio == idProject);
                     sProject.Folio = dbProyect.Folio;
                     sProject.Modality = dbProyect.modalidad;
                     sProject.AttentionGroup = dbProyect.grupoAtencion;
-                    sProject.BeneficiaryNumbers = dbProyect.numeroBeneficiarios;
+                    sProject.BeneficiaryNumbers = (int)dbProyect.numeroBeneficiarios;
                     sProject.Type = dbProyect.tipo;
                     sProject.Name = dbProyect.nombre;
                     sProject.Description = dbProyect.descripcion;
@@ -55,24 +103,23 @@ namespace SGPM_Services.ProjectsManagement
             }
         }
 
-        public List<ProjectPolicy> GetProjectPolicies(int idProject)
+        public List<ProjectPolicy> GetProjectPolicies(string idProject)
         {
             List<ProjectPolicy> policies = new List<ProjectPolicy>();
 
             try
             {
-
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    policies = (from pp in context.PoliticaProyectoSet
-                                where pp.ProyectoFolio == idProject
+                    policies = (from pp in context.ProyectoPoliticaOtorgamiento
+                                where pp.Folio.Equals(idProject)
                                 select new ProjectPolicy
                                 {
-                                    Id = pp.IdPoliticaProyecto,
-                                    ProyectFolio = pp.ProyectoFolio.Value,
-                                    GrantingPolicy = pp.PoliticaOtorgamientoIdPolitica.Value,
-                                    Name = pp.PoliticaOtorgamientoSet.nombre,
-                                    Description = pp.PoliticaOtorgamientoSet.descripcion
+                                    Id = pp.IdProyectoPoliticaOtorgamiento,
+                                    ProyectFolio = pp.Folio,
+                                    GrantingPolicy = pp.IdPoliticaOtorgamiento.Value,
+                                    Name = pp.PoliticasOtorgamiento.nombre,
+                                    Description = pp.PoliticasOtorgamiento.descripcion
                                 }).ToList();
                 }
                 return policies;
@@ -92,10 +139,6 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-
-
-
-
         }
 
         public List<Project> GetProjectsFromLocality(int locationId)
@@ -104,12 +147,12 @@ namespace SGPM_Services.ProjectsManagement
             try
             {
 
-                using (var context = new DataBaseModelContainer())
+                using (var context = new SGPMEntities())
                 {
-                    projects = (from ld in context.LocalidadDependenciaSet
-                                   join p in context.ProyectoSet
-                                   on ld.IdLocalidadDependencia equals p.LocalidadDependenciaIdLocalidadDependencia
-                                   where ld.LocalidadIdLocalidad == locationId
+                    projects = (from ld in context.DependenciaLocalidad
+                                   join p in context.Proyectos
+                                   on ld.IdDependencia equals p.IdDependencia
+                                   where ld.IdLocalidad == locationId
                                    select new Project
                                    {
                                         Folio = p.Folio,
@@ -118,10 +161,8 @@ namespace SGPM_Services.ProjectsManagement
                                         Type = p.tipo,
                                         Name = p.nombre,
                                         Description = p.descripcion,
-                                        
- 
-                                    }).ToList();
-                    }
+                                   }).ToList();
+                }
 
                 return projects;
 
@@ -145,5 +186,32 @@ namespace SGPM_Services.ProjectsManagement
         }
 
 
+        public int RegisteredProjects(Project project)
+        {
+            int result = 1;
+            if (project == null)
+            {
+                try
+                {
+                    using (var context = new SGPMEntities())
+                    {
+                    }
+                }
+                catch (SqlException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+                catch (DbEntityValidationException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+                catch (EntityException exception)
+                {
+                    Console.WriteLine(exception.Message);
+                }
+            }
+
+            return result;
+        }
     }
 }

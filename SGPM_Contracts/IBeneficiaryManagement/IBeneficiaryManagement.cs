@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SGPM_Contracts.IBeneficiaryManagement
@@ -13,7 +14,7 @@ namespace SGPM_Contracts.IBeneficiaryManagement
     public interface IBeneficiaryManagement
     {
         [OperationContract]
-        List<Beneficiary> GetBeneficiaries();
+        List<Beneficiary> GetBeneficiaries(int localityId);
 
         [OperationContract]
         List<Person> GetPersons(string name);
@@ -21,6 +22,26 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         [OperationContract]
         List<Company> GetCompanies(string name);
 
+        [OperationContract]
+        int RegisterPerson(Beneficiary beneficiary, Person person);
+
+        [OperationContract]
+        int RegisterCompany(Beneficiary beneficiary, Company company);
+
+        [OperationContract]
+        int setBeneficiaryDetails(Beneficiary beneficiary);
+
+        [OperationContract]
+        bool RfcInUse(string rfc);
+
+        [OperationContract]
+        bool CurpInUse(string curp);
+
+        [OperationContract]
+        Person getPerson(int beneficiaryId);
+
+        [OperationContract]
+        Company getCompany(int beneficiaryId);
     }
 
 
@@ -44,6 +65,12 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         [DataMember]
         public int LocalityId { get; set; }
 
+        [DataMember]
+        public int PersonId { get; set; }
+        [DataMember]
+        public int CompanyId { get; set; }
+        [DataMember]
+        public string AccountId { get; set; }
 
     }
 
@@ -69,7 +96,8 @@ namespace SGPM_Contracts.IBeneficiaryManagement
         public string Street { get; set; }
         [DataMember]
         public int BeneficiaryId { get; set; }
- 
+
+
     }
 
 

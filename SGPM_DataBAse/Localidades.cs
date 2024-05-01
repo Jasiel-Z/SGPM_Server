@@ -12,19 +12,25 @@ namespace SGPM_DataBAse
     using System;
     using System.Collections.Generic;
     
-    public partial class PoliticaOtorgamientoSet
+    public partial class Localidades
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PoliticaOtorgamientoSet()
+        public Localidades()
         {
-            this.PoliticaProyectoSet = new HashSet<PoliticaProyectoSet>();
+            this.Beneficiarios = new HashSet<Beneficiarios>();
+            this.DependenciaLocalidad = new HashSet<DependenciaLocalidad>();
+            this.Empleados = new HashSet<Empleados>();
         }
     
-        public int IdPolitica { get; set; }
+        public int IdLocalidad { get; set; }
         public string nombre { get; set; }
-        public string descripcion { get; set; }
+        public string municipio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PoliticaProyectoSet> PoliticaProyectoSet { get; set; }
+        public virtual ICollection<Beneficiarios> Beneficiarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DependenciaLocalidad> DependenciaLocalidad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Empleados> Empleados { get; set; }
     }
 }
