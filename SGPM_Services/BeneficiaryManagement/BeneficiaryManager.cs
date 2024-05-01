@@ -16,14 +16,14 @@ namespace SGPM_Services.ProjectsManagement
 
     public partial class SGPMManager : IBeneficiaryManagement
     {
-        public List<Beneficiary> GetBeneficiaries()
+        public List<Beneficiary> GetBeneficiaries(int localityId)
         {
             List<Beneficiary> beneficiaries = new List<Beneficiary>();
             try
             {
                 using (var context = new SGPMEntities())
                 {
-                    var query = from benef in context.Beneficiarios
+                    var query = from benef in context.Beneficiarios where benef.IdLocalidad == localityId
                                 select
                                 benef;
                     foreach (var benefDb in query)
@@ -133,6 +133,7 @@ namespace SGPM_Services.ProjectsManagement
                             PhoneNumber = result.Beneficiario.telefono,
                             Street = result.Beneficiario.direccion,
                             BeneficiaryId = result.Beneficiario.IdBeneficiario
+                            
                         };
 
                         sPersons.Add(person);
@@ -171,7 +172,9 @@ namespace SGPM_Services.ProjectsManagement
                         telefono = beneficiary.PhoneNumber,
                         tiudad = beneficiary.City,
                         direccion = beneficiary.Street,
-                        rfc = beneficiary.RFC
+                        rfc = beneficiary.RFC,
+                        IdLocalidad = beneficiary.LocalityId
+                        
                     };
                     context.Beneficiarios.Add(newBeneficiary);
                     result = context.SaveChanges();
@@ -285,7 +288,8 @@ namespace SGPM_Services.ProjectsManagement
                         telefono = beneficiary.PhoneNumber,
                         tiudad = beneficiary.City,
                         direccion = beneficiary.Street,
-                        rfc = beneficiary.RFC
+                        rfc = beneficiary.RFC,
+                        IdLocalidad = beneficiary.LocalityId
                     };
                     context.Beneficiarios.Add(newBeneficiary);
                     result = context.SaveChanges();

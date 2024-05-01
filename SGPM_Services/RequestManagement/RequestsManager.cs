@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
@@ -49,7 +50,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 request = null;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 request = null;
@@ -78,7 +79,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);  
                 result = -1;
             }
-            catch(EntityException exception)
+            catch(System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -119,7 +120,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 result = -1;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -167,7 +168,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 result = -1;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -218,7 +219,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 return null;
@@ -268,7 +269,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 result = -1;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 result = -1;
@@ -283,10 +284,10 @@ namespace SGPM_Services.ProjectsManagement
 
             try{ 
           
-                using (var context = new SGPMEntities())
+                using (SGPMEntities context = new SGPMEntities())
                 {
                     requests = (from r in context.Solicitudes
-                                where r.Folio.Equals(projectId)
+                                where r.Folio.Equals(projectId) && r.estado.Equals("creada")
                                 select new Request
                                 {
                                     Id = r.IdSolicitud,
@@ -308,7 +309,7 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
-            catch (EntityException exception)
+            catch (System.Data.EntityException exception)
             {
                 Console.WriteLine(exception.Message);
                 return null;

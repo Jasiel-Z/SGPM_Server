@@ -14,7 +14,7 @@ namespace SGPM_Contracts.IBeneficiaryManagement
     public interface IBeneficiaryManagement
     {
         [OperationContract]
-        List<Beneficiary> GetBeneficiaries();
+        List<Beneficiary> GetBeneficiaries(int localityId);
 
         [OperationContract]
         List<Person> GetPersons(string name);
