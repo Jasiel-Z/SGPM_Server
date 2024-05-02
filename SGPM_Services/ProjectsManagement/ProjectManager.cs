@@ -127,6 +127,8 @@ namespace SGPM_Services.ProjectsManagement
                         sProject.Evidence = (DateTime)dbProyect.fechaLimiteEvidencias;
                         sProject.End = (DateTime)dbProyect.fechaFin;
                         sProject.Dependecy = dbProyect.Dependencias.IdDependencia;
+                        sProject.Solicitud = (DateTime)dbProyect.fechaLimiteSolicitudes;
+                        sProject.Location = (int)dbProyect.idLocalidad;
                     }
 
                     
@@ -260,9 +262,11 @@ namespace SGPM_Services.ProjectsManagement
                             IdDependencia = project.Dependecy,
                             idLocalidad = project.Location
                         };
-
-                        context.Proyectos.Add(proyectDB);
-                        result -= context.SaveChanges();
+                        if(proyectDB.idLocalidad > 0)
+                        {
+                            context.Proyectos.AddOrUpdate(proyectDB);
+                            result -= context.SaveChanges();
+                        }
                     }
                 }
                 catch (SqlException exception)
