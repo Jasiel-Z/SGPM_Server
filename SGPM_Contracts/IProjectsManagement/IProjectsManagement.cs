@@ -21,6 +21,8 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [OperationContract]
         List<ProjectPolicy> GetProjectPolicies(string idProject);
+
+        [OperationContract]
         List<Project> GetAllProjects();
 
         [OperationContract]
