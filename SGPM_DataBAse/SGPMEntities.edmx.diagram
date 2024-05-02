@@ -4,26 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e9de28250db14c77be35fd194cede1cf" Name="Diagram1">
-        <EntityTypeShape EntityType="SGPMModel.Beneficiarios" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.CuentasBancarias" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.DependenciaLocalidad" Width="1.5" PointX="6" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Dependencias" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Devoluciones" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Dictamenes" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Documentos" Width="1.5" PointX="12.75" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Empleados" Width="1.5" PointX="6" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Empresas" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Evidencias" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Localidades" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.OrdenesEntrega" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Personas" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.PoliticasOtorgamiento" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.ProyectoPoliticaOtorgamiento" Width="1.5" PointX="10.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Proyectos" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Recursos" Width="1.5" PointX="3.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Solicitudes" Width="1.5" PointX="10.5" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="SGPMModel.Usuarios" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+      <Diagram DiagramId="2bd02e486d974c7ab84ce8bdc421b846" Name="Diagram1">
+        <EntityTypeShape EntityType="SGPMModel.Beneficiarios" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.CuentasBancarias" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.DependenciaLocalidad" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Dependencias" Width="1.5" PointX="3.75" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Devoluciones" Width="1.5" PointX="12.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Dictamenes" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Documentos" Width="1.5" PointX="12.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Empleados" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Empresas" Width="1.5" PointX="5.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Evidencias" Width="1.5" PointX="12.75" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Localidades" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.OrdenesEntrega" Width="1.5" PointX="3.75" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Personas" Width="1.5" PointX="5.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.PoliticasOtorgamiento" Width="1.5" PointX="6" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.ProyectoPoliticaOtorgamiento" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Proyectos" Width="1.5" PointX="6" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Recursos" Width="1.5" PointX="1.5" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Solicitudes" Width="1.5" PointX="10.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SGPMModel.Usuarios" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
         <AssociationConnector Association="SGPMModel.FK_Beneficiario_CuentaBancaria" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_Beneficiario_Localidad" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_CuentaBancaria_Beneficiario" ManuallyRouted="false" />
@@ -41,12 +41,12 @@
         <AssociationConnector Association="SGPMModel.FK_Empleado_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_Usuario_Empleado" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_Evidencia_Solicitud" ManuallyRouted="false" />
+        <AssociationConnector Association="SGPMModel.FK_Proyecto_Localidad" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_OrdenEntrega_Recurso" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_Proyecto_OrdenEntrega" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_ProyectoPoliticaOtorgamiento_Proyecto" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_Solicitud_Proyecto" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SGPMModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

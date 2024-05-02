@@ -199,7 +199,7 @@ namespace SGPM_Services.ProjectsManagement
                         {
                             correo = user.Email,
                             contrasena = user.Password,
-                            NumeroEmpleado = user.EmployeeNumber
+                            //NumeroEmpleado = user.EmployeeNumber
                         };
 
                         context.Usuarios.Add(userToBeSaved);

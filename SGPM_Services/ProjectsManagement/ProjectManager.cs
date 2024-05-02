@@ -128,7 +128,7 @@ namespace SGPM_Services.ProjectsManagement
                         sProject.End = (DateTime)dbProyect.fechaFin;
                         sProject.Dependecy = dbProyect.Dependencias.IdDependencia;
                         sProject.Solicitud = (DateTime)dbProyect.fechaLimiteSolicitudes;
-                        sProject.Location = (int)dbProyect.idLocalidad;
+                        sProject.Location = (int)dbProyect.IdLocalidad;
                     }
 
                     
@@ -199,19 +199,39 @@ namespace SGPM_Services.ProjectsManagement
 
                 using (var context = new SGPMEntities())
                 {
-                    projects = (from ld in context.DependenciaLocalidad
-                                   join p in context.Proyectos
-                                   on ld.IdDependencia equals p.IdDependencia
-                                   where ld.IdLocalidad == locationId
-                                   select new Project
-                                   {
-                                        Folio = p.Folio,
-                                        Modality = p.modalidad,
-                                        AttentionGroup = p.grupoAtencion,
-                                        Type = p.tipo,
-                                        Name = p.nombre,
-                                        Description = p.descripcion,
-                                   }).ToList();
+                    var projectsFromDB = context.Proyectos.Where(p => p.IdLocalidad == locationId).ToList();
+
+                    if (projectsFromDB != null)
+                    {
+                        foreach (var project in projectsFromDB)
+                        {
+                            Project newProject = new Project()
+                            {
+                                Folio = project.Folio,
+                                Modality = project.modalidad,
+                                AttentionGroup = project.grupoAtencion,
+                                Type = project.tipo,
+                                Name = project.nombre,
+                                Description = project.descripcion
+                            };
+
+                            projects.Add(newProject);
+                        }
+                    }
+                    
+                    //projects = (from ld in context.DependenciaLocalidad
+                    //               join p in context.Proyectos
+                    //               on ld.IdDependencia equals p.IdDependencia
+                    //               where ld.IdLocalidad == locationId
+                    //               select new Project
+                    //               {
+                    //                    Folio = p.Folio,
+                    //                    Modality = p.modalidad,
+                    //                    AttentionGroup = p.grupoAtencion,
+                    //                    Type = p.tipo,
+                    //                    Name = p.nombre,
+                    //                    Description = p.descripcion,
+                    //               }).ToList();
                 }
 
                 return projects;
@@ -260,9 +280,9 @@ namespace SGPM_Services.ProjectsManagement
                             fechaFin = project.End,
                             fechaLimiteEvidencias = project.Evidence,
                             IdDependencia = project.Dependecy,
-                            idLocalidad = project.Location
+                            IdLocalidad = project.Location
                         };
-                        if(proyectDB.idLocalidad > 0)
+                        if(proyectDB.IdLocalidad > 0)
                         {
                             context.Proyectos.AddOrUpdate(proyectDB);
                             result -= context.SaveChanges();
