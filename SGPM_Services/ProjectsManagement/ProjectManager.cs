@@ -28,8 +28,14 @@ namespace SGPM_Services.ProjectsManagement
                 using (var context = new SGPMEntities())
                 {
                     var proyectos = context.Proyectos.ToList();
-                    foreach (var proyecto in proyectos)
+                    foreach (var dbProyect in proyectos)
                     {
+                        Project sProject = new Project();
+                        sProject.Folio = dbProyect.Folio;
+                        sProject.Name = dbProyect.nombre;
+                        sProject.Description = dbProyect.descripcion;
+                        projects.Add(sProject);
+
                     }
                     return projects;
                 }
