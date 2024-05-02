@@ -128,6 +128,9 @@
     <Compile Include="Solicitudes.cs">
       <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs">
       <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>

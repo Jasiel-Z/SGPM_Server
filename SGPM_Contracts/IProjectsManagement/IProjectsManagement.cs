@@ -46,13 +46,13 @@ namespace SGPM_Contracts.IProjectsManagement
         public string Description { get; set; }
 
         [DataMember] 
-        public int SupportAmount{ get; set; }
+        public double SupportAmount{ get; set; }
         
         [DataMember]
-        public string Location { get; set; }
+        public int Location { get; set; }
 
         [DataMember]
-        public string Dependecy { get; set; }
+        public int Dependecy { get; set; }
 
         [DataMember]
         public string State { get; set; }
@@ -72,7 +72,11 @@ namespace SGPM_Contracts.IProjectsManagement
         [DataMember]
         public string Type { get; set; }
 
+        [DataMember]
         public DateTime Start {  get; set; }
+
+        [DataMember]
+        public DateTime Solicitud { get; set; }
 
         [DataMember]
         public DateTime End { get; set; }
