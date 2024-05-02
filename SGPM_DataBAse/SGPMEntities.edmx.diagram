@@ -46,6 +46,7 @@
         <AssociationConnector Association="SGPMModel.FK_ProyectoPoliticaOtorgamiento_PoliticaOtorgamiento" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_ProyectoPoliticaOtorgamiento_Proyecto" ManuallyRouted="false" />
         <AssociationConnector Association="SGPMModel.FK_Solicitud_Proyecto" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SGPMModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -55,6 +55,21 @@ namespace SGPM_Services.ProjectsManagement
         {
             List<Dependency> dependenciesList = new List<Dependency>();
 
+            using (var context = new SGPMEntities())
+            {
+                var dependecies = context.Dependencias.ToList();
+                
+                foreach(var dependencyDB in dependecies)
+                {
+                    Dependency dependency = new Dependency
+                    {
+                        IdDependency = dependencyDB.IdDependencia,
+                        NameDependency = dependencyDB.nombre,
+                    };
+                    dependenciesList.Add(dependency);
+                }
+            }
+
             return dependenciesList;
         }
 
@@ -62,28 +77,53 @@ namespace SGPM_Services.ProjectsManagement
         {
             List<Localidad> localidadList = new List<Localidad>();
 
+            using (var context = new SGPMEntities())
+            {
+                var localidads = context.Localidades.ToList();
+
+                foreach (var localidadDB in localidads)
+                {
+                    Localidad dependency = new Localidad
+                    {
+                        IdLocalidad = localidadDB.IdLocalidad,
+                        NameLocalidad = localidadDB.nombre,
+                    };
+                    localidadList.Add(dependency);
+                }
+            }
 
             return localidadList;
         }
 
         public Project GetProjectDetails(string idProject)
         {
-            Project sProject = new Project();   
+            Project sProject = null;   
 
             try
             {
                 using (var context = new SGPMEntities())
                 {
+                    
                     Proyectos dbProyect = context.Proyectos.FirstOrDefault(p => p.Folio == idProject);
-                    sProject.Folio = dbProyect.Folio;
-                    sProject.Modality = dbProyect.modalidad;
-                    sProject.AttentionGroup = dbProyect.grupoAtencion;
-                    sProject.BeneficiaryNumbers = (int)dbProyect.numeroBeneficiarios;
-                    sProject.Type = dbProyect.tipo;
-                    sProject.Name = dbProyect.nombre;
-                    sProject.Description = dbProyect.descripcion;
+                    if(dbProyect != null)
+                    {
+                        sProject = new Project();
+                        sProject.Folio = dbProyect.Folio;
+                        sProject.Name = dbProyect.nombre;
+                        sProject.Description = dbProyect.descripcion;
+                        sProject.State = dbProyect.estado;
+                        sProject.AttentionGroup = dbProyect.grupoAtencion;
+                        sProject.Modality = dbProyect.modalidad;
+                        sProject.Type = dbProyect.tipo;
+                        sProject.SupportAmount = (double)dbProyect.montoApoyo;
+                        sProject.BeneficiaryNumbers = (int)dbProyect.numeroBeneficiarios;
+                        sProject.Start = (DateTime)dbProyect.fechaInicio;
+                        sProject.Evidence = (DateTime)dbProyect.fechaLimiteEvidencias;
+                        sProject.End = (DateTime)dbProyect.fechaFin;
+                        sProject.Dependecy = dbProyect.Dependencias.IdDependencia;
+                    }
 
-                    return sProject;
+                    
                 }
             }
             catch (SqlException exception)
@@ -101,6 +141,8 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
                 return null;
             }
+
+            return sProject;
         }
 
         public List<ProjectPolicy> GetProjectPolicies(string idProject)
@@ -185,16 +227,36 @@ namespace SGPM_Services.ProjectsManagement
 
         }
 
-
         public int RegisteredProjects(Project project)
         {
             int result = 1;
-            if (project == null)
+            if (project != null)
             {
                 try
                 {
                     using (var context = new SGPMEntities())
                     {
+                        Proyectos proyectDB = new Proyectos
+                        {
+                            Folio = project.Folio,
+                            nombre = project.Name,
+                            descripcion = project.Description,
+                            estado = project.Status,
+                            grupoAtencion = project.AttentionGroup,
+                            modalidad = project.Modality,
+                            tipo = project.Type,
+                            montoApoyo = project.SupportAmount,
+                            numeroBeneficiarios = project.BeneficiaryNumbers,
+                            fechaInicio = project.Start,
+                            fechaLimiteSolicitudes = project.Solicitud,
+                            fechaFin = project.End,
+                            fechaLimiteEvidencias = project.Evidence,
+                            IdDependencia = project.Dependecy,
+                            idLocalidad = project.Location
+                        };
+
+                        context.Proyectos.Add(proyectDB);
+                        result -= context.SaveChanges();
                     }
                 }
                 catch (SqlException exception)

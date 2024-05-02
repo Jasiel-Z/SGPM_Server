@@ -12,16 +12,17 @@ namespace SGPM_Services.ProjectsManagement
 {
     public partial class SGPMManager : IDeliveryOrdenManagement
     {
-        public DeliveryOrden GetDeliveryOrden(int idDeliveryOrden)
+        public DeliveryOrden GetDeliveryOrden(string folio)
         {
             DeliveryOrden deliveryOrden = null;
             using (var context = new SGPMEntities())
             {
-                var orden = context.OrdenesEntrega.Where(o => o.IdOrdenEntrega == idDeliveryOrden).FirstOrDefault();
+                var orden = context.OrdenesEntrega.Where(o => o.Proyectos.FirstOrDefault().Folio == folio).FirstOrDefault();
                 if (orden != null)
                 {
                     deliveryOrden = new DeliveryOrden
                     {
+                        IdDeliveryOrden = orden.IdOrdenEntrega,
                         Amount = orden.cantidad,
                         DeliveryDate = (DateTime)orden.fechaEntrega,
                         DeliveryPlace = orden.lugarEntrega,
@@ -60,6 +61,7 @@ namespace SGPM_Services.ProjectsManagement
             {
                 OrdenesEntrega delivery = new OrdenesEntrega
                 {
+                    IdOrdenEntrega = deliveryOrden.IdDeliveryOrden,
                     lugarEntrega = deliveryOrden.DeliveryPlace,
                     fechaEntrega = deliveryOrden.DeliveryDate,
                     cantidad = deliveryOrden.Amount,
