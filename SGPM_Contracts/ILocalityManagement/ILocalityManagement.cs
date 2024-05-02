@@ -13,6 +13,9 @@ namespace SGPM_Contracts.ILocalityManagement
     public interface ILocalityManagement
     {
         [OperationContract]
+        Locality GetLocalityByID(int localityID);
+
+        [OperationContract]
         int SaveLocality(Locality locality);
 
         [OperationContract]

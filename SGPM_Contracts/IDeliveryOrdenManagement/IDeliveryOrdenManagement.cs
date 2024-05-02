@@ -16,7 +16,7 @@ namespace SGPM_Contracts.IDeliveryOrdenManagement
         int SaveDeliveryOrden(DeliveryOrden deliveryOrden, string folio);
 
         [OperationContract]
-        DeliveryOrden GetDeliveryOrden(int idDeliveryOrden);
+        DeliveryOrden GetDeliveryOrden(string folio);
 
         [OperationContract]
         Collection<Resource> GetResources();
