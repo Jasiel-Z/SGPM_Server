@@ -15,7 +15,16 @@ namespace SGPM_Contracts.IUserManagement
         User GetUser(string email, string password);
 
         [OperationContract]
+        List<User> GetUsersGeneralInfo(int pageNumber);
+
+        [OperationContract]
+        User GetUserDetailsByEmployeeNumber(int employeeNumber);
+
+        [OperationContract]
         int SaveUser(User user);
+
+        [OperationContract]
+        int UpdateUser(User user);
 
         [OperationContract]
         bool ValidateEmailDoesNotExist(string email);

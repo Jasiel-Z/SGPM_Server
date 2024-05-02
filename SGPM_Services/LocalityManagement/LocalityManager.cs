@@ -14,6 +14,24 @@ namespace SGPM_Services.ProjectsManagement
 {
     public partial class SGPMManager : ILocalityManagement
     {
+        public Locality GetLocalityByID(int localityID)
+        {
+            Locality locality = new Locality();
+
+            using (var context = new SGPMEntities())
+            {
+                var localityFromDB = context.Localidades.Where(localidad => localidad.IdLocalidad == localityID).FirstOrDefault();
+
+                if (localityFromDB != null)
+                {
+                    locality.Name = localityFromDB.nombre;
+                    locality.Township = localityFromDB.municipio;
+                }
+            }
+
+            return locality;
+        }
+
         public int SaveLocality(Locality locality)
         {
             int result = 0;
@@ -111,7 +129,8 @@ namespace SGPM_Services.ProjectsManagement
                         result = context.SaveChanges();
                     }
                 }
-            } catch (Exception ex) when (ex is DbUpdateException || ex is DbEntityValidationException || ex is InvalidOperationException || ex is SqlException) {
+            }
+            catch (Exception ex) when (ex is DbUpdateException || ex is DbEntityValidationException || ex is InvalidOperationException || ex is SqlException) {
                 result = -1;
             }
 
