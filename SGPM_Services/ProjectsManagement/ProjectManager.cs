@@ -30,6 +30,7 @@ namespace SGPM_Services.ProjectsManagement
                     var proyectos = context.Proyectos.ToList();
                     foreach (var proyecto in proyectos)
                     {
+
                     }
                     return projects;
                 }
@@ -191,10 +192,8 @@ namespace SGPM_Services.ProjectsManagement
 
                 using (var context = new SGPMEntities())
                 {
-                    projects = (from ld in context.DependenciaLocalidad
-                                   join p in context.Proyectos
-                                   on ld.IdDependencia equals p.IdDependencia
-                                   where ld.IdLocalidad == locationId
+                    projects = (from p in context.Proyectos
+                                   where p.IdLocalidad == locationId
                                    select new Project
                                    {
                                         Folio = p.Folio,
@@ -252,7 +251,7 @@ namespace SGPM_Services.ProjectsManagement
                             fechaFin = project.End,
                             fechaLimiteEvidencias = project.Evidence,
                             IdDependencia = project.Dependecy,
-                            idLocalidad = project.Location
+                            IdLocalidad = project.Location
                         };
 
                         context.Proyectos.Add(proyectDB);

@@ -194,7 +194,7 @@ namespace SGPM_Services.ProjectsManagement
                         {
                             correo = user.Email,
                             contrasena = user.Password,
-                            NumeroEmpleado = user.EmployeeNumber
+                            //NumeroEmpleado = user.EmployeeNumber
                         };
 
                         context.Usuarios.Add(userToBeSaved);
@@ -217,6 +217,16 @@ namespace SGPM_Services.ProjectsManagement
 
                         context.Empleados.Add(employeeToBeSaved);
                         result += context.SaveChanges();
+
+
+                        int idNewEmployee = employeeToBeSaved.NumeroEmpleado;
+
+                        var usuario = context.Usuarios.FirstOrDefault(u => u.correo == user.Email);
+                        if (usuario != null)
+                        {
+                            usuario.NumeroEmpleado = idNewEmployee;
+                            result += context.SaveChanges();
+                        }
 
                         transaction.Commit();
                     }

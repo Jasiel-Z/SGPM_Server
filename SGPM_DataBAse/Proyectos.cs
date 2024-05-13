@@ -36,14 +36,14 @@ namespace SGPM_DataBAse
         public Nullable<System.DateTime> fechaLimiteEvidencias { get; set; }
         public Nullable<int> IdDependencia { get; set; }
         public Nullable<int> IdOrdenEntrega { get; set; }
-        public Nullable<int> idLocalidad { get; set; }
+        public Nullable<int> IdLocalidad { get; set; }
     
         public virtual Dependencias Dependencias { get; set; }
+        public virtual Localidades Localidades { get; set; }
         public virtual OrdenesEntrega OrdenesEntrega { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProyectoPoliticaOtorgamiento> ProyectoPoliticaOtorgamiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Solicitudes> Solicitudes { get; set; }
-        public virtual Localidades Localidades { get; set; }
     }
 }
