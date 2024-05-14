@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SGPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SGPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beneficiarios">
           <Key>
             <PropertyRef Name="IdBeneficiario" />
@@ -170,6 +170,7 @@
           <Property Name="IdDependencia" Type="int" />
           <Property Name="IdOrdenEntrega" Type="int" />
           <Property Name="IdLocalidad" Type="int" />
+          <Property Name="beneficiariosRestantes" Type="int" />
         </EntityType>
         <EntityType Name="Recursos">
           <Key>
@@ -610,8 +611,7 @@
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SGPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -817,6 +817,7 @@
           <NavigationProperty Name="OrdenesEntrega" Relationship="Self.FK_Proyecto_OrdenEntrega" FromRole="Proyectos" ToRole="OrdenesEntrega" />
           <NavigationProperty Name="ProyectoPoliticaOtorgamiento" Relationship="Self.FK_ProyectoPoliticaOtorgamiento_Proyecto" FromRole="Proyectos" ToRole="ProyectoPoliticaOtorgamiento" />
           <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Solicitud_Proyecto" FromRole="Proyectos" ToRole="Solicitudes" />
+          <Property Name="beneficiariosRestantes" Type="Int32" />
         </EntityType>
         <EntityType Name="Recursos">
           <Key>
@@ -1435,6 +1436,7 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="SGPMModel.Proyectos">
               <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="beneficiariosRestantes" ColumnName="beneficiariosRestantes" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />

@@ -18,32 +18,40 @@ namespace SGPM_Services.ProjectsManagement
     {
         public User GetUser(string email, string password)
         {
-            User user = new User();
+            User user = null;
 
             try{
                 using (var context = new SGPMEntities())
                 {
                     var userFromDB = context.Usuarios.Where(usuario => usuario.contrasena == password
                                                             && usuario.correo == email).FirstOrDefault();
-                    var employeeFromDB = context.Empleados.Where(empleado => empleado.IdUsuario == userFromDB.IdUsuario).FirstOrDefault();
-
-                    if (userFromDB != null && employeeFromDB != null)
+                    if(userFromDB != null)
                     {
-                        user.UserId = userFromDB.IdUsuario;
-                        user.Email = userFromDB.correo;
-                        user.Password = userFromDB.contrasena;
-                        
-                        user.EmployeeNumber = employeeFromDB.NumeroEmpleado;
-                        user.Name = employeeFromDB.nombre;
-                        user.MiddleName = employeeFromDB.apellidoPaterno;
-                        user.LastName = employeeFromDB.apellidoMaterno;
-                        user.Role = employeeFromDB.rol;
-                        user.PhoneNumber = employeeFromDB.telefono;
-                        user.City = employeeFromDB.ciudad;
-                        user.Street = employeeFromDB.calle;
-                        user.Number = (int)employeeFromDB.numeroCasa;
-                        user.LocationId = (int)employeeFromDB.IdLocalidad;
+                        var employeeFromDB = context.Empleados.Where(empleado => empleado.IdUsuario == userFromDB.IdUsuario).FirstOrDefault();
+
+                        if (employeeFromDB != null)
+                        {
+                            user = new User
+                            {
+                                UserId = userFromDB.IdUsuario,
+                                Email = userFromDB.correo,
+                                Password = userFromDB.contrasena,
+                                EmployeeNumber = employeeFromDB.NumeroEmpleado,
+                                Name = employeeFromDB.nombre,
+                                MiddleName = employeeFromDB.apellidoPaterno,
+                                LastName = employeeFromDB.apellidoMaterno,
+                                Role = employeeFromDB.rol,
+                                PhoneNumber = employeeFromDB.telefono,
+                                City = employeeFromDB.ciudad,
+                                Street = employeeFromDB.calle,
+                                Number = (int)employeeFromDB.numeroCasa,
+                                LocationId = (int)employeeFromDB.IdLocalidad
+                            };
+
+                        }
                     }
+
+
                 }
             }
             catch (SqlException exception)

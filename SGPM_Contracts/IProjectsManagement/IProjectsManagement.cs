@@ -33,6 +33,9 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [OperationContract]
         List<Project> GetProjectsFromLocality(int locationId);
+
+        [OperationContract]
+        int updateRemainingBeneficiaries(string folio);
     }
 
     [DataContract]
@@ -85,6 +88,9 @@ namespace SGPM_Contracts.IProjectsManagement
 
         [DataMember]
         public DateTime Evidence { get; set; }
+
+        [DataMember]
+        public int RemainingBeneficiaries {  get; set; }
     }
 
     [DataContract]

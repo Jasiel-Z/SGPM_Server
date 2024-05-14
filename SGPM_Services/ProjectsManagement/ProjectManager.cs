@@ -193,7 +193,9 @@ namespace SGPM_Services.ProjectsManagement
                 using (var context = new SGPMEntities())
                 {
                     projects = (from p in context.Proyectos
-                                   where p.IdLocalidad == locationId
+                                   where p.IdLocalidad == locationId  &&
+                                   p.estado == "Activo" &&
+                                   p.beneficiariosRestantes > 0
                                    select new Project
                                    {
                                         Folio = p.Folio,
@@ -202,6 +204,8 @@ namespace SGPM_Services.ProjectsManagement
                                         Type = p.tipo,
                                         Name = p.nombre,
                                         Description = p.descripcion,
+                                        SupportAmount = (double)p.montoApoyo,
+                                        RemainingBeneficiaries = (int)p.beneficiariosRestantes
                                    }).ToList();
                 }
 
@@ -251,7 +255,8 @@ namespace SGPM_Services.ProjectsManagement
                             fechaFin = project.End,
                             fechaLimiteEvidencias = project.Evidence,
                             IdDependencia = project.Dependecy,
-                            IdLocalidad = project.Location
+                            IdLocalidad = project.Location,
+                            beneficiariosRestantes = project.BeneficiaryNumbers
                         };
 
                         context.Proyectos.Add(proyectDB);
@@ -273,6 +278,45 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return result;
+        }
+
+        public int updateRemainingBeneficiaries(string folio)
+        {
+            int result = -1;
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var project = context.Proyectos.FirstOrDefault(p => p.Folio == folio);
+                
+                    if(project != null && project.beneficiariosRestantes > 0)
+                    {
+                        project.beneficiariosRestantes--;
+
+                        result = context.SaveChanges();
+
+                    }
+
+                    return result;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return result;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return result;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return result;
+
+            }
         }
     }
 }
