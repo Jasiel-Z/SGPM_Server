@@ -37,7 +37,7 @@ namespace SGPM_DataBAse
         public Nullable<int> IdDependencia { get; set; }
         public Nullable<int> IdOrdenEntrega { get; set; }
         public Nullable<int> IdLocalidad { get; set; }
-    
+        public Nullable<int> beneficiariosRestantes { get; set; } 
         public virtual Dependencias Dependencias { get; set; }
         public virtual Localidades Localidades { get; set; }
         public virtual OrdenesEntrega OrdenesEntrega { get; set; }

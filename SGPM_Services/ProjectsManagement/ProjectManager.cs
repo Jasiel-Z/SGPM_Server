@@ -30,11 +30,13 @@ namespace SGPM_Services.ProjectsManagement
                     var proyectos = context.Proyectos.ToList();
                     foreach (var dbProyect in proyectos)
                     {
+
                         Project sProject = new Project();
                         sProject.Folio = dbProyect.Folio;
                         sProject.Name = dbProyect.nombre;
                         sProject.Description = dbProyect.descripcion;
                         projects.Add(sProject);
+
 
                     }
                     return projects;
@@ -199,39 +201,21 @@ namespace SGPM_Services.ProjectsManagement
 
                 using (var context = new SGPMEntities())
                 {
-                    var projectsFromDB = context.Proyectos.Where(p => p.IdLocalidad == locationId).ToList();
-
-                    if (projectsFromDB != null)
-                    {
-                        foreach (var project in projectsFromDB)
-                        {
-                            Project newProject = new Project()
-                            {
-                                Folio = project.Folio,
-                                Modality = project.modalidad,
-                                AttentionGroup = project.grupoAtencion,
-                                Type = project.tipo,
-                                Name = project.nombre,
-                                Description = project.descripcion
-                            };
-
-                            projects.Add(newProject);
-                        }
-                    }
-                    
-                    //projects = (from ld in context.DependenciaLocalidad
-                    //               join p in context.Proyectos
-                    //               on ld.IdDependencia equals p.IdDependencia
-                    //               where ld.IdLocalidad == locationId
-                    //               select new Project
-                    //               {
-                    //                    Folio = p.Folio,
-                    //                    Modality = p.modalidad,
-                    //                    AttentionGroup = p.grupoAtencion,
-                    //                    Type = p.tipo,
-                    //                    Name = p.nombre,
-                    //                    Description = p.descripcion,
-                    //               }).ToList();
+                    projects = (from p in context.Proyectos
+                                   where p.IdLocalidad == locationId  &&
+                                   p.estado == "Activo" &&
+                                   p.beneficiariosRestantes > 0
+                                   select new Project
+                                   {
+                                        Folio = p.Folio,
+                                        Modality = p.modalidad,
+                                        AttentionGroup = p.grupoAtencion,
+                                        Type = p.tipo,
+                                        Name = p.nombre,
+                                        Description = p.descripcion,
+                                        SupportAmount = (double)p.montoApoyo,
+                                        RemainingBeneficiaries = (int)p.beneficiariosRestantes
+                                   }).ToList();
                 }
 
                 return projects;
@@ -280,7 +264,9 @@ namespace SGPM_Services.ProjectsManagement
                             fechaFin = project.End,
                             fechaLimiteEvidencias = project.Evidence,
                             IdDependencia = project.Dependecy,
-                            IdLocalidad = project.Location
+                            IdLocalidad = project.Location,
+                            beneficiariosRestantes = project.BeneficiaryNumbers
+
                         };
                         if(proyectDB.IdLocalidad > 0)
                         {
@@ -304,6 +290,45 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return result;
+        }
+
+        public int updateRemainingBeneficiaries(string folio)
+        {
+            int result = -1;
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var project = context.Proyectos.FirstOrDefault(p => p.Folio == folio);
+                
+                    if(project != null && project.beneficiariosRestantes > 0)
+                    {
+                        project.beneficiariosRestantes--;
+
+                        result = context.SaveChanges();
+
+                    }
+
+                    return result;
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return result;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return result;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return result;
+
+            }
         }
     }
 }
