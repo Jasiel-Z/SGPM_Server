@@ -26,6 +26,7 @@ namespace SGPM_Services.ProjectsManagement
                     var userFromDB = context.Usuarios.Where(usuario => usuario.contrasena == password
                                                             && usuario.correo == email).FirstOrDefault();
                     if(userFromDB != null)
+
                     {
                         var employeeFromDB = context.Empleados.Where(empleado => empleado.IdUsuario == userFromDB.IdUsuario).FirstOrDefault();
 

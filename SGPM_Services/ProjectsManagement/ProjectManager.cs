@@ -28,8 +28,15 @@ namespace SGPM_Services.ProjectsManagement
                 using (var context = new SGPMEntities())
                 {
                     var proyectos = context.Proyectos.ToList();
-                    foreach (var proyecto in proyectos)
+                    foreach (var dbProyect in proyectos)
                     {
+
+                        Project sProject = new Project();
+                        sProject.Folio = dbProyect.Folio;
+                        sProject.Name = dbProyect.nombre;
+                        sProject.Description = dbProyect.descripcion;
+                        projects.Add(sProject);
+
 
                     }
                     return projects;
@@ -122,6 +129,8 @@ namespace SGPM_Services.ProjectsManagement
                         sProject.Evidence = (DateTime)dbProyect.fechaLimiteEvidencias;
                         sProject.End = (DateTime)dbProyect.fechaFin;
                         sProject.Dependecy = dbProyect.Dependencias.IdDependencia;
+                        sProject.Solicitud = (DateTime)dbProyect.fechaLimiteSolicitudes;
+                        sProject.Location = (int)dbProyect.IdLocalidad;
                     }
 
                     
@@ -257,10 +266,13 @@ namespace SGPM_Services.ProjectsManagement
                             IdDependencia = project.Dependecy,
                             IdLocalidad = project.Location,
                             beneficiariosRestantes = project.BeneficiaryNumbers
-                        };
 
-                        context.Proyectos.Add(proyectDB);
-                        result -= context.SaveChanges();
+                        };
+                        if(proyectDB.IdLocalidad > 0)
+                        {
+                            context.Proyectos.AddOrUpdate(proyectDB);
+                            result -= context.SaveChanges();
+                        }
                     }
                 }
                 catch (SqlException exception)
