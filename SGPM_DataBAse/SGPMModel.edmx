@@ -171,7 +171,6 @@
           <Property Name="IdOrdenEntrega" Type="int" />
           <Property Name="IdLocalidad" Type="int" />
           <Property Name="beneficiariosRestantes" Type="int" />
-
         </EntityType>
         <EntityType Name="Recursos">
           <Key>
@@ -803,14 +802,13 @@
           <Property Name="IdDependencia" Type="Int32" />
           <Property Name="IdOrdenEntrega" Type="Int32" />
           <Property Name="IdLocalidad" Type="Int32" />
+          <Property Name="beneficiariosRestantes" Type="Int32" />
           <NavigationProperty Name="Dependencias" Relationship="Self.FK_Proyecto_Dependencia" FromRole="Proyectos" ToRole="Dependencias" />
           <NavigationProperty Name="Localidades" Relationship="Self.FK_Proyecto_Localidad" FromRole="Proyectos" ToRole="Localidades" />
           <NavigationProperty Name="OrdenesEntrega" Relationship="Self.FK_Proyecto_OrdenEntrega" FromRole="Proyectos" ToRole="OrdenesEntrega" />
           <NavigationProperty Name="ProyectoPoliticaOtorgamiento" Relationship="Self.FK_ProyectoPoliticaOtorgamiento_Proyecto" FromRole="Proyectos" ToRole="ProyectoPoliticaOtorgamiento" />
           <NavigationProperty Name="Solicitudes" Relationship="Self.FK_Solicitud_Proyecto" FromRole="Proyectos" ToRole="Solicitudes" />
-          <Property Name="beneficiariosRestantes" Type="Int32" />
-
-       </EntityType>
+        </EntityType>
         <EntityType Name="Recursos">
           <Key>
             <PropertyRef Name="IdRecurso" />
@@ -835,16 +833,6 @@
           <NavigationProperty Name="Documentos" Relationship="Self.FK_Documento_Solicitud" FromRole="Solicitudes" ToRole="Documentos" />
           <NavigationProperty Name="Evidencias" Relationship="Self.FK_Evidencia_Solicitud" FromRole="Solicitudes" ToRole="Evidencias" />
           <NavigationProperty Name="Proyectos" Relationship="Self.FK_Solicitud_Proyecto" FromRole="Solicitudes" ToRole="Proyectos" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -1164,7 +1152,6 @@
           <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
           <EntitySet Name="Recursos" EntityType="Self.Recursos" />
           <EntitySet Name="Solicitudes" EntityType="Self.Solicitudes" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <AssociationSet Name="FK_Beneficiario_CuentaBancaria" Association="Self.FK_Beneficiario_CuentaBancaria">
             <End Role="CuentasBancarias" EntitySet="CuentasBancarias" />
@@ -1428,7 +1415,6 @@
           <EntitySetMapping Name="Proyectos">
             <EntityTypeMapping TypeName="SGPMModel.Proyectos">
               <MappingFragment StoreEntitySet="Proyectos">
-                <ScalarProperty Name="beneficiariosRestantes" ColumnName="beneficiariosRestantes" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -1445,6 +1431,7 @@
                 <ScalarProperty Name="IdDependencia" ColumnName="IdDependencia" />
                 <ScalarProperty Name="IdOrdenEntrega" ColumnName="IdOrdenEntrega" />
                 <ScalarProperty Name="IdLocalidad" ColumnName="IdLocalidad" />
+                <ScalarProperty Name="beneficiariosRestantes" ColumnName="beneficiariosRestantes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1465,17 +1452,6 @@
                 <ScalarProperty Name="IdDictamen" ColumnName="IdDictamen" />
                 <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SGPMModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1506,7 +1482,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

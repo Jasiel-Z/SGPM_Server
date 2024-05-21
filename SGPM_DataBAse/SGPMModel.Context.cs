@@ -43,7 +43,6 @@ namespace SGPM_DataBAse
         public virtual DbSet<Proyectos> Proyectos { get; set; }
         public virtual DbSet<Recursos> Recursos { get; set; }
         public virtual DbSet<Solicitudes> Solicitudes { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

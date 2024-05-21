@@ -7,6 +7,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,15 +19,23 @@ namespace SGPM_Services.ProjectsManagement
         {
             Locality locality = new Locality();
 
-            using (var context = new SGPMEntities())
+            try
             {
-                var localityFromDB = context.Localidades.Where(localidad => localidad.IdLocalidad == localityID).FirstOrDefault();
-
-                if (localityFromDB != null)
+                using (var context = new SGPMEntities())
                 {
-                    locality.Name = localityFromDB.nombre;
-                    locality.Township = localityFromDB.municipio;
+                    var localityFromDB = context.Localidades.Where(localidad => localidad.IdLocalidad == localityID).FirstOrDefault();
+
+                    if (localityFromDB != null)
+                    {
+                        locality.Name = localityFromDB.nombre;
+                        locality.Township = localityFromDB.municipio;
+                    }
                 }
+            }
+            catch (Exception ex) when (ex is SqlException | ex is EntityException || ex is InvalidOperationException)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
             }
 
             return locality;
@@ -70,14 +79,22 @@ namespace SGPM_Services.ProjectsManagement
         {
             bool isLocalityUnique = false;
 
-            using (var context = new SGPMEntities())
+            try
             {
-                var locality = context.Localidades.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
-
-                if (locality == null)
+                using (var context = new SGPMEntities())
                 {
-                    isLocalityUnique = true;
+                    var locality = context.Localidades.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
+
+                    if (locality == null)
+                    {
+                        isLocalityUnique = true;
+                    }
                 }
+            }
+            catch (Exception ex) when (ex is SqlException | ex is EntityException || ex is InvalidOperationException)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
             }
 
             return isLocalityUnique;
@@ -87,23 +104,31 @@ namespace SGPM_Services.ProjectsManagement
         {         
             List<Locality> localityList = new List<Locality>();
 
-            using (var context = new SGPMEntities())
+            try
             {
-                var localitiesFromDatabase = context.Localidades.ToList();
-
-                if (localitiesFromDatabase != null)
+                using(var context = new SGPMEntities())
                 {
-                    foreach (var locality in localitiesFromDatabase)
+                    var localitiesFromDatabase = context.Localidades.ToList();
+
+                    if (localitiesFromDatabase != null)
                     {
-                        localityList.Add(new Locality
+                        foreach (var locality in localitiesFromDatabase)
                         {
-                            LocalityID = locality.IdLocalidad,
-                            Name = locality.nombre,
-                            Township = locality.municipio
-                        });
+                            localityList.Add(new Locality
+                            {
+                                LocalityID = locality.IdLocalidad,
+                                Name = locality.nombre,
+                                Township = locality.municipio
+                            });
+                        }
                     }
+
                 }
-                
+            }
+            catch (Exception ex) when (ex is SqlException | ex is EntityException || ex is InvalidOperationException)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
             }
 
             return localityList;

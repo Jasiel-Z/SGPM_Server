@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using SGPM_Contracts.ILocalityManagement;
 
 namespace SGPM_Contracts.IPolicyManagement
 {
@@ -14,6 +15,15 @@ namespace SGPM_Contracts.IPolicyManagement
     {
         [OperationContract]
         int SavePolicy(Policy policy);
+
+        [OperationContract]
+        Policy GetPolicy(int policyId);
+
+        [OperationContract]
+        List<Policy> GetPolicies();
+
+        [OperationContract]
+        int UpdatePolicy(Policy policy);
     }
 
     [DataContract]
