@@ -56,6 +56,7 @@
     <Compile Include="BankAccountManagement\BankAccountManagement.cs" />
     <Compile Include="BeneficiaryManagement\BeneficiaryManager.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="EvidenceManagement\EvidenceManager.cs" />
     <Compile Include="LocalityManagement\LocalityManager.cs" />
     <Compile Include="PolicyManagement\PolicyManager.cs" />
     <Compile Include="DeliveryOrdenManagement\DeliveryOrdenManagement.cs" />
@@ -69,6 +70,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="EvidenceManagement\EvidenceFIles\" />
     <Folder Include="RequestsFiles\" />
   </ItemGroup>
   <ItemGroup>

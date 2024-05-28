@@ -131,6 +131,9 @@
     <Compile Include="Solicitudes.cs">
       <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>SGPMEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs">
       <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
