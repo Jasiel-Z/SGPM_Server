@@ -56,6 +56,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="IBankAccountManagement\IBankAccountManagement.cs" />
     <Compile Include="IBeneficiaryManagement\IBeneficiaryManagement.cs" />
+    <Compile Include="IEvidenceManagement\IEvidenceManagement.cs" />
     <Compile Include="ILocalityManagement\ILocalityManagement.cs" />
     <Compile Include="IPolicyManagement\IPolicyManagement.cs" />
     <Compile Include="IDeliveryOrdenManagement\IDeliveryOrdenManagement.cs" />
