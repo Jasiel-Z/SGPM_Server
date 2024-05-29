@@ -84,10 +84,7 @@ namespace SGPM_Services.ProjectsManagement
         public int AddPolicyToProject(string folio, List<int> listPolicys)
         {
             int result = 0;
-        public List<Policy> GetPolicies()
-        {
             List<Policy> policyList = new List<Policy>();
-
             try
             {
                 using (var context = new SGPMEntities())
@@ -127,29 +124,20 @@ namespace SGPM_Services.ProjectsManagement
         public List<int> GetPolicysOfProject(string idProject)
         {
             List<int> listPolicy = new List<int>();
-                    var policiesFromDatabase = context.PoliticasOtorgamiento.ToList();
+            using (var context = new SGPMEntities())
+            {
+                var policiesFromDatabase = context.ProyectoPoliticaOtorgamiento.Where(p => p.Folio == idProject).ToList();
 
-                    if (policiesFromDatabase.Any())
+                if (policiesFromDatabase != null)
+                {
+                    foreach (var policy in policiesFromDatabase)
                     {
-                        foreach (var policy in policiesFromDatabase)
-                        {
-                            policyList.Add(new Policy
-                            {
-                                PolicyID = policy.IdPoliticaOtorgamiento,
-                                Name = policy.nombre,
-                                Description = policy.descripcion
-                            });
-                        }
+                        listPolicy.Add((int)policy.IdPoliticaOtorgamiento);
                     }
                 }
             }
-            catch (Exception ex) when (ex is SqlException | ex is EntityException || ex is InvalidOperationException)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.InnerException);
-            }
-            return policyList;
-        }
+            return listPolicy;
+         }
 
         public Policy GetPolicy(int policyId)
         {
@@ -159,34 +147,6 @@ namespace SGPM_Services.ProjectsManagement
             {
                 using (var context = new SGPMEntities())
                 {
-                    var policyDB = context.ProyectoPoliticaOtorgamiento.Where(p => p.Folio == idProject).ToList();
-                    if (policyDB != null)
-                    {
-                        foreach (var policy in policyDB)
-                        {
-                            listPolicy.Add((int)policy.IdPoliticaOtorgamiento);
-                        }
-                    }
-                }
-            }
-            catch (SqlException exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            catch (DbEntityValidationException exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-            catch (EntityException exception)
-            {
-                Console.WriteLine(exception.Message);
-            }
-
-            return listPolicy;
-        }
-
-        private void DeletePolicyOfProject(string idProject)
-        {
                     var policyFromDB = context.PoliticasOtorgamiento.Where(politica => politica.IdPoliticaOtorgamiento == policyId).FirstOrDefault();
 
                     if (policyFromDB != null)
@@ -203,125 +163,6 @@ namespace SGPM_Services.ProjectsManagement
             }
 
             return policy;
-        }
-
-
-        public int UpdatePolicy(Policy policy)
-        {
-            int result = 0;
-
-            try
-            {
-                using (var context = new SGPMEntities())
-                {
-                    var policyFromDB = context.PoliticasOtorgamiento
-                                              .Where(politica => politica.IdPoliticaOtorgamiento == policy.PolicyID)
-                                              .SingleOrDefault();
-
-                    if (policyFromDB != null)
-                    {
-                        policyFromDB.nombre = policy.Name;
-                        policyFromDB.descripcion = policy.Description;
-
-                        result = context.SaveChanges();
-                    }
-                }
-            }
-            catch (Exception ex) when (ex is DbUpdateException || ex is DbEntityValidationException || ex is InvalidOperationException || ex is SqlException)
-            {
-                result = -1;
-            }
-
-            return result;
-        }
-
-        public List<Policy> GetAllPolicies()
-        {
-            List<Policy> policyList = new List<Policy>();
-
-            try
-            {
-                using (var context = new SGPMEntities())
-                {
-                    var policyListDB = context.PoliticasOtorgamiento.ToList();
-                    foreach (var policy in policyListDB)
-                    {
-                        Policy newPolicy = new Policy
-                        {
-                            PolicyID = policy.IdPoliticaOtorgamiento,
-                            Name = policy.nombre,
-                            Description = policy.descripcion
-                        };
-
-                        policyList.Add(newPolicy);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-
-            return policyList;
-        }
-
-        public int AddPolicyToProject(string folio, List<int> listPolicys)
-        {
-            int result = 0;
-            try
-            {
-                using (var context = new SGPMEntities())
-                {
-                    DeletePolicyOfProject(folio);
-                    foreach (var idPolicy in listPolicys)
-                    {
-                        ProyectoPoliticaOtorgamiento policy = new ProyectoPoliticaOtorgamiento
-                        {
-                            IdPoliticaOtorgamiento = idPolicy,
-                            Folio = folio
-                        };
-                        context.ProyectoPoliticaOtorgamiento.Add(policy);
-                    }
-                    result = context.SaveChanges();
-                }
-            }
-            catch (SqlException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-            catch (DbEntityValidationException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-            catch (EntityException exception)
-            {
-                Console.WriteLine(exception.Message);
-                result = -1;
-            }
-
-            return result;
-        }
-
-        public List<int> GetPolicysOfProject(string idProject)
-        {
-            List<int> listPolicy = null;
-            using (var context = new SGPMEntities())
-            {
-                var policiesFromDatabase = context.ProyectoPoliticaOtorgamiento.Where(p => p.Folio== idProject).ToList();
-
-                if (policiesFromDatabase != null)
-                {
-                    listPolicy = new List<int>();
-                    foreach (var policy in policiesFromDatabase)
-                    {
-                        listPolicy.Add((int)policy.IdPoliticaOtorgamiento);
-                    }
-                }
-            }
-            return listPolicy;
         }
 
         private void DeletePolicyOfProject(string idProject)
@@ -353,5 +194,69 @@ namespace SGPM_Services.ProjectsManagement
                 Console.WriteLine(exception.Message);
             }
         }
+
+
+
+        public int UpdatePolicy(Policy policy)
+        {
+            int result = 0;
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var policyFromDB = context.PoliticasOtorgamiento
+                                              .Where(politica => politica.IdPoliticaOtorgamiento == policy.PolicyID)
+                                              .SingleOrDefault();
+
+                    if (policyFromDB != null)
+                    {
+                        policyFromDB.nombre = policy.Name;
+                        policyFromDB.descripcion = policy.Description;
+
+                        result = context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex) when (ex is DbUpdateException || ex is DbEntityValidationException || ex is InvalidOperationException || ex is SqlException)
+            {
+                result = -1;
+            }
+
+            return result;
+        }
+
+        public List<Policy> GetPolicies()
+        {
+            List<Policy> policyList = new List<Policy>();
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var policiesFromDatabase = context.PoliticasOtorgamiento.ToList();
+
+                    if (policiesFromDatabase.Any())
+                    {
+                        foreach (var policy in policiesFromDatabase)
+                        {
+                            policyList.Add(new Policy
+                            {
+                                PolicyID = policy.IdPoliticaOtorgamiento,
+                                Name = policy.nombre,
+                                Description = policy.descripcion
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex) when (ex is SqlException | ex is EntityException || ex is InvalidOperationException)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
+            }
+            return policyList;
+        }
+
     }
 }
