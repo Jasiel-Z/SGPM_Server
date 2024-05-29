@@ -74,7 +74,7 @@ namespace SGPM_Services.ProjectsManagement
             return user;
         }
 
-        public List<User> GetUsersGeneralInfo(int pageNumber)
+        public List<User> GetUsersGeneralInfo()
         {
             List<User> users = new List<User>();
 
@@ -82,9 +82,7 @@ namespace SGPM_Services.ProjectsManagement
             {
                 using (var context = new SGPMEntities())
                 {
-                    var orderedEmployees = context.Empleados
-                                              .OrderBy(e => e.apellidoPaterno)
-                                              .ThenBy(e => e.nombre)
+                    var employeesFromDB = context.Empleados
                                               .Select(e => new
                                               {
                                                   e.NumeroEmpleado,
@@ -92,11 +90,9 @@ namespace SGPM_Services.ProjectsManagement
                                                   e.apellidoPaterno,
                                                   e.apellidoMaterno
                                               })
-                                              .Skip((pageNumber - 1) * 50)
-                                              .Take(50)
                                               .ToList();
 
-                    foreach (var employee in orderedEmployees)
+                    foreach (var employee in employeesFromDB)
                     {
                         User user = new User
                         {
@@ -274,21 +270,6 @@ namespace SGPM_Services.ProjectsManagement
                 {
                     try
                     {
-                        var userFromDB = context.Usuarios
-                                                .Where(u => u.correo == user.Email)
-                                                .SingleOrDefault();
-
-                        if (userFromDB != null)
-                        {
-                            userFromDB.correo = user.Email;
-                            if (!string.IsNullOrEmpty(user.Password))
-                            {
-                                userFromDB.contrasena = user.Password;
-                            }
-
-                            result += context.SaveChanges();
-                        }
-                        
                         var employeeFromDB = context.Empleados
                                                     .Where(e => e.NumeroEmpleado == user.EmployeeNumber)
                                                     .SingleOrDefault();
@@ -304,6 +285,21 @@ namespace SGPM_Services.ProjectsManagement
                             employeeFromDB.calle = user.Street;
                             employeeFromDB.numeroCasa = user.Number;
                             employeeFromDB.IdLocalidad = user.LocationId;
+
+                            result += context.SaveChanges();
+                        }
+
+                        var userFromDB = context.Usuarios
+                                                .Where(u => u.IdUsuario == employeeFromDB.IdUsuario)
+                                                .SingleOrDefault();
+
+                        if (userFromDB != null)
+                        {
+                            userFromDB.correo = user.Email;
+                            if (!string.IsNullOrEmpty(user.Password))
+                            {
+                                userFromDB.contrasena = user.Password;
+                            }
 
                             result += context.SaveChanges();
                         }
