@@ -15,7 +15,7 @@ namespace SGPM_Contracts.IUserManagement
         User GetUser(string email, string password);
 
         [OperationContract]
-        List<User> GetUsersGeneralInfo(int pageNumber);
+        List<User> GetUsersGeneralInfo();
 
         [OperationContract]
         User GetUserDetailsByEmployeeNumber(int employeeNumber);

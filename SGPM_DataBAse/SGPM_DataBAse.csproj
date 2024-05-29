@@ -56,46 +56,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Beneficiarios.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CuentasBancarias.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DependenciaLocalidad.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Dependencias.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Devoluciones.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Dictamenes.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Documentos.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Empleados.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Empresas.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Evidencias.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Localidades.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrdenesEntrega.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Personas.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PoliticasOtorgamiento.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,37 +105,37 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ProyectoPoliticaOtorgamiento.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Proyectos.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Recursos.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SGPMEntities.Context.cs">
+    <Compile Include="SGPMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SGPMEntities.Context.tt</DependentUpon>
+      <DependentUpon>SGPMModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SGPMEntities.cs">
+    <Compile Include="SGPMModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SGPMEntities.Designer.cs">
+    <Compile Include="SGPMModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SGPMEntities.edmx</DependentUpon>
+      <DependentUpon>SGPMModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Solicitudes.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>SGPMEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.cs">
-      <DependentUpon>SGPMEntities.tt</DependentUpon>
+      <DependentUpon>SGPMModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -145,27 +145,27 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="SGPMEntities.edmx">
+    <EntityDeploy Include="SGPMModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SGPMEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>SGPMModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SGPMEntities.edmx.diagram">
-      <DependentUpon>SGPMEntities.edmx</DependentUpon>
+    <None Include="SGPMModel.edmx.diagram">
+      <DependentUpon>SGPMModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SGPMEntities.Context.tt">
+    <Content Include="SGPMModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SGPMEntities.edmx</DependentUpon>
-      <LastGenOutput>SGPMEntities.Context.cs</LastGenOutput>
+      <DependentUpon>SGPMModel.edmx</DependentUpon>
+      <LastGenOutput>SGPMModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SGPMEntities.tt">
+    <Content Include="SGPMModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SGPMEntities.edmx</DependentUpon>
-      <LastGenOutput>SGPMEntities.cs</LastGenOutput>
+      <DependentUpon>SGPMModel.edmx</DependentUpon>
+      <LastGenOutput>SGPMModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
