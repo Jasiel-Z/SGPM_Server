@@ -24,6 +24,8 @@ namespace SGPM_Contracts.IPolicyManagement
 
         [OperationContract]
         List<int> GetPolicysOfProject(string idProject);
+
+        [OperationContract]
         Policy GetPolicy(int policyId);
 
         [OperationContract]
