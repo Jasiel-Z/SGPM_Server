@@ -16,6 +16,37 @@ namespace SGPM_Services.ProjectsManagement
 {
     public partial class SGPMManager : IPolicyManagement
     {
+        public List<Policy> GetAllPolicies()
+        {
+            List<Policy> policyList = new List<Policy>();
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var policyListDB = context.PoliticasOtorgamiento.ToList();
+                    foreach (var policy in policyListDB)
+                    {
+                        Policy newPolicy = new Policy
+                        {
+                            PolicyID = policy.IdPoliticaOtorgamiento,
+                            Name = policy.nombre,
+                            Description = policy.descripcion
+                        };
+
+                        policyList.Add(newPolicy);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+
+            return policyList;
+        }
+
         public int SavePolicy(Policy policy)
         {
             int result = 0;
@@ -49,6 +80,10 @@ namespace SGPM_Services.ProjectsManagement
 
             return result;
         }
+
+        public int AddPolicyToProject(string folio, List<int> listPolicys)
+        {
+            int result = 0;
         public List<Policy> GetPolicies()
         {
             List<Policy> policyList = new List<Policy>();
@@ -57,6 +92,41 @@ namespace SGPM_Services.ProjectsManagement
             {
                 using (var context = new SGPMEntities())
                 {
+                    DeletePolicyOfProject(folio);
+                    foreach (var idPolicy in listPolicys)
+                    {
+                        ProyectoPoliticaOtorgamiento policy = new ProyectoPoliticaOtorgamiento
+                        {
+                            IdPoliticaOtorgamiento = idPolicy,
+                            Folio = folio
+                        };
+                        context.ProyectoPoliticaOtorgamiento.Add(policy);
+                    }
+                    result = context.SaveChanges();
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+                result = -1;
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+                result = -1;
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+                result = -1;
+            }
+
+            return result; 
+        }
+
+        public List<int> GetPolicysOfProject(string idProject)
+        {
+            List<int> listPolicy = new List<int>();
                     var policiesFromDatabase = context.PoliticasOtorgamiento.ToList();
 
                     if (policiesFromDatabase.Any())
@@ -89,6 +159,34 @@ namespace SGPM_Services.ProjectsManagement
             {
                 using (var context = new SGPMEntities())
                 {
+                    var policyDB = context.ProyectoPoliticaOtorgamiento.Where(p => p.Folio == idProject).ToList();
+                    if (policyDB != null)
+                    {
+                        foreach (var policy in policyDB)
+                        {
+                            listPolicy.Add((int)policy.IdPoliticaOtorgamiento);
+                        }
+                    }
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+            return listPolicy;
+        }
+
+        private void DeletePolicyOfProject(string idProject)
+        {
                     var policyFromDB = context.PoliticasOtorgamiento.Where(politica => politica.IdPoliticaOtorgamiento == policyId).FirstOrDefault();
 
                     if (policyFromDB != null)

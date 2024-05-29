@@ -115,25 +115,30 @@ namespace SGPM_Services.ProjectsManagement
                     Proyectos dbProyect = context.Proyectos.FirstOrDefault(p => p.Folio == idProject);
                     if(dbProyect != null)
                     {
-                        sProject = new Project();
-                        sProject.Folio = dbProyect.Folio;
-                        sProject.Name = dbProyect.nombre;
-                        sProject.Description = dbProyect.descripcion;
-                        sProject.State = dbProyect.estado;
-                        sProject.AttentionGroup = dbProyect.grupoAtencion;
-                        sProject.Modality = dbProyect.modalidad;
-                        sProject.Type = dbProyect.tipo;
-                        sProject.SupportAmount = (double)dbProyect.montoApoyo;
-                        sProject.BeneficiaryNumbers = (int)dbProyect.numeroBeneficiarios;
-                        sProject.Start = (DateTime)dbProyect.fechaInicio;
-                        sProject.Evidence = (DateTime)dbProyect.fechaLimiteEvidencias;
-                        sProject.End = (DateTime)dbProyect.fechaFin;
-                        sProject.Dependecy = dbProyect.Dependencias.IdDependencia;
-                        sProject.Solicitud = (DateTime)dbProyect.fechaLimiteSolicitudes;
-                        sProject.Location = (int)dbProyect.IdLocalidad;
-                    }
-
-                    
+                        try
+                        {
+                            sProject = new Project();
+                            sProject.Folio = dbProyect.Folio;
+                            sProject.Name = dbProyect.nombre;
+                            sProject.Description = dbProyect.descripcion;
+                            sProject.Status = dbProyect.estado;
+                            sProject.AttentionGroup = dbProyect.grupoAtencion;
+                            sProject.Modality = dbProyect.modalidad;
+                            sProject.Type = dbProyect.tipo;
+                            sProject.SupportAmount = (double)dbProyect.montoApoyo;
+                            sProject.BeneficiaryNumbers = (int)dbProyect.numeroBeneficiarios;
+                            sProject.Start = (DateTime)dbProyect.fechaInicio;
+                            sProject.Evidence = (DateTime)dbProyect.fechaLimiteEvidencias;
+                            sProject.End = (DateTime)dbProyect.fechaFin;
+                            sProject.Dependecy = dbProyect.Dependencias.IdDependencia;
+                            sProject.Solicitud = (DateTime)dbProyect.fechaLimiteSolicitudes;
+                            sProject.Location = (int)dbProyect.IdLocalidad;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                        }
+                    }         
                 }
             }
             catch (SqlException exception)

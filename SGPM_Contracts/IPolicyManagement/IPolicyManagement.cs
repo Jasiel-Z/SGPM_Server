@@ -17,6 +17,13 @@ namespace SGPM_Contracts.IPolicyManagement
         int SavePolicy(Policy policy);
 
         [OperationContract]
+        List<Policy> GetAllPolicies();
+
+        [OperationContract]
+        int AddPolicyToProject(string idProject, List<int> listPolicys);
+
+        [OperationContract]
+        List<int> GetPolicysOfProject(string idProject);
         Policy GetPolicy(int policyId);
 
         [OperationContract]
