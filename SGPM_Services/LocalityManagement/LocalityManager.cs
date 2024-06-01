@@ -75,7 +75,7 @@ namespace SGPM_Services.ProjectsManagement
             return result;
         }
 
-        public bool ValidateLocalityDoesNotExist(string localityName)
+        public bool ValidateLocalityDoesNotExist(Locality locality)
         {
             bool isLocalityUnique = false;
 
@@ -83,9 +83,10 @@ namespace SGPM_Services.ProjectsManagement
             {
                 using (var context = new SGPMEntities())
                 {
-                    var locality = context.Localidades.Where(localidad => localidad.nombre == localityName).FirstOrDefault();
+                    var localityFromDB = context.Localidades.Where(localidad => localidad.nombre == locality.Name
+                                                                              && localidad.municipio == locality.Township).FirstOrDefault();
 
-                    if (locality == null)
+                    if (localityFromDB == null)
                     {
                         isLocalityUnique = true;
                     }

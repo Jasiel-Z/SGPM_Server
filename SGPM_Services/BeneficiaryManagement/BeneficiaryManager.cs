@@ -318,16 +318,19 @@ namespace SGPM_Services.ProjectsManagement
             catch (SqlException exception)
             {
                 Console.WriteLine(exception.Message);
+                Console.WriteLine(exception.InnerException);
                 result = -1;
             }
             catch (DbEntityValidationException exception)
             {
                 Console.WriteLine(exception.Message);
+                Console.WriteLine(exception.InnerException);
                 result = -1;
             }
             catch (EntityException exception)
             {
                 Console.WriteLine(exception.Message);
+                Console.WriteLine(exception.InnerException);
                 result = -1;
             }
 

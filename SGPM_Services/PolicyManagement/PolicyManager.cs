@@ -258,5 +258,30 @@ namespace SGPM_Services.ProjectsManagement
             return policyList;
         }
 
+        public bool ValidatePolicyDoesNotExist(Policy policy)
+        {
+            bool isPolicyUnique = false;
+
+            try
+            {
+                using (var context = new SGPMEntities())
+                {
+                    var policyFromDB = context.PoliticasOtorgamiento.Where(politica => politica.nombre == policy.Name
+                                                                            && politica.descripcion == policy.Description).FirstOrDefault();
+
+                    if (policyFromDB == null)
+                    {
+                        isPolicyUnique = true;
+                    }
+                }
+            }
+            catch (Exception ex) when (ex is SqlException | ex is EntityException || ex is InvalidOperationException)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
+            }
+
+            return isPolicyUnique;
+        }
     }
 }

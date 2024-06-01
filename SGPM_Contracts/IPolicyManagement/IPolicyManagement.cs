@@ -33,6 +33,9 @@ namespace SGPM_Contracts.IPolicyManagement
 
         [OperationContract]
         int UpdatePolicy(Policy policy);
+
+        [OperationContract]
+        bool ValidatePolicyDoesNotExist(Policy policy);
     }
 
     [DataContract]
