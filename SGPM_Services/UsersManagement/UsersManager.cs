@@ -201,7 +201,6 @@ namespace SGPM_Services.ProjectsManagement
                             contrasena = user.Password,
                             //NumeroEmpleado = user.EmployeeNumber
                         };
-
                         context.Usuarios.Add(userToBeSaved);
                         result = context.SaveChanges();
 

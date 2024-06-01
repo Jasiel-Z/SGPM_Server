@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using SGPM_Contracts.IBankAccountManagement;
+using SGPM_Contracts.IBeneficiaryManagement;
 using SGPM_DataBAse;
 
 namespace SGPM_Services.ProjectsManagement
@@ -14,12 +19,28 @@ namespace SGPM_Services.ProjectsManagement
         public int DeleteBankAccount(int idBeneficiary)
         {
             int result = 1;
-            using (var context = new SGPMEntities())
+
+            try
             {
-                var banckAccount = context.CuentasBancarias.Where(p => p.IdBeneficiario == idBeneficiary).FirstOrDefault();
-                banckAccount.IdBeneficiario = null;
-                context.CuentasBancarias.Remove(banckAccount);
-                result -= context.SaveChanges();
+                using (var context = new SGPMEntities())
+                {
+                    var banckAccount = context.CuentasBancarias.Where(p => p.IdBeneficiario == idBeneficiary).FirstOrDefault();
+                    banckAccount.IdBeneficiario = null;
+                    context.CuentasBancarias.Remove(banckAccount);
+                    result -= context.SaveChanges();
+                }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
             }
 
             return result;
@@ -28,43 +49,77 @@ namespace SGPM_Services.ProjectsManagement
         public BankAccount GetBankAccount(int idBeneficiary)
         {
             BankAccount bankAccountBeneficiary = null;
-            using (var context = new SGPMEntities())
+
+            try
             {
-                var banckAccount = context.CuentasBancarias.Where(p=>p.IdBeneficiario == idBeneficiary).FirstOrDefault();
-                if(banckAccount != null)
+                using (var context = new SGPMEntities())
                 {
-                    bankAccountBeneficiary = new BankAccount
+                    var banckAccount = context.CuentasBancarias.Where(p => p.IdBeneficiario == idBeneficiary).FirstOrDefault();
+                    if (banckAccount != null)
                     {
-                        Name = banckAccount.titular,
-                        AccountNumber = banckAccount.CuentaBancaria
-                    };
+                        bankAccountBeneficiary = new BankAccount
+                        {
+                            Name = banckAccount.titular,
+                            AccountNumber = banckAccount.CuentaBancaria
+                        };
+                    }
                 }
             }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+            
             return bankAccountBeneficiary;
         }
 
         public int SaveBankAccount(BankAccount account)
         {
             int result = 1;
-            if(account != null)
+            try
             {
-                if (account.ValidateAccount(account) == 0)
+                if (account != null)
                 {
-                    using (var context = new SGPMEntities())
+                    if (account.ValidateAccount(account) == 0)
                     {
-                        CuentasBancarias beneficiaryAccount = new CuentasBancarias
+                        using (var context = new SGPMEntities())
                         {
-                            titular = account.Name,
-                            CuentaBancaria = account.AccountNumber,
-                            IdBeneficiario = account.IdBeneficiary
-                        };
+                            CuentasBancarias beneficiaryAccount = new CuentasBancarias
+                            {
+                                titular = account.Name,
+                                CuentaBancaria = account.AccountNumber,
+                                IdBeneficiario = account.IdBeneficiary
+                            };
 
-                        context.CuentasBancarias.Add(beneficiaryAccount);
-                        result -= context.SaveChanges();
+                            context.CuentasBancarias.Add(beneficiaryAccount);
+                            result -= context.SaveChanges();
+                        }
+                        UpdateBankAccountBeneficiary(account.IdBeneficiary, account.AccountNumber);
                     }
-                    UpdateBankAccountBeneficiary(account.IdBeneficiary, account.AccountNumber);
                 }
             }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            
             return result;
         }
 
@@ -85,16 +140,32 @@ namespace SGPM_Services.ProjectsManagement
         {
             int result = 1;
 
-            using(var context = new SGPMEntities())
+            try
             {
-                var beneficiary = context.Beneficiarios.Where(p => p.IdBeneficiario == idBeneficiary).FirstOrDefault();
-                if(beneficiary != null)
+                using (var context = new SGPMEntities())
                 {
-                    beneficiary.CuentaBancaria = idBankAccount;
+                    var beneficiary = context.Beneficiarios.Where(p => p.IdBeneficiario == idBeneficiary).FirstOrDefault();
+                    if (beneficiary != null)
+                    {
+                        beneficiary.CuentaBancaria = idBankAccount;
+                    }
+                    result -= context.SaveChanges();
                 }
-                result -= context.SaveChanges();
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
             }
 
+           
             return result;
         }
     }

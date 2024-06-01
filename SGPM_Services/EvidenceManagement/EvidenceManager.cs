@@ -7,6 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SGPM_Services.ProjectsManagement
 {
@@ -16,19 +19,36 @@ namespace SGPM_Services.ProjectsManagement
         {
             DateTime todayDate = DateTime.Now;
             List<ProjectShow> projectList = new List<ProjectShow>();
-            using (var context = new SGPMEntities())
+
+            try
             {
-                var projectListDB = context.Proyectos.Where(p => p.fechaFin < todayDate && p.fechaLimiteEvidencias > todayDate).ToList();
-                foreach (var project in projectListDB)
+                using (var context = new SGPMEntities())
                 {
-                    var projectShow = new ProjectShow
+                    var projectListDB = context.Proyectos.Where(p => p.fechaFin < todayDate && p.fechaLimiteEvidencias > todayDate).ToList();
+                    foreach (var project in projectListDB)
                     {
-                        Folio = project.Folio,
-                        Name = project.nombre
-                    };
-                    projectList.Add(projectShow);
+                        var projectShow = new ProjectShow
+                        {
+                            Folio = project.Folio,
+                            Name = project.nombre
+                        };
+                        projectList.Add(projectShow);
+                    }
                 }
             }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
             return projectList;
         }
 
@@ -36,40 +56,78 @@ namespace SGPM_Services.ProjectsManagement
         {
             DateTime todayDate = DateTime.Now;
             List<RequestShow> projectList = new List<RequestShow>();
-            using (var context = new SGPMEntities())
+
+            try
             {
-                var requestListDB = context.Solicitudes.Where(s => s.Folio == folio).ToList();
-                foreach (var request in requestListDB)
+                using (var context = new SGPMEntities())
                 {
-                    var RequestShow = new RequestShow
+                    var requestListDB = context.Solicitudes.Where(s => s.Folio == folio).ToList();
+                    foreach (var request in requestListDB)
                     {
-                        Id = request.IdSolicitud,
-                        BeneficiaryName = request.Beneficiarios.rfc
-                    };
-                    projectList.Add(RequestShow);
+                        var RequestShow = new RequestShow
+                        {
+                            Id = request.IdSolicitud,
+                            BeneficiaryName = request.Beneficiarios.rfc
+                        };
+                        projectList.Add(RequestShow);
+                    }
                 }
             }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
             return projectList;
         }
 
         public int SaveEvidence(Evidence evidence)
         {
-            Console.WriteLine("EY");
             int result = 0;
-            using (var context = new SGPMEntities())
+
+            try
             {
-                Evidencias solicitud = new Evidencias
+                using (var context = new SGPMEntities())
                 {
-                    nombre = evidence.Name,
-                    fechaEntrega = DateTime.Now,
-                    direccion = "../EvidenceFIles/",
-                    IdSolicitud = evidence.IdRequest
-                };
-                context.Evidencias.Add(solicitud);
-                result = context.SaveChanges();
+                    Evidencias solicitud = new Evidencias
+                    {
+                        nombre = evidence.Name,
+                        fechaEntrega = DateTime.Now,
+                        direccion = "../EvidenceFIles/",
+                        IdSolicitud = evidence.IdRequest
+                    };
+                    context.Evidencias.Add(solicitud);
+                    result = context.SaveChanges();
+                }
             }
-            var file = DecompressFile(evidence.file);
-            SaveFile(file, evidence.Name);
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+
+            if (result != 0)
+            {
+                var file = DecompressFile(evidence.file);
+                SaveFile(file, evidence.Name);
+            }
+
             return result;
         }
 
@@ -90,7 +148,7 @@ namespace SGPM_Services.ProjectsManagement
 
         public void SaveFile(byte[] fileBytes, string fileName)
         {
-            string directoryPath = "C:\\Users\\yusgu\\Documents\\UV\\6to Semestre\\D. Software\\SGPM_Server\\SGPM_Services\\EvidenceManagement\\EvidenceFIles\\";
+            string directoryPath = "/EvidenceFIles\\";
             string filePath = Path.Combine(directoryPath, fileName); 
 
             try
