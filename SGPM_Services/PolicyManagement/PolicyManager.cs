@@ -38,11 +38,19 @@ namespace SGPM_Services.ProjectsManagement
                     }
                 }
             }
-            catch (Exception ex)
+            catch (SqlException exception)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(exception.Message);
             }
-            
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
 
             return policyList;
         }
@@ -124,18 +132,35 @@ namespace SGPM_Services.ProjectsManagement
         public List<int> GetPolicysOfProject(string idProject)
         {
             List<int> listPolicy = new List<int>();
-            using (var context = new SGPMEntities())
-            {
-                var policiesFromDatabase = context.ProyectoPoliticaOtorgamiento.Where(p => p.Folio == idProject).ToList();
 
-                if (policiesFromDatabase != null)
+            try
+            {
+                using (var context = new SGPMEntities())
                 {
-                    foreach (var policy in policiesFromDatabase)
+                    var policiesFromDatabase = context.ProyectoPoliticaOtorgamiento.Where(p => p.Folio == idProject).ToList();
+
+                    if (policiesFromDatabase != null)
                     {
-                        listPolicy.Add((int)policy.IdPoliticaOtorgamiento);
+                        foreach (var policy in policiesFromDatabase)
+                        {
+                            listPolicy.Add((int)policy.IdPoliticaOtorgamiento);
+                        }
                     }
                 }
             }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
             return listPolicy;
          }
 

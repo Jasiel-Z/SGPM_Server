@@ -56,7 +56,7 @@ namespace SGPM_Services.ProjectsManagement
 
         public int SaveDeliveryOrden(DeliveryOrden deliveryOrden, string folio)
         {
-            var result = 1;
+            var result = 0;
             using (var context = new SGPMEntities())
             {
                 OrdenesEntrega delivery = new OrdenesEntrega
@@ -68,7 +68,7 @@ namespace SGPM_Services.ProjectsManagement
                     IdRecurso = deliveryOrden.Resource.IdResource
                 };
                 context.OrdenesEntrega.AddOrUpdate(delivery);
-                result -= context.SaveChanges();
+                result = context.SaveChanges();
                 UpdateProjectDeliveryOrden(delivery.IdOrdenEntrega, folio);
             }
 

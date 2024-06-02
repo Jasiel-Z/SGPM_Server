@@ -61,21 +61,37 @@ namespace SGPM_Services.ProjectsManagement
 
         public List<Dependency> GetDependencies()
         {
-            List<Dependency> dependenciesList = new List<Dependency>();
+            List<Dependency> dependenciesList = null;
 
-            using (var context = new SGPMEntities())
+
+            try
             {
-                var dependecies = context.Dependencias.ToList();
-                
-                foreach(var dependencyDB in dependecies)
+                using (var context = new SGPMEntities())
                 {
-                    Dependency dependency = new Dependency
+                    var dependecies = context.Dependencias.ToList();
+
+                    foreach (var dependencyDB in dependecies)
                     {
-                        IdDependency = dependencyDB.IdDependencia,
-                        NameDependency = dependencyDB.nombre,
-                    };
-                    dependenciesList.Add(dependency);
+                        Dependency dependency = new Dependency
+                        {
+                            IdDependency = dependencyDB.IdDependencia,
+                            NameDependency = dependencyDB.nombre,
+                        };
+                        dependenciesList.Add(dependency);
+                    }
                 }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
             }
 
             return dependenciesList;
@@ -83,21 +99,38 @@ namespace SGPM_Services.ProjectsManagement
 
         public List<Localidad> GetLocalidads()
         {
-            List<Localidad> localidadList = new List<Localidad>();
+            List<Localidad> localidadList = null;
 
-            using (var context = new SGPMEntities())
+            try
             {
-                var localidads = context.Localidades.ToList();
-
-                foreach (var localidadDB in localidads)
+                using (var context = new SGPMEntities())
                 {
-                    Localidad dependency = new Localidad
+                    var localidads = context.Localidades.ToList();
+
+                    foreach (var localidadDB in localidads)
                     {
-                        IdLocalidad = localidadDB.IdLocalidad,
-                        NameLocalidad = localidadDB.nombre,
-                    };
-                    localidadList.Add(dependency);
+                        Localidad dependency = new Localidad
+                        {
+                            IdLocalidad = localidadDB.IdLocalidad,
+                            NameLocalidad = localidadDB.nombre,
+                        };
+                        localidadList.Add(dependency);
+                    }
                 }
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception.Message);
+
+            }
+            catch (DbEntityValidationException exception)
+            {
+                Console.WriteLine(exception.Message);
+
+            }
+            catch (EntityException exception)
+            {
+                Console.WriteLine(exception.Message);
             }
 
             return localidadList;
@@ -241,7 +274,7 @@ namespace SGPM_Services.ProjectsManagement
 
         public int RegisteredProjects(Project project)
         {
-            int result = 1;
+            int result = 0;
             if (project != null)
             {
                 try
@@ -271,7 +304,7 @@ namespace SGPM_Services.ProjectsManagement
                         if(proyectDB.IdLocalidad > 0)
                         {
                             context.Proyectos.AddOrUpdate(proyectDB);
-                            result -= context.SaveChanges();
+                            result = context.SaveChanges();
                         }
                     }
                 }
