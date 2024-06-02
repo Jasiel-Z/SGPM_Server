@@ -236,7 +236,7 @@ namespace SGPM_Services.ProjectsManagement
                 {
                     projects = (from p in context.Proyectos
                                    where p.IdLocalidad == locationId  &&
-                                   p.estado == "Activo" &&
+                                   p.fechaLimiteSolicitudes >= System.DateTime.Today &&
                                    p.beneficiariosRestantes > 0
                                    select new Project
                                    {
